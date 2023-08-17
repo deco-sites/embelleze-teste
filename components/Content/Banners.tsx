@@ -72,7 +72,6 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
 
 function Banners({ images, preload, interval }: Props) {
   const id = useId();
-  console.log(interval);
   return (
     <div
       id={id}
