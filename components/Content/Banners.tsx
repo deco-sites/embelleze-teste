@@ -4,7 +4,6 @@ import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 import Dots from "$store/components/Content/Dots.tsx";
-import { useEffect, useRef, useState } from "preact/hooks";
 
 /**
  * @titleBy alt
@@ -72,30 +71,6 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
 }
 
 function Banners({ images, preload, interval }: Props) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const scrollTimeoutId = useRef<number | null>(null);
-
-  const moveCarouselToIndex = (index: number) => {
-    // if (index > (images?.length || 0 - 1)) {
-    //   index = (currentIndex + 1) % (images?.length || 0);
-    // }
-
-    const buttons = document.querySelectorAll(".carousel-button");
-    buttons.forEach((button, buttonIndex) => {
-      if (buttonIndex === index) {
-        button.className =
-          "carousel-button w-6 h-2 rounded-full mx-1 bg-primary";
-      } else {
-        button.className =
-          "carousel-button w-2 h-2 rounded-full mx-1 bg-gray-300";
-      }
-    });
-  };
-
-  useEffect(() => {
-    moveCarouselToIndex(currentIndex);
-  }, [currentIndex]);
-
   const id = useId();
   return (
     <div
@@ -118,7 +93,6 @@ function Banners({ images, preload, interval }: Props) {
 
       <Dots
         images={images}
-        setCurrentIndex={setCurrentIndex}
       />
 
       <SliderJS

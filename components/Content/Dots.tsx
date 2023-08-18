@@ -17,10 +17,9 @@ export interface Banner {
 
 export interface Props {
   images?: Banner[];
-  setCurrentIndex: preact.StateUpdater<number>;
 }
 
-export default function Dots({ images, setCurrentIndex }: Props) {
+export default function Dots({ images }: Props) {
   return (
     <>
       <ul class="carousel justify-center col-span-full gap-4 z-10 row-start-4 flex m-auto">
@@ -28,7 +27,6 @@ export default function Dots({ images, setCurrentIndex }: Props) {
           <li
             class="carousel-item"
             key={index}
-            onClick={() => setCurrentIndex(index)}
           >
             <Slider.Dot index={index}>
               <div

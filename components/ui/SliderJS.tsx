@@ -95,6 +95,12 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
       return;
     }
 
+    slider.scrollTo({
+      top: 0,
+      behavior: scroll,
+      left: item.offsetLeft - root.offsetLeft,
+    });
+
     const buttons = document.querySelectorAll(".carousel-button");
     buttons.forEach((button, buttonIndex) => {
       if (buttonIndex === index) {
@@ -104,12 +110,6 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
         button.className =
           "w-2 h-2 rounded-full mx-1 bg-gray-300 carousel-button";
       }
-    });
-
-    slider.scrollTo({
-      top: 0,
-      behavior: scroll,
-      left: item.offsetLeft - root.offsetLeft,
     });
   };
 
@@ -131,6 +131,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     // Wow! items per page is how many elements are being displayed inside the container!!
     const itemsPerPage = indices.length;
 
+    // console.log(indices, itemsPerPage);
     const isShowingLast = indices[indices.length - 1] === items.length - 1;
     const pageIndex = Math.floor(indices[0] / itemsPerPage);
 
