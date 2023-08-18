@@ -69,7 +69,7 @@ function TestimonialsDesktop({ section }: Props) {
   return (
     <>
       <button
-        class="flex items-center prev-btn absolute -left-10 bottom-[100px] transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+        class="flex items-center prev-btn absolute -left-12 bottom-[90px] transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
         onClick={prevSlide}
       >
         {"<"}
@@ -78,11 +78,11 @@ function TestimonialsDesktop({ section }: Props) {
         class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 min-h-[300px] h-64 flex items-end"
         id="carousel"
       >
-        <div class=" flex gap-4 carousel-content transition-transform duration-300 ease-in-out">
+        <div class=" flex gap-4 carousel-content transition-transform duration-300 ease-in-out w-full">
           {newSections.map((section, index) => (
             <div
               key={index}
-              class="flex justify-between gap-4 carousel-item w-85 p-4"
+              class="flex justify-between gap-4 carousel-item w-full"
               id="carousel-item"
             >
               {section?.map(({ image, alt, name, text, rating }) => (
@@ -113,7 +113,7 @@ function TestimonialsDesktop({ section }: Props) {
           ))}
         </div>
         <button
-          class="flex items-center next-btn absolute -right-10 bottom-[100px] transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+          class="flex items-center next-btn absolute -right-12 bottom-[90px] transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
           onClick={nextSlide}
         >
           {">"}

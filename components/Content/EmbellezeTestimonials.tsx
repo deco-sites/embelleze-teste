@@ -21,7 +21,7 @@ export interface Props {
 
 function EmbellezeTestimonials({ section, title, description }: Props) {
   return (
-    <div class="flex justify-between m-auto md:w-85 w-11/12 flex-col relative">
+    <div class="flex justify-between m-auto w-11/12 flex-col relative mb-10">
       {title && (
         <h2 class="text-primary text-2xl uppercase text-center">{title}</h2>
       )}
