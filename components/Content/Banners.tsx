@@ -76,9 +76,10 @@ function Banners({ images, preload, interval }: Props) {
   const scrollTimeoutId = useRef<number | null>(null);
 
   const moveCarouselToIndex = (index: number) => {
-    if (index > (images?.length || 0 - 1)) {
-      index = (currentIndex + 1) % (images?.length || 0);
-    }
+    // if (index > (images?.length || 0 - 1)) {
+    //   index = (currentIndex + 1) % (images?.length || 0);
+    // }
+
     const buttons = document.querySelectorAll(".carousel-button");
     buttons.forEach((button, buttonIndex) => {
       if (buttonIndex === index) {
@@ -89,20 +90,6 @@ function Banners({ images, preload, interval }: Props) {
           "carousel-button w-2 h-2 rounded-full mx-1 bg-gray-300";
       }
     });
-  };
-
-  const handleScroll = () => {
-    // Limpar o timeout anterior, se existir
-    if (scrollTimeoutId.current) {
-      clearTimeout(scrollTimeoutId.current);
-    }
-
-    // Agendar uma nova chamada após o intervalo de debouncing
-    scrollTimeoutId.current = setTimeout(() => {
-      setCurrentIndex((prevCurrentIndex) =>
-        (prevCurrentIndex + 1) % (images?.length || 0)
-      );
-    }, 100);
   };
 
   useEffect(() => {
@@ -117,7 +104,6 @@ function Banners({ images, preload, interval }: Props) {
     >
       <Slider
         class="carousel carousel-center w-full col-span-full row-span-full gap-6"
-        onScroll={() => handleScroll()}
         id="carousel-banner"
       >
         {images?.map((image, index) => (

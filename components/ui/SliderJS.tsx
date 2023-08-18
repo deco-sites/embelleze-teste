@@ -95,6 +95,17 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
       return;
     }
 
+    const buttons = document.querySelectorAll(".carousel-button");
+    buttons.forEach((button, buttonIndex) => {
+      if (buttonIndex === index) {
+        button.className =
+          "w-6 h-2 rounded-full mx-1 bg-primary carousel-button";
+      } else {
+        button.className =
+          "w-2 h-2 rounded-full mx-1 bg-gray-300 carousel-button";
+      }
+    });
+
     slider.scrollTo({
       top: 0,
       behavior: scroll,
