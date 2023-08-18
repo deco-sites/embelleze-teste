@@ -75,7 +75,7 @@ function Banners({ images, preload, interval }: Props) {
   return (
     <div
       id={id}
-      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] h-[450px]"
+      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] h-[450px]  mt-[100px]"
     >
       <Slider
         class="carousel carousel-center w-full col-span-full row-span-full gap-6"
