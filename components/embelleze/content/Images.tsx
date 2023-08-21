@@ -15,7 +15,7 @@ export interface Props {
 
 function Images({ images, isCarrousel, title, description }: Props) {
   return (
-    <section class="flex m-auto w-11/12 flex-col gap-4">
+    <section class="flex m-auto w-11/12 flex-col gap-4 py-4">
       {title && (
         <h2 class="text-primary text-2xl uppercase text-center">{title}</h2>
       )}
