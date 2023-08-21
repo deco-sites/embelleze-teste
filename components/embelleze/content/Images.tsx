@@ -22,13 +22,13 @@ function Images({ images, isCarrousel, title, description }: Props) {
       {description && <p class="text-sm text-center">{description}</p>}
       {isCarrousel
         ? (
-          <div class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 flex items-end flex-nowrap md:justify-between md:flex-wrap m-auto md:py-4">
+          <div class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 flex items-end md:justify-between md:flex-wrap md:py-4">
             {images?.map(({ image, alt, href }) => (
               <a href={href} width={382} height={246} class="relative">
                 <img
                   src={image}
                   alt={alt}
-                  class="object-fill min-w-[70vw] min-h-[246px] md:min-w-[382px] rounded-2xl hover:opacity-"
+                  class="object-fill min-w-[70vw] min-h-[246px] md:min-w-[382px] rounded-2xl"
                 />
               </a>
             ))}
