@@ -194,7 +194,7 @@ function ProductCarousel({ header, list1, categories, mobileBigCard }: Props) {
         <div
           class={`carousel carousel-start gap-4 lg:gap-6 row-start-2 row-end-5 w-full ${
             mobileBigCard ? "h-[36rem]" : "h-[27rem]"
-          } md:h-[33rem] border-2 border-red-600 border-solid`}
+          } md:h-[33rem]`}
           id={"carousel-product" + header?.title[0]}
         >
           {list1?.map((product, index) => (
