@@ -97,15 +97,15 @@ function PCard(
           </div>
 
           <p class="text-[12px] pb-2 text-[#00000066]">ou {installments}</p>
-          <a href={url} class="md:hidden"> 
+          <a href={url} class="md:hidden">
             <button class="w-full py-1 uppercase rounded-[5px] border-[#17A087] text-[#17A087] border-2 border-solid hover:text-white hover:bg-[#17A087]">
-            Comprar
+              Comprar
             </button>
           </a>
           <a href={url} class="hidden md:block">
-          <button class="w-full py-1 uppercase rounded-[5px] border-[#17A087] text-[#17A087] border-2 border-solid hover:text-white hover:bg-[#17A087]">
-            Adicionar ao carrinho
-          </button>
+            <button class="w-full py-1 uppercase rounded-[5px] border-[#17A087] text-[#17A087] border-2 border-solid hover:text-white hover:bg-[#17A087]">
+              Adicionar ao carrinho
+            </button>
           </a>
         </div>
       </div>
@@ -175,7 +175,7 @@ function ProductCarousel({ header, list1, categories, mobileBigCard }: Props) {
           </p>
         </div>
         {categories && (
-          <div class={"justify-center m-auto flex items-center gap-4" }>
+          <div class={"justify-center m-auto flex items-center gap-4"}>
             {categories.map((category, index) => (
               <button
                 key={category}
@@ -192,7 +192,9 @@ function ProductCarousel({ header, list1, categories, mobileBigCard }: Props) {
           </div>
         )}
         <div
-          class={`carousel carousel-start gap-4 lg:gap-6 row-start-2 row-end-5 w-full ${mobileBigCard ? 'h-[36rem]' : 'h-[27rem]'} md:h-[33rem] border-2 border-red-600 border-solid`}
+          class={`carousel carousel-start gap-4 lg:gap-6 row-start-2 row-end-5 w-full ${
+            mobileBigCard ? "h-[36rem]" : "h-[27rem]"
+          } md:h-[33rem] border-2 border-red-600 border-solid`}
           id={"carousel-product" + header?.title[0]}
         >
           {list1?.map((product, index) => (

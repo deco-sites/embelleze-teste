@@ -17,7 +17,7 @@ function Alert({ alerts = [], interval = 5 }: Props) {
 
   return (
     <div id={id} class="relative">
-      <Slider class="carousel carousel-center bg-primary gap-6 w-[80vw] md:w-[40vw]">
+      <Slider class="carousel carousel-center bg-primary gap-6 w-[80vw] lg:w-[40vw]">
         <Slider.PrevButton class="bg-transparent absolute left-0 my-auto mx-0 h-[30px]">
           <Icon
             class="text-base-100"
@@ -28,7 +28,7 @@ function Alert({ alerts = [], interval = 5 }: Props) {
         </Slider.PrevButton>
         {alerts.map((alert, index) => (
           <Slider.Item index={index} class="carousel-item">
-            <span class="text-secondary-content flex justify-center items-center h-[30px] w-[80vw] md:w-[40vw] relative text-[0.7em]">
+            <span class="text-secondary-content flex justify-center items-center h-[30px] w-[80vw] lg:w-[40vw] relative text-[0.7em]">
               {alert}
             </span>
           </Slider.Item>

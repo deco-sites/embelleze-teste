@@ -14,7 +14,7 @@ function Navbar({ paths, logo }: {
       {/* Mobile Version */}
       <div
         style={{ height: navbarHeight }}
-        class="md:hidden border-b border-base-200 w-full text-primary"
+        class="lg:hidden border-b border-base-200 w-full text-primary"
       >
         <div class="w-[90%] m-auto flex flex-row justify-between items-center">
           <MenuButton />
@@ -42,7 +42,7 @@ function Navbar({ paths, logo }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex h-[10vh] items-center m-auto w-[90%] justify-between">
+      <div class="hidden lg:flex h-[10vh] items-center m-auto w-[90%] justify-between">
         {logo && (
           <a
             href="/"
