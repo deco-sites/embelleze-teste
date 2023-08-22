@@ -97,12 +97,16 @@ function PCard(
           </div>
 
           <p class="text-[12px] pb-2 text-[#00000066]">ou {installments}</p>
-          <button class="md:hidden w-full py-1 uppercase rounded-[5px] border-[#17A087] text-[#17A087] border-2 border-solid hover:text-white hover:bg-[#17A087]">
-            <a href={url} class="text-center text-sm">Comprar</a>
+          <a href={url} class="md:hidden"> 
+            <button class="w-full py-1 uppercase rounded-[5px] border-[#17A087] text-[#17A087] border-2 border-solid hover:text-white hover:bg-[#17A087]">
+            Comprar
+            </button>
+          </a>
+          <a href={url} class="hidden md:block">
+          <button class="w-full py-1 uppercase rounded-[5px] border-[#17A087] text-[#17A087] border-2 border-solid hover:text-white hover:bg-[#17A087]">
+            Adicionar ao carrinho
           </button>
-          <button class="hidden md:block w-full py-1 uppercase rounded-[5px] border-[#17A087] text-[#17A087] border-2 border-solid hover:text-white hover:bg-[#17A087]">
-            <a href={url} class="text-center text-sm">Adicionar ao carrinho</a>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -154,7 +158,7 @@ function ProductCarousel({ header, list1, categories, mobileBigCard }: Props) {
         >
           {"<"}
         </button>
-        <div class="flex items-center justify-center flex-col">
+        <div class="flex items-center justify-center flex-col ">
           <h3
             class={`${
               header?.title ? "block" : "hidden"
@@ -171,7 +175,7 @@ function ProductCarousel({ header, list1, categories, mobileBigCard }: Props) {
           </p>
         </div>
         {categories && (
-          <div class={"justify-center m-auto flex items-center gap-4"}>
+          <div class={"justify-center m-auto flex items-center gap-4" }>
             {categories.map((category, index) => (
               <button
                 key={category}
@@ -188,7 +192,7 @@ function ProductCarousel({ header, list1, categories, mobileBigCard }: Props) {
           </div>
         )}
         <div
-          class={"carousel carousel-start gap-4 lg:gap-6 row-start-2 row-end-5 w-full"}
+          class={`carousel carousel-start gap-4 lg:gap-6 row-start-2 row-end-5 w-full ${mobileBigCard ? 'h-[36rem]' : 'h-[27rem]'} md:h-[33rem] border-2 border-red-600 border-solid`}
           id={"carousel-product" + header?.title[0]}
         >
           {list1?.map((product, index) => (
