@@ -91,7 +91,7 @@ function EmbellezeHeader({
         >
           <div
             class={`h-[14.5vh] bg-base-100 fixed w-full z-50 ${
-              navItems.length > 0 ? "lg:h-[22vh]" : "lg:h-[14.5vh]"
+              navItems.length > 0 ? "lg:h-36" : "lg:h-24"
             }`}
           >
             <div class="w-screen bg-primary">
