@@ -91,13 +91,13 @@ function EmbellezeHeader({
         >
           <div
             class={`h-[14.5vh] bg-base-100 fixed w-full z-50 ${
-              navItems.length > 0 ? "md:h-[22vh]" : "md:h-[14.5vh]"
+              navItems.length > 0 ? "lg:h-36" : "lg:h-24"
             }`}
           >
             <div class="w-screen bg-primary">
               <div class="w-[80vw] flex m-auto items-center justify-between">
                 <Alert alerts={alerts} />
-                <ul class="hidden md:flex items-center justify-between text-[0.56em] w-[30vw] uppercase text-white">
+                <ul class="hidden lg:flex items-center justify-between text-[0.56em] w-[30vw] uppercase text-white">
                   <li>
                     <a
                       href={social.Whatsapp.href}
@@ -156,7 +156,7 @@ function EmbellezeHeader({
             </div>
             {navItems.length > 0 &&
               (
-                <div class="hidden md:flex m-auto w-[90%] h-[8vh] text-[#541693] uppercase items-center text-sm gap-5">
+                <div class="hidden lg:flex m-auto w-[90%] h-[8vh] text-[#541693] uppercase items-center text-sm gap-5">
                   {navItems.map((item, index) => (
                     <NavItem
                       item={item}
@@ -165,7 +165,7 @@ function EmbellezeHeader({
                   ))}
                 </div>
               )}
-            <div class="w-[100%] md:hidden relative">
+            <div class="w-[100%] lg:hidden relative">
               <input
                 class="w-full p-2 text-xs text-primary"
                 type="type"
