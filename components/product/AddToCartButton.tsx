@@ -3,6 +3,8 @@ import {
   Options as UseAddToCartProps,
   useAddToCart,
 } from "$store/sdk/useAddToCart.ts";
+import { useSignal } from "@preact/signals";
+import Icon from "$store/components/ui/Icon.tsx";
 
 export interface Props extends UseAddToCartProps {
   /**
@@ -14,6 +16,8 @@ export interface Props extends UseAddToCartProps {
 function AddToCartButton(
   { skuId, sellerId, discount, price, productGroupId, name }: Props,
 ) {
+  const quantity = useSignal(1);
+
   const props = useAddToCart({
     skuId,
     sellerId,
@@ -21,12 +25,24 @@ function AddToCartButton(
     price,
     productGroupId,
     name,
+    quantity: quantity.value,
   });
 
   return (
-    <Button data-deco="add-to-cart" {...props} class="btn-primary">
-      Adicionar à Sacola
-    </Button>
+    <>
+      <div>
+        <button>
+          <Icon id="Minus" size={30} />
+        </button>
+        {quantity}
+        <button>
+          <Icon id="Plus" size={30} />
+        </button>
+      </div>
+      <Button data-deco="add-to-cart" {...props} class="btn-primary">
+        Adicionar à Sacola
+      </Button>
+    </>
   );
 }
 

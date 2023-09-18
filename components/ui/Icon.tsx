@@ -35,6 +35,7 @@ export type AvailableIcons =
   | "Tiktok"
   | "Trash"
   | "Truck"
+  | "TRUCK-FAST"
   | "Twitter"
   | "User"
   | "Visa"

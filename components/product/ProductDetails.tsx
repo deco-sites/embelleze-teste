@@ -18,6 +18,7 @@ import Image from "deco-sites/std/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 
 export type Variant = "front-back" | "slider" | "auto";
+import { star, starVazia } from "$store/components/Content/svg.tsx";
 
 export interface Props {
   page: ProductDetailsPage | null;
@@ -28,8 +29,8 @@ export interface Props {
   variant?: Variant;
 }
 
-const WIDTH = 360;
-const HEIGHT = 360;
+const WIDTH = 500;
+const HEIGHT = 560;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
 /**
@@ -60,48 +61,156 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
     name,
     gtin,
     isVariantOf,
+    additionalProperty,
+    aggregateRating,
   } = product;
   const { price, listPrice, seller, installments, availability } = useOffer(
     offers,
   );
+  const ratingCount = aggregateRating?.ratingCount ?? 0;
+  const rating = aggregateRating?.ratingValue ?? 0;
+  const starArray = [1, 2, 3, 4, 5];
 
   return (
     <>
       {/* Breadcrumb */}
-      <Breadcrumb
-        itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
-      />
-      {/* Code and name */}
-      <div class="mt-4 sm:mt-8">
+      <div class="order-1 row-span-1 row-start-1 pb-2 lg:col-start-3 h-fit flex flex-col gap-4">
+        {/* Code and name */}
         <div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-base-300">
+              Cod. {gtin}
+            </span>
+            <div class=" w-fit h-10 rounded-lg flex items-center gap-2">
+              {starArray.map((value) => (
+                <span
+                  key={value}
+                  class="inline-block w-fit h-fit"
+                >
+                  {value <= rating ? star : starVazia}
+                </span>
+              ))}
+              <span>{`(${ratingCount})`}</span>
+            </div>
+          </div>
+          <h1>
+            <span class="font-medium text-xl text-primary">{name}</span>
+          </h1>
+          <span>{description?.slice(0, 180)}</span>
+        </div>
+
+        <div class="flex justify-start gap-2 flex-wrap flex-grow">
+          {additionalProperty?.filter(({ description }) =>
+            description === "highlight"
+          ).map(({ value }) => (
+            <span class="bg-primary p-2 rounded-lg text-white text-sm font-medium max-h-7 uppercase flex items-center justify-center">
+              {value}
+            </span>
+          ))}
+        </div>
+        {/* Prices */}
+      </div>
+
+      <div class="order-3 row-span-3 lg:col-start-3 row-start-3 lg:row-span-2 h-fit">
+        <div class="hidden md:block">
+          <div class="flex flex-row gap-2 items-center">
+            <span class="font-medium text-xl text-primary">
+              {formatPrice(price, offers!.priceCurrency!)}
+            </span>
+            <span class="line-through text-base-300 text-xs">
+              {formatPrice(listPrice, offers!.priceCurrency!)}
+            </span>
+          </div>
           <span class="text-sm text-base-300">
-            Cod. {gtin}
+            ou {installments}
           </span>
         </div>
-        <h1>
-          <span class="font-medium text-xl">{name}</span>
-        </h1>
-      </div>
-      {/* Prices */}
-      <div class="mt-4">
-        <div class="flex flex-row gap-2 items-center">
-          <span class="line-through text-base-300 text-xs">
-            {formatPrice(listPrice, offers!.priceCurrency!)}
-          </span>
-          <span class="font-medium text-xl text-secondary">
-            {formatPrice(price, offers!.priceCurrency!)}
-          </span>
+
+        <div
+          class="hidden lg:inline-block h-[1px] w-full"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.12)" }}
+        >
         </div>
-        <span class="text-sm text-base-300">
-          {installments}
-        </span>
+
+        {/* Sku Selector */}
+        <div class="">
+          <ProductSelector product={product} />
+        </div>
+        {/* Add to Cart and Favorites button */}
+        <div class="flex flex-col gap-2">
+          {availability === "https://schema.org/InStock"
+            ? (
+              <>
+                {seller && (
+                  <AddToCartButton
+                    skuId={productID}
+                    sellerId={seller}
+                    price={price ?? 0}
+                    discount={price && listPrice ? listPrice - price : 0}
+                    name={product.name ?? ""}
+                    productGroupId={product.isVariantOf?.productGroupID ?? ""}
+                  />
+                )}
+                <Component
+                  variant="full"
+                  productGroupID={isVariantOf?.productGroupID}
+                  productID={productID}
+                />
+              </>
+            )
+            : <OutOfStock productID={productID} />}
+        </div>
+        {/* Shipping Simulation */}
+        <div class="">
+          <ShippingSimulation
+            items={[{
+              id: Number(product.sku),
+              quantity: 1,
+              seller: seller ?? "1",
+            }]}
+          />
+        </div>
+        {/* Description card */}
+        {
+          /* <div class="">
+          <span class="text-sm">
+            {description && (
+              <details>
+                <summary class="cursor-pointer">Descrição</summary>
+                <div class="ml-2 mt-2">{description}</div>
+              </details>
+            )}
+          </span>
+        </div> */
+        }
       </div>
-      {/* Sku Selector */}
-      <div class="mt-4 sm:mt-6">
-        <ProductSelector product={product} />
-      </div>
-      {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2">
+
+      <div
+        class="fixed bottom-0 z-50 bg-white flex flex-col gap-2 p-4 w-full left-0 md:hidden"
+        style={{ borderTop: "3px solid rgba(0, 0, 0, 0.12)" }}
+      >
+        <div class="flex justify-between gap-2">
+          <h2 class="max-w-[161px]">
+            <span class="font-medium text-sm text-primary">{name}</span>
+          </h2>
+
+          <div class="block h-[auto] w-[2px] bg-black"></div>
+
+          <div>
+            <div class="flex flex-row gap-2 items-center">
+              <span class="font-medium text-xl text-secondary">
+                {formatPrice(price, offers!.priceCurrency!)}
+              </span>
+              <span class="line-through text-base-300 text-xs">
+                {formatPrice(listPrice, offers!.priceCurrency!)}
+              </span>
+            </div>
+            <span class="text-sm text-base-300">
+              {installments}
+            </span>
+          </div>
+        </div>
+
         {availability === "https://schema.org/InStock"
           ? (
             <>
@@ -115,35 +224,9 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
                   productGroupId={product.isVariantOf?.productGroupID ?? ""}
                 />
               )}
-              <Component
-                variant="full"
-                productGroupID={isVariantOf?.productGroupID}
-                productID={productID}
-              />
             </>
           )
           : <OutOfStock productID={productID} />}
-      </div>
-      {/* Shipping Simulation */}
-      <div class="mt-8">
-        <ShippingSimulation
-          items={[{
-            id: Number(product.sku),
-            quantity: 1,
-            seller: seller ?? "1",
-          }]}
-        />
-      </div>
-      {/* Description card */}
-      <div class="mt-4 sm:mt-6">
-        <span class="text-sm">
-          {description && (
-            <details>
-              <summary class="cursor-pointer">Descrição</summary>
-              <div class="ml-2 mt-2">{description}</div>
-            </details>
-          )}
-        </span>
       </div>
       {/* Analytics Event */}
       <SendEventOnLoad
@@ -219,7 +302,6 @@ const useStableImages = (product: ProductDetailsPage["product"]) => {
       }
       return acc;
     }, {} as Record<string, string>) ?? {};
-
   return images.map((img) => {
     const name = imageNameFromURL(img.url);
 
@@ -233,7 +315,7 @@ function Details({
 }: { page: ProductDetailsPage; variant: Variant }) {
   const { product } = page;
   const id = useId();
-  const images = useStableImages(product);
+  const images = product.image ?? [];
 
   /**
    * Product slider variant
@@ -242,23 +324,28 @@ function Details({
    * On mobile, there's one single column with 3 rows. Note that the orders are different from desktop to mobile, that's why
    * we rearrange each cell with col-start- directives
    */
-  if (variant === "slider") {
-    return (
-      <>
-        <div
-          id={id}
-          class="grid grid-cols-1 gap-4 sm:grid-cols-[max-content_40vw_40vw] sm:grid-rows-1 sm:justify-center"
-        >
-          {/* Image Slider */}
-          <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
-            <Slider class="carousel carousel-center gap-6 w-screen sm:w-[40vw]">
-              {images.map((img, index) => (
+  return (
+    <div class="flex flex-col w-11/12 m-auto relative">
+      <Breadcrumb
+        itemListElement={page.breadcrumbList?.itemListElement.slice(0, -1)}
+      />
+      <div
+        id={id}
+        class="flex flex-col lg:grid gap-4 lg:grid-cols-[auto] lg:grid-rows-[auto] lg:justify-between w-full"
+      >
+        {/* Image Slider */}
+        <div class="order-2 relative row-span-2 sm:col-start-2 sm:row-start-1 sm:row-end-3 lg:min-w-[450px] lg:h-[500px]">
+          <Slider class="carousel carousel-center gap-6 w-full">
+            {images?.map((img, index) => {
+              return (
                 <Slider.Item
                   index={index}
-                  class="carousel-item w-full"
+                  class={`carousel-item ${
+                    images.length > 1 ? "w-[70vw]" : "w-full"
+                  } md:w-11/12 border`}
                 >
                   <Image
-                    class="w-full"
+                    class="w-full h-[500px]"
                     sizes="(max-width: 640px) 100vw, 40vw"
                     style={{ aspectRatio: ASPECT_RATIO }}
                     src={img.url!}
@@ -270,59 +357,60 @@ function Details({
                     loading={index === 0 ? "eager" : "lazy"}
                   />
                 </Slider.Item>
-              ))}
-            </Slider>
+              );
+            })}
+          </Slider>
+          {images.length > 1 &&
+            (
+              <>
+                <Slider.PrevButton
+                  class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
+                  disabled
+                >
+                  <Icon size={24} id="ChevronLeft" strokeWidth={3} />
+                </Slider.PrevButton>
 
-            <Slider.PrevButton
-              class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
-              disabled
-            >
-              <Icon size={24} id="ChevronLeft" strokeWidth={3} />
-            </Slider.PrevButton>
-
-            <Slider.NextButton
-              class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
-              disabled={images.length < 2}
-            >
-              <Icon size={24} id="ChevronRight" strokeWidth={3} />
-            </Slider.NextButton>
-
-            <div class="absolute top-2 right-2 bg-base-100 rounded-full">
-              <ProductImageZoom
-                images={images}
-                width={700}
-                height={Math.trunc(700 * HEIGHT / WIDTH)}
-              />
-            </div>
-          </div>
-
-          {/* Dots */}
-          <ul class="flex gap-2 sm:justify-start overflow-auto px-4 sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
-            {images.map((img, index) => (
-              <li class="min-w-[63px] sm:min-w-[100px]">
-                <Slider.Dot index={index}>
-                  <Image
-                    style={{ aspectRatio: ASPECT_RATIO }}
-                    class="group-disabled:border-base-300 border rounded "
-                    width={63}
-                    height={87.5}
-                    src={img.url!}
-                    alt={img.alternateName}
-                  />
-                </Slider.Dot>
-              </li>
-            ))}
-          </ul>
-
-          {/* Product Info */}
-          <div class="px-4 sm:pr-0 sm:pl-6 sm:col-start-3 sm:col-span-1 sm:row-start-1">
-            <ProductInfo page={page} />
+                <Slider.NextButton
+                  class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
+                  disabled={(images?.length ?? 0) < 2}
+                >
+                  <Icon size={24} id="ChevronRight" strokeWidth={3} />
+                </Slider.NextButton>
+              </>
+            )}
+          <div class="absolute top-2 right-2 bg-base-100 rounded-full">
+            <ProductImageZoom
+              images={images}
+              width={700}
+              height={Math.trunc(700 * HEIGHT / WIDTH)}
+            />
           </div>
         </div>
-        <SliderJS rootId={id}></SliderJS>
-      </>
-    );
-  }
+
+        {/* Dots */}
+        <ul class="hidden h-fit lg:block lg:justify-start lg:flex-col lg:col-start-1 lg:col-span-1 lg:row-start-1 lg:row-end-3">
+          {images.map((img, index) => (
+            <li class="max-h-fit w-[90px]">
+              <Slider.Dot index={index}>
+                <Image
+                  style={{ aspectRatio: ASPECT_RATIO }}
+                  class="group-disabled:border-base-300 border rounded "
+                  width={63}
+                  height={87.5}
+                  src={img.url!}
+                  alt={img.alternateName}
+                />
+              </Slider.Dot>
+            </li>
+          ))}
+        </ul>
+
+        {/* Product Info */}
+        <ProductInfo page={page} />
+      </div>
+      <SliderJS rootId={id}></SliderJS>
+    </div>
+  );
 
   /**
    * Product front-back variant.
@@ -330,33 +418,6 @@ function Details({
    * Renders two images side by side both on mobile and on desktop. On mobile, the overflow is
    * reached causing a scrollbar to be rendered.
    */
-  return (
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-[50vw_25vw] sm:grid-rows-1 sm:justify-center">
-      {/* Image slider */}
-      <ul class="carousel carousel-center gap-6">
-        {[images[0], images[1] ?? images[0]].map((img, index) => (
-          <li class="carousel-item min-w-[100vw] sm:min-w-[24vw]">
-            <Image
-              sizes="(max-width: 640px) 100vw, 24vw"
-              style={{ aspectRatio: ASPECT_RATIO }}
-              src={img.url!}
-              alt={img.alternateName}
-              width={WIDTH}
-              height={HEIGHT}
-              // Preload LCP image for better web vitals
-              preload={index === 0}
-              loading={index === 0 ? "eager" : "lazy"}
-            />
-          </li>
-        ))}
-      </ul>
-
-      {/* Product Info */}
-      <div class="px-4 sm:pr-0 sm:pl-6">
-        <ProductInfo page={page} />
-      </div>
-    </div>
-  );
 }
 
 function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
