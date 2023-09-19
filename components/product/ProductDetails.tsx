@@ -16,6 +16,7 @@ import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import Image from "deco-sites/std/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
+import ClipBord from "$store/components/ui/ClipBord.tsx";
 
 export type Variant = "front-back" | "slider" | "auto";
 import { star, starVazia } from "$store/components/Content/svg.tsx";
@@ -63,6 +64,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
     isVariantOf,
     additionalProperty,
     aggregateRating,
+    brand,
   } = product;
   const { price, listPrice, seller, installments, availability } = useOffer(
     offers,
@@ -78,8 +80,8 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         {/* Code and name */}
         <div>
           <div class="flex items-center justify-between">
-            <span class="text-sm text-base-300">
-              Cod. {gtin}
+            <span class="text-sm text-gray-500 font-bold">
+              {brand?.name}
             </span>
             <div class=" w-fit h-10 rounded-lg flex items-center gap-2">
               {starArray.map((value) => (
@@ -99,14 +101,24 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           <span>{description?.slice(0, 180)}</span>
         </div>
 
-        <div class="flex justify-start gap-2 flex-wrap flex-grow">
-          {additionalProperty?.filter(({ description }) =>
-            description === "highlight"
-          ).map(({ value }) => (
-            <span class="bg-primary p-2 rounded-lg text-white text-sm font-medium max-h-7 uppercase flex items-center justify-center">
-              {value}
-            </span>
-          ))}
+        <div class="flex justify-between gap-2 flex-row w-full items-center">
+          <div class="flex justify-start gap-2 flex-wrap flex-grow items-center">
+            {additionalProperty?.filter(({ description }) =>
+              description === "highlight"
+            ).map(({ value }) => (
+              <span class="bg-primary p-2 rounded-lg text-white text-sm font-medium max-h-7 uppercase flex items-center justify-center">
+                {value}
+              </span>
+            ))}
+          </div>
+          <div class="flex gap-2 justify-start items-center">
+            <Component
+              variant="full"
+              productGroupID={isVariantOf?.productGroupID}
+              productID={productID}
+            />
+            <ClipBord />
+          </div>
         </div>
         {/* Prices */}
       </div>
@@ -137,7 +149,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           <ProductSelector product={product} />
         </div>
         {/* Add to Cart and Favorites button */}
-        <div class="flex flex-col gap-2">
+        <div class="flex-col gap-2 hidden md:flex">
           {availability === "https://schema.org/InStock"
             ? (
               <>
@@ -149,19 +161,15 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
                     discount={price && listPrice ? listPrice - price : 0}
                     name={product.name ?? ""}
                     productGroupId={product.isVariantOf?.productGroupID ?? ""}
+                    quantity={1}
                   />
                 )}
-                <Component
-                  variant="full"
-                  productGroupID={isVariantOf?.productGroupID}
-                  productID={productID}
-                />
               </>
             )
             : <OutOfStock productID={productID} />}
         </div>
         {/* Shipping Simulation */}
-        <div class="">
+        <div class="py-4">
           <ShippingSimulation
             items={[{
               id: Number(product.sku),
@@ -169,6 +177,12 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
               seller: seller ?? "1",
             }]}
           />
+        </div>
+
+        <div
+          class="hidden lg:inline-block h-[1px] w-full"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.12)" }}
+        >
         </div>
         {/* Description card */}
         {
@@ -222,6 +236,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
                   discount={price && listPrice ? listPrice - price : 0}
                   name={product.name ?? ""}
                   productGroupId={product.isVariantOf?.productGroupID ?? ""}
+                  quantity={1}
                 />
               )}
             </>
@@ -316,7 +331,11 @@ function Details({
   const { product } = page;
   const id = useId();
   const images = product.image ?? [];
+  const { price = 1, listPrice = 1 } = useOffer(product.offers);
 
+  const percent = Math.floor(
+    ((listPrice - price) / listPrice) * 100,
+  );
   /**
    * Product slider variant
    *
@@ -342,7 +361,7 @@ function Details({
                   index={index}
                   class={`carousel-item ${
                     images.length > 1 ? "w-[70vw]" : "w-full"
-                  } md:w-11/12 border`}
+                  } md:w-11/12 border relative`}
                 >
                   <Image
                     class="w-full h-[500px]"
@@ -356,6 +375,11 @@ function Details({
                     preload={index === 0}
                     loading={index === 0 ? "eager" : "lazy"}
                   />
+                  {index === 0 && percent > 0 && (
+                    <p class="absolute left-4 top-4 uppercase bg-secondary text-white p-2 rounded-lg">
+                      {`${percent}% off`}
+                    </p>
+                  )}
                 </Slider.Item>
               );
             })}

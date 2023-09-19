@@ -4,7 +4,6 @@ import {
   useAddToCart,
 } from "$store/sdk/useAddToCart.ts";
 import { useSignal } from "@preact/signals";
-import Icon from "$store/components/ui/Icon.tsx";
 
 export interface Props extends UseAddToCartProps {
   /**
@@ -29,20 +28,20 @@ function AddToCartButton(
   });
 
   return (
-    <>
-      <div>
-        <button>
-          <Icon id="Minus" size={30} />
+    <div class="flex justify-between items-center relative h-fit gap-4">
+      <div class="border rounded-lg flex items-center justify-between flex-grow h-[43px] p-2">
+        <button class="rounded-full bg-primary bg-opacity-10 w-6 h-6 text-primary" onClick={() => quantity.value > 1 ?  quantity.value -- : quantity.value = 1}>
+          -
         </button>
-        {quantity}
-        <button>
-          <Icon id="Plus" size={30} />
+        {quantity.value}
+        <button class="rounded-full bg-primary bg-opacity-10 w-6 h-6 text-primary" onClick={() => quantity.value ++}>
+          +
         </button>
       </div>
-      <Button data-deco="add-to-cart" {...props} class="btn-primary">
+      <Button data-deco="add-to-cart" {...props} class="btn-primary flex-grow-[2] max-h-8 min-h-[43px]">
         Adicionar à Sacola
       </Button>
-    </>
+    </div>
   );
 }
 
