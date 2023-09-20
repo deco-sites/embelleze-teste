@@ -3,14 +3,13 @@ import TestimonialsMobile from "$store/components/Content/TestimonialsMobile.tsx
 import TestimonialsDesktop from "$store/components/Content/TestimonialsDesktop.tsx";
 
 export interface Section {
-  image: LiveImage;
-  alt: string;
-  name: string;
-  text: string;
+  user: { name: string };
+  opinion: string | undefined;
+  comments: { text: string }[];
   /**
    * @description Stars Rating. You can SCALE from 0 to 5.
    */
-  rating: number;
+  rate: number;
 }
 
 export interface Props {
@@ -21,9 +20,11 @@ export interface Props {
 
 function EmbellezeTestimonials({ section, title, description }: Props) {
   return (
-    <div class="flex justify-between m-auto w-11/12 flex-col relative mb-10">
+    <div class="flex justify-between m-auto w-11/12 flex-col relative gap-4 py-4">
       {title && (
-        <h2 class="text-primary text-2xl uppercase text-center">{title}</h2>
+        <h2 class="text-primary text-2xl uppercase text-center font-medium">
+          {title}
+        </h2>
       )}
       {description && <p class="text-sm text-center">{description}</p>}
       {window.innerWidth <= 1300

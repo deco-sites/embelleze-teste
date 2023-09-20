@@ -21,6 +21,7 @@ import ProductAbout from "$store/components/product/ProductAbout.tsx";
 
 export type Variant = "front-back" | "slider" | "auto";
 import { star, starVazia } from "$store/components/Content/svg.tsx";
+import Opinioes from "deco-sites/fashion/components/product/Opinioes.tsx";
 
 export interface Props {
   page: ProductDetailsPage | null;
@@ -351,7 +352,7 @@ function Details({
       />
       <div
         id={id}
-        class="flex flex-col lg:grid gap-4 lg:grid-cols-[auto] lg:grid-rows-[auto] lg:justify-between w-full"
+        class="flex flex-col lg:grid gap-4 lg:grid-cols-[auto] lg:grid-rows-[auto] lg:justify-between w-full h-fit"
       >
         {/* Image Slider */}
         <div class="order-2 relative row-span-2 sm:col-start-2 sm:row-start-1 sm:row-end-3 lg:min-w-[450px] lg:h-[500px]">
@@ -413,7 +414,7 @@ function Details({
         </div>
 
         {/* Dots */}
-        <ul class="hidden h-fit lg:block lg:justify-start lg:flex-col lg:col-start-1 lg:col-span-1 lg:row-start-1 lg:row-end-3">
+        <ul class="carousel-vertical overflow-auto hidden h-[500px] w-fit lg:block lg:justify-start lg:flex-col lg:col-start-1 lg:col-span-1 lg:row-start-1 lg:row-end-3">
           {images.map((img, index) => (
             <li class="max-h-fit w-[90px]">
               <Slider.Dot index={index}>
@@ -443,6 +444,11 @@ function Details({
           additionalProperty={product.isVariantOf?.additionalProperty}
         />
       </div>
+      <Opinioes
+        productId={product.isVariantOf?.productGroupID ?? ""}
+        productName={product.name ?? ""}
+        urlImage={product.url ?? ""}
+      />
       <SliderJS rootId={id}></SliderJS>
     </div>
   );
