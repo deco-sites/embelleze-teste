@@ -17,6 +17,7 @@ import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/product
 import Image from "deco-sites/std/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import ClipBord from "$store/components/ui/ClipBord.tsx";
+import ProductAbout from "$store/components/product/ProductAbout.tsx";
 
 export type Variant = "front-back" | "slider" | "auto";
 import { star, starVazia } from "$store/components/Content/svg.tsx";
@@ -431,6 +432,16 @@ function Details({
 
         {/* Product Info */}
         <ProductInfo page={page} />
+      </div>
+
+      <div class="max-w-[772px] m-auto flex flex-col gap-4 items-center">
+        <h2 class="uppercase text-primary font-bold text-2xl">
+          SOBRE O PRODUTO
+        </h2>
+        <p>{product.description}</p>
+        <ProductAbout
+          additionalProperty={product.isVariantOf?.additionalProperty}
+        />
       </div>
       <SliderJS rootId={id}></SliderJS>
     </div>
