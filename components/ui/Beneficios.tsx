@@ -19,7 +19,7 @@ function Beneficios({ beneficio, background, textColor }: Props) {
   console.log(background);
   return (
     <div
-      class="h-[67px] w-[100vw]"
+      class="h-[67px]"
       style={{ backgroundColor: background }}
     >
       <div class="carousel flex justify-start gap-4 w-11/12 m-auto h-full items-center">
