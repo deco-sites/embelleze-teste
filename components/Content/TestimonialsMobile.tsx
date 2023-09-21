@@ -1,16 +1,7 @@
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 import { star, starVazia } from "./svg.tsx";
-
-export interface Section {
-  image: LiveImage;
-  alt: string;
-  name: string;
-  text: string;
-  /**
-   * @description Stars Rating. You can SCALE from 0 to 5.
-   */
-  rating: number;
-}
+import { Section } from "$store/components/Content/EmbellezeTestimonials.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
 
 export interface Props {
   title?: string;
@@ -47,32 +38,64 @@ function TestimonialsMobile({ section }: Props) {
   return (
     <>
       <div
-        class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 min-h-[300px] h-64 flex items-end"
+        class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 h-fit flex items-end"
         id="carousel"
       >
         <div class="flex m-auto gap-4">
-          {section?.map(({ image, alt, name, text, rating }) => (
+          {section?.map((
+            { user: { name }, opinion, rate: rating, comments },
+          ) => (
             <div
-              class="border border-purple-500 border-opacity-10 rounded-2xl h-72 w-[70vw] relative p-4 box-border flex flex-col gap-4 justify-between"
+              class="border border-purple-500 border-opacity-10 rounded-2xl h-[400px] w-[60vw] max-w-[400px] relative p-4 box-border flex flex-col gap-4 justify-start"
               id="carousel-item"
             >
-              <span class="flex justify-between items-center">
-                <img src={image} alt={alt} />
-                <div class="flex items-center">
-                  {starArray.map((value) => (
-                    <span
-                      key={value}
-                      class="inline-block w-5 h-5 mr-1"
-                    >
-                      {value <= rating ? star : starVazia}
-                    </span>
-                  ))}
+              <div
+                class={`flex flex-col gap-4 justify-between ${
+                  comments.length > 0 ? "h-[200px]" : "h-full"
+                }`}
+              >
+                <div class="flex justify-between items-center">
+                  <div class="h-[40px] w-[40px]">
+                    <Icon id="Opiniao" />
+                  </div>
+                  <div class="flex items-center">
+                    {starArray.map((value) => (
+                      <span
+                        key={value}
+                        class="inline-block w-5 h-5 mr-1"
+                      >
+                        {value <= rating ? star : starVazia}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </span>
-              <p class="text-start">{text}</p>
-              <h2 class="text-primary text-base uppercase text-end">
-                {name}
-              </h2>
+                <p class="text-start">
+                  {opinion !== undefined
+                    ? opinion
+                    : "Cliente não escreveu uma avaliação, apenas deu a nota do produto."}
+                </p>
+                <h2 class="text-primary text-base uppercase text-end">
+                  {name}
+                </h2>
+              </div>
+              {comments.length > 0 && (
+                <>
+                  <div
+                    class="inline-block h-[1px] w-full"
+                    style={{ backgroundColor: "rgba(0, 0, 0, 0.12)" }}
+                  >
+                  </div>
+                  <div>
+                    <div class="flex justify-start items-center gap-2">
+                      <Icon id="EmbellezeLogo" size={40} />
+                      <h2 class="font-bold">
+                        Resposta da Embelleze:
+                      </h2>
+                    </div>
+                    {comments.length > 0 ? comments[0].text : ""}
+                  </div>
+                </>
+              )}
             </div>
           ))}
         </div>

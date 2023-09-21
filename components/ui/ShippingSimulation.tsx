@@ -8,7 +8,7 @@ import type {
   SKU,
   Sla,
 } from "deco-sites/std/packs/vtex/types.ts";
-
+import Icon from "$store/components/ui/Icon.tsx";
 export interface Props {
   items: Array<SKU>;
 }
@@ -47,7 +47,7 @@ function ShippingContent({ simulation }: {
   }
 
   return (
-    <ul class="flex flex-col gap-4 p-4 bg-base-200 rounded-[4px]">
+    <ul class="flex flex-col gap-4 p-4 rounded-[4px] text-primary">
       {methods.map((method) => (
         <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
           <span class="text-button text-center">
@@ -75,6 +75,7 @@ function ShippingContent({ simulation }: {
 function ShippingSimulation({ items }: Props) {
   const postalCode = useSignal("");
   const loading = useSignal(false);
+  const isSimulation = useSignal(false);
   const simulateResult = useSignal<SimulationOrderForm | null>(null);
   const { simulate, cart } = useCart();
 
@@ -92,40 +93,60 @@ function ShippingSimulation({ items }: Props) {
       });
     } finally {
       loading.value = false;
+      isSimulation.value = false;
     }
   }, []);
 
   return (
-    <div class="flex flex-col gap-2">
-      <div class="flex flex-col">
-        <span>Calcular frete</span>
+    <div class="flex flex-col gap-2 border rounded-xl p-4">
+      <div
+        class="flex items-center justify-start gap-4"
+        onClick={() => isSimulation.value = true}
+      >
+        <Icon id="TRUCK-FAST" width={35} height={35} stroke={"1"} />
         <span>
-          Informe seu CEP para consultar os prazos de entrega
+          Confira o prazo de entrega
         </span>
+        <Icon id="ChevronDown" width={25} height={20} class="ml-auto" />
       </div>
       <div>
-        <form
-          class="join"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSimulation();
-          }}
-        >
-          <input
-            as="input"
-            type="text"
-            class="input input-bordered join-item"
-            placeholder="Seu cep aqui"
-            value={postalCode.value}
-            maxLength={8}
-            onChange={(e: { currentTarget: { value: string } }) => {
-              postalCode.value = e.currentTarget.value;
+        {isSimulation.value && (
+          <form
+            class="join flex flex-col"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSimulation();
             }}
-          />
-          <Button type="submit" loading={loading.value} class="join-item">
-            Calcular
-          </Button>
-        </form>
+          >
+            <div class="relative w-full h-fit">
+              <input
+                as="input"
+                type="text"
+                class="input input-bordered rounded-full relative min-w-full"
+                placeholder="Seu cep aqui"
+                value={postalCode.value}
+                maxLength={8}
+                onChange={(e: { currentTarget: { value: string } }) => {
+                  postalCode.value = e.currentTarget.value;
+                }}
+              />
+              <Button
+                type="submit"
+                loading={loading.value}
+                class="uppercase rounded-full bg-secondary text-white absolute right-5 z-40 max-h-[20px] min-h-[40px] top-1"
+              >
+                ok
+              </Button>
+            </div>
+            <a
+              href="https://buscacepinter.correios.com.br/app/endereco/index.php"
+              class="underline text-primary ml-auto"
+              target="_blank"
+            >
+              Não sei meu CEP
+            </a>
+          </form>
+        )}
       </div>
       <div>
         <div>

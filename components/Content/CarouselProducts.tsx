@@ -29,7 +29,7 @@ function PCard(
   const [front] = images ?? [];
 
   return (
-    <div>
+    <div class="PCARD">
       <div
         class={`py-2 flex hover:shadow-2xl transition flex-col md:w-[260px] ${
           mobileBigCard ? "w-[75vw]" : "w-40"
@@ -122,8 +122,11 @@ function ProductCarousel({ header, list1, categories, mobileBigCard }: Props) {
     ) as
       | HTMLElement
       | null;
-    const itemWidth = carouselContainer?.querySelector("#carousel-item-product")
+    const itemWidth = carouselContainer?.querySelector(
+      `${list1.length > 1 ? "#carousel-item-product" : ".PCARD"}`,
+    )
       ?.clientWidth ?? 0;
+
     const newPosition = itemWidth * index;
     if (carouselContainer) {
       carouselContainer.scrollTo({
@@ -134,14 +137,14 @@ function ProductCarousel({ header, list1, categories, mobileBigCard }: Props) {
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      (prevIndex - 1 + list1.length) % list1.length
-    );
+    const length = (list1.length > 1 ? list1.length : list1[0]?.length) ?? 1;
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + length) % length);
   };
 
   const nextSlide = () => {
+    const length = (list1.length > 1 ? list1.length : list1[0]?.length) ?? 1;
     setCurrentIndex((prevIndex) => {
-      return (prevIndex + 1) % list1.length;
+      return (prevIndex + 1) % length;
     });
   };
 
@@ -210,15 +213,25 @@ function ProductCarousel({ header, list1, categories, mobileBigCard }: Props) {
           ))}
         </div>
         <div class="items-center justify-center m-auto lg:hidden flex">
-          {list1.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`${
-                index === currentIndex1 ? "w-6 bg-primary" : "w-2 bg-gray-300"
-              } h-2 rounded-full mx-1`}
-            />
-          ))}
+          {list1.length > 1
+            ? list1.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`${
+                  index === currentIndex1 ? "w-6 bg-primary" : "w-2 bg-gray-300"
+                } h-2 rounded-full mx-1`}
+              />
+            ))
+            : list1[0]?.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`${
+                  index === currentIndex1 ? "w-6 bg-primary" : "w-2 bg-gray-300"
+                } h-2 rounded-full mx-1`}
+              />
+            ))}
         </div>
         <button
           class="hidden lg:flex items-center next-btn absolute right-2 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
