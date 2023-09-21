@@ -18,18 +18,15 @@ import Image from "deco-sites/std/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import ClipBord from "$store/components/ui/ClipBord.tsx";
 import ProductAbout from "$store/components/product/ProductAbout.tsx";
-
-export type Variant = "front-back" | "slider" | "auto";
 import { star, starVazia } from "$store/components/Content/svg.tsx";
 import Opinioes from "deco-sites/fashion/components/product/Opinioes.tsx";
+import Beneficios, {
+  Props as IBeneficios,
+} from "deco-sites/fashion/components/ui/Beneficios.tsx";
 
 export interface Props {
   page: ProductDetailsPage | null;
-  /**
-   * @title Product view
-   * @description Ask for the developer to remove this option since this is here to help development only and should not be used in production
-   */
-  variant?: Variant;
+  beneficios: IBeneficios;
 }
 
 const WIDTH = 500;
@@ -328,8 +325,8 @@ const useStableImages = (product: ProductDetailsPage["product"]) => {
 
 function Details({
   page,
-  variant,
-}: { page: ProductDetailsPage; variant: Variant }) {
+  beneficios,
+}: { page: ProductDetailsPage; beneficios: IBeneficios }) {
   const { product } = page;
   const id = useId();
   const images = product.image ?? [];
@@ -346,111 +343,115 @@ function Details({
    * we rearrange each cell with col-start- directives
    */
   return (
-    <div class="flex flex-col w-11/12 m-auto relative">
-      <Breadcrumb
-        itemListElement={page.breadcrumbList?.itemListElement.slice(0, -1)}
-      />
-      <div
-        id={id}
-        class="flex flex-col lg:grid gap-4 lg:grid-cols-[auto] lg:grid-rows-[auto] lg:justify-between w-full h-fit"
-      >
-        {/* Image Slider */}
-        <div class="order-2 relative row-span-2 sm:col-start-2 sm:row-start-1 sm:row-end-3 lg:min-w-[450px] lg:h-[500px]">
-          <Slider class="carousel carousel-center gap-6 w-full">
-            {images?.map((img, index) => {
-              return (
-                <Slider.Item
-                  index={index}
-                  class={`carousel-item ${
-                    images.length > 1 ? "w-[70vw]" : "w-full"
-                  } md:w-11/12 border relative`}
-                >
+    <>
+      <div class="flex flex-col w-11/12 m-auto relative">
+        <Breadcrumb
+          itemListElement={page.breadcrumbList?.itemListElement.slice(0, -1)}
+        />
+        <div
+          id={id}
+          class="flex flex-col xl:grid gap-4 xl:grid-cols-[auto] xl:grid-rows-[auto] xl:justify-between w-full h-fit"
+        >
+          {/* Image Slider */}
+          <div class="order-2 relative row-span-2 sm:col-start-2 sm:row-start-1 sm:row-end-3 h-fit xl:max-w-[680px] xl:w-[600px] w-full">
+            <Slider class="carousel carousel-center gap-6 w-full">
+              {images?.map((img, index) => {
+                return (
+                  <Slider.Item
+                    index={index}
+                    class={`carousel-item border relative md:w-[500px] w-fit `}
+                  >
+                    <Image
+                      class="w-full h-full object-cover"
+                      sizes="(max-width: 640px) 100vw, 40vw"
+                      style={{ aspectRatio: ASPECT_RATIO }}
+                      src={img.url!}
+                      alt={img.alternateName}
+                      width={WIDTH}
+                      height={HEIGHT}
+                      // Preload LCP image for better web vitals
+                      preload={index === 0}
+                      loading={index === 0 ? "eager" : "lazy"}
+                    />
+                    {index === 0 && percent > 0 && (
+                      <p class="absolute left-4 top-4 uppercase bg-secondary text-white p-2 rounded-lg">
+                        {`${percent}% off`}
+                      </p>
+                    )}
+                  </Slider.Item>
+                );
+              })}
+            </Slider>
+            {images.length > 1 &&
+              (
+                <>
+                  <Slider.PrevButton
+                    class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
+                    disabled
+                  >
+                    <Icon size={24} id="ChevronLeft" strokeWidth={3} />
+                  </Slider.PrevButton>
+
+                  <Slider.NextButton
+                    class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
+                    disabled={(images?.length ?? 0) < 2}
+                  >
+                    <Icon size={24} id="ChevronRight" strokeWidth={3} />
+                  </Slider.NextButton>
+                </>
+              )}
+            <div class="absolute top-2 right-2 bg-base-100 rounded-full">
+              <ProductImageZoom
+                images={images}
+                width={700}
+                height={Math.trunc(700 * HEIGHT / WIDTH)}
+              />
+            </div>
+          </div>
+
+          {/* Dots */}
+          <ul class="carousel-vertical overflow-auto hidden h-[500px] w-fit xl:block lg:justify-start lg:flex-col lg:col-start-1 lg:col-span-1 lg:row-start-1 lg:row-end-3">
+            {images.map((img, index) => (
+              <li class="max-h-fit w-[90px]">
+                <Slider.Dot index={index}>
                   <Image
-                    class="w-full h-[500px]"
-                    sizes="(max-width: 640px) 100vw, 40vw"
                     style={{ aspectRatio: ASPECT_RATIO }}
+                    class="group-disabled:border-base-300 border rounded "
+                    width={63}
+                    height={87.5}
                     src={img.url!}
                     alt={img.alternateName}
-                    width={WIDTH}
-                    height={HEIGHT}
-                    // Preload LCP image for better web vitals
-                    preload={index === 0}
-                    loading={index === 0 ? "eager" : "lazy"}
                   />
-                  {index === 0 && percent > 0 && (
-                    <p class="absolute left-4 top-4 uppercase bg-secondary text-white p-2 rounded-lg">
-                      {`${percent}% off`}
-                    </p>
-                  )}
-                </Slider.Item>
-              );
-            })}
-          </Slider>
-          {images.length > 1 &&
-            (
-              <>
-                <Slider.PrevButton
-                  class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
-                  disabled
-                >
-                  <Icon size={24} id="ChevronLeft" strokeWidth={3} />
-                </Slider.PrevButton>
+                </Slider.Dot>
+              </li>
+            ))}
+          </ul>
 
-                <Slider.NextButton
-                  class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
-                  disabled={(images?.length ?? 0) < 2}
-                >
-                  <Icon size={24} id="ChevronRight" strokeWidth={3} />
-                </Slider.NextButton>
-              </>
-            )}
-          <div class="absolute top-2 right-2 bg-base-100 rounded-full">
-            <ProductImageZoom
-              images={images}
-              width={700}
-              height={Math.trunc(700 * HEIGHT / WIDTH)}
-            />
-          </div>
+          {/* Product Info */}
+          <ProductInfo page={page} />
         </div>
-
-        {/* Dots */}
-        <ul class="carousel-vertical overflow-auto hidden h-[500px] w-fit lg:block lg:justify-start lg:flex-col lg:col-start-1 lg:col-span-1 lg:row-start-1 lg:row-end-3">
-          {images.map((img, index) => (
-            <li class="max-h-fit w-[90px]">
-              <Slider.Dot index={index}>
-                <Image
-                  style={{ aspectRatio: ASPECT_RATIO }}
-                  class="group-disabled:border-base-300 border rounded "
-                  width={63}
-                  height={87.5}
-                  src={img.url!}
-                  alt={img.alternateName}
-                />
-              </Slider.Dot>
-            </li>
-          ))}
-        </ul>
-
-        {/* Product Info */}
-        <ProductInfo page={page} />
       </div>
 
-      <div class="max-w-[772px] m-auto flex flex-col gap-4 items-center">
-        <h2 class="uppercase text-primary font-bold text-2xl">
-          SOBRE O PRODUTO
-        </h2>
-        <p>{product.description}</p>
-        <ProductAbout
-          additionalProperty={product.isVariantOf?.additionalProperty}
+      <Beneficios {...beneficios} />
+
+      <div class="flex flex-col w-11/12 m-auto relative">
+        <div class="max-w-[772px] m-auto flex flex-col gap-4 items-center">
+          <h2 class="uppercase text-primary font-bold text-2xl">
+            SOBRE O PRODUTO
+          </h2>
+          <p>{product.description}</p>
+          <ProductAbout
+            additionalProperty={product.isVariantOf?.additionalProperty}
+          />
+        </div>
+        <Opinioes
+          productId={product.isVariantOf?.productGroupID ?? ""}
+          productName={product.name ?? ""}
+          urlImage={product.url ?? ""}
         />
+        <SliderJS rootId={id}></SliderJS>
       </div>
-      <Opinioes
-        productId={product.isVariantOf?.productGroupID ?? ""}
-        productName={product.name ?? ""}
-        urlImage={product.url ?? ""}
-      />
-      <SliderJS rootId={id}></SliderJS>
-    </div>
+    </>
   );
 
   /**
@@ -461,21 +462,15 @@ function Details({
    */
 }
 
-function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
+function ProductDetails({ page, beneficios }: Props) {
   /**
    * Showcase the different product views we have on this template. In case there are less
    * than two images, render a front-back, otherwhise render a slider
    * Remove one of them and go with the best suited for your use case.
    */
-  const variant = maybeVar === "auto"
-    ? page?.product.image?.length && page?.product.image?.length < 2
-      ? "front-back"
-      : "slider"
-    : maybeVar;
-
   return (
-    <div class="container py-0 sm:py-10">
-      {page ? <Details page={page} variant={variant} /> : <NotFound />}
+    <div>
+      {page ? <Details page={page} beneficios={beneficios} /> : <NotFound />}
     </div>
   );
 }

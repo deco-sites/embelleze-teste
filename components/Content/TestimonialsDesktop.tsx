@@ -80,10 +80,14 @@ function TestimonialsDesktop({ section }: Props) {
                 { comments, user: { name }, opinion, rate: rating },
               ) => (
                 <div
-                  class="border border-purple-500 border-opacity-10 rounded-2xl h-fit w-[70vw] relative p-4 box-border flex flex-col gap-4 justify-start"
+                  class="border border-purple-500 border-opacity-10 rounded-2xl h-[400px] w-[70vw] relative p-4 box-border flex flex-col gap-4 justify-start"
                   id="carousel-item"
                 >
-                  <div class="flex flex-col gap-4 justify-between h-fit">
+                  <div
+                    class={`flex flex-col gap-4 justify-between ${
+                      comments.length > 0 ? "h-[200px]" : "h-full"
+                    }`}
+                  >
                     <div class="flex justify-between items-center">
                       <div class="h-[40px] w-[40px]">
                         <Icon id="Opiniao" />
