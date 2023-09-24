@@ -54,14 +54,15 @@ import * as $$$$$$$$24 from "./sections/Content/Carousel.tsx";
 import * as $$$$$$$$25 from "./sections/Content/Banners.tsx";
 import * as $$$$$$$$26 from "./sections/Content/Logos.tsx";
 import * as $$$$$$$$27 from "./sections/Content/Testimonials.tsx";
-import * as $$$$$$$$28 from "./sections/Header/Header.tsx";
-import * as $$$$$$$$29 from "./sections/Header/EmbellezeHeader.tsx";
-import * as $$$$$$$$30 from "./sections/Images/ShoppableBanner.tsx";
-import * as $$$$$$$$31 from "./sections/Images/Carousel.tsx";
-import * as $$$$$$$$32 from "./sections/Images/ImageGallery.tsx";
-import * as $$$$$$$$33 from "./sections/Images/BannerGrid.tsx";
-import * as $$$$$$$$34 from "./sections/Category/CategoryList.tsx";
-import * as $$$$$$$$35 from "./sections/Category/CategoryBanner.tsx";
+import * as $$$$$$$$28 from "./sections/Content/Blog.tsx";
+import * as $$$$$$$$29 from "./sections/Header/Header.tsx";
+import * as $$$$$$$$30 from "./sections/Header/EmbellezeHeader.tsx";
+import * as $$$$$$$$31 from "./sections/Images/ShoppableBanner.tsx";
+import * as $$$$$$$$32 from "./sections/Images/Carousel.tsx";
+import * as $$$$$$$$33 from "./sections/Images/ImageGallery.tsx";
+import * as $$$$$$$$34 from "./sections/Images/BannerGrid.tsx";
+import * as $$$$$$$$35 from "./sections/Category/CategoryList.tsx";
+import * as $$$$$$$$36 from "./sections/Category/CategoryBanner.tsx";
 import { DecoManifest } from "$live/types.ts";
 import * as i2$$$0 from "$live/loaders/secret.ts";
 import * as i2$$$1 from "$live/loaders/state.ts";
@@ -234,10 +235,11 @@ const manifest = {
     "$live/sections/PageInclude.tsx": i2$$$$$2,
     "$live/sections/Slot.tsx": i2$$$$$3,
     "$live/sections/UseSlot.tsx": i2$$$$$4,
-    "deco-sites/embelleze/sections/Category/CategoryBanner.tsx": $$$$$$$$35,
-    "deco-sites/embelleze/sections/Category/CategoryList.tsx": $$$$$$$$34,
+    "deco-sites/embelleze/sections/Category/CategoryBanner.tsx": $$$$$$$$36,
+    "deco-sites/embelleze/sections/Category/CategoryList.tsx": $$$$$$$$35,
     "deco-sites/embelleze/sections/Content/Banners.tsx": $$$$$$$$25,
     "deco-sites/embelleze/sections/Content/Benefits.tsx": $$$$$$$$23,
+    "deco-sites/embelleze/sections/Content/Blog.tsx": $$$$$$$$28,
     "deco-sites/embelleze/sections/Content/Carousel.tsx": $$$$$$$$24,
     "deco-sites/embelleze/sections/Content/CarouselProducts.tsx": $$$$$$$$20,
     "deco-sites/embelleze/sections/Content/Culture.tsx": $$$$$$$$21,
@@ -252,12 +254,12 @@ const manifest = {
     "deco-sites/embelleze/sections/Embelleze/Imagens.tsx": $$$$$$$$14,
     "deco-sites/embelleze/sections/Footer/EmbellezeFooter.tsx": $$$$$$$$0,
     "deco-sites/embelleze/sections/Footer/Footer.tsx": $$$$$$$$1,
-    "deco-sites/embelleze/sections/Header/EmbellezeHeader.tsx": $$$$$$$$29,
-    "deco-sites/embelleze/sections/Header/Header.tsx": $$$$$$$$28,
-    "deco-sites/embelleze/sections/Images/BannerGrid.tsx": $$$$$$$$33,
-    "deco-sites/embelleze/sections/Images/Carousel.tsx": $$$$$$$$31,
-    "deco-sites/embelleze/sections/Images/ImageGallery.tsx": $$$$$$$$32,
-    "deco-sites/embelleze/sections/Images/ShoppableBanner.tsx": $$$$$$$$30,
+    "deco-sites/embelleze/sections/Header/EmbellezeHeader.tsx": $$$$$$$$30,
+    "deco-sites/embelleze/sections/Header/Header.tsx": $$$$$$$$29,
+    "deco-sites/embelleze/sections/Images/BannerGrid.tsx": $$$$$$$$34,
+    "deco-sites/embelleze/sections/Images/Carousel.tsx": $$$$$$$$32,
+    "deco-sites/embelleze/sections/Images/ImageGallery.tsx": $$$$$$$$33,
+    "deco-sites/embelleze/sections/Images/ShoppableBanner.tsx": $$$$$$$$31,
     "deco-sites/embelleze/sections/Links/LinkTree.tsx": $$$$$$$$8,
     "deco-sites/embelleze/sections/Links/Shortcuts.tsx": $$$$$$$$9,
     "deco-sites/embelleze/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$$$3,
