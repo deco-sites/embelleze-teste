@@ -1,6 +1,7 @@
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 import Image from "deco-sites/std/components/Image.tsx";
 import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
+import VideoComponent from "deco-sites/fashion/components/embelleze/content/Video.tsx";
 
 export interface Image {
   /**
@@ -50,7 +51,28 @@ export interface Text {
   message: string;
 }
 
-export type ContentType = Image | Text | BigImage;
+export interface Video {
+  /**
+   * @description This field is a constant. Is here only to help you to now the type. Don't change
+   * @default Video
+   */
+  type: string;
+  /**
+   * @format color
+   * @default #FFFFFF
+   */
+  color: string;
+  videos: {
+    videoId: string;
+    isCollum: boolean;
+    title?: string;
+    text?: string;
+    href?: string;
+    buttonText?: string;
+  }[];
+}
+
+export type ContentType = Image | Text | BigImage | Video;
 
 export interface Props {
   section: { type: ContentType }[];
@@ -129,6 +151,61 @@ function Blog({ section }: Props) {
                     alt={alt}
                   />
                 </Picture>
+              </div>
+            );
+          }
+
+          case (type as Video).type === "Video": {
+            const { videos, color } = type as Video;
+            return (
+              <div class={`flex justify-between gap-4 flex-wrap`}>
+                {videos.map((
+                  { videoId, buttonText, text, title, href, isCollum },
+                ) => (
+                  <div
+                    class={`flex ${
+                      isCollum ? "flex-col items-center" : ""
+                    } justify-center md:justify-between gap-4 flex-wrap md:flex-nowrap ${
+                      title && text
+                        ? "w-full"
+                        : `w-full ${isCollum ? "" : "md:w-[48%]"}`
+                    }`}
+                  >
+                    <div
+                      class={`${
+                        title && text
+                          ? `w-full ${isCollum ? "" : "md:w-[48%]"}`
+                          : "w-full"
+                      } h-[355px]`}
+                    >
+                      <VideoComponent videoId={videoId} />
+                    </div>
+                    {title && text && (
+                      <div
+                        class={`flex flex-col items-center justify-center gap-4 w-full ${
+                          isCollum ? "" : "md:w-[48%]"
+                        }`}
+                      >
+                        <h2
+                          style={{ color }}
+                          class="uppercase text-2xl font-medium"
+                        >
+                          {title}
+                        </h2>
+                        <p>{text}</p>
+                        {buttonText && (
+                          <a
+                            class="text-white p-3 rounded-xl"
+                            style={{ backgroundColor: color }}
+                            href={href}
+                          >
+                            {buttonText}
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             );
           }
