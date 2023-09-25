@@ -3,6 +3,7 @@ import { formatPrice } from "$store/sdk/format.ts";
 import type { Product } from "deco-sites/std/commerce/types.ts";
 import { useOffer } from "deco-sites/fashion/sdk/useOffer.ts";
 import { useEffect, useState } from "preact/hooks";
+import { useId } from "$store/sdk/useId.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 
 export interface Props {
@@ -19,10 +20,25 @@ export interface Props {
   };
   cardImage?: LiveImage;
   alt?: string;
+  /**
+   * @format color
+   * @default #FFFFFF
+   */
+  buttonColor: string;
+  /**
+   * @format color
+   * @default #FFFFFF
+   */
+  color: string;
 }
 
 function PCard(
-  { product, mobileBigCard }: { product: Product; mobileBigCard: boolean },
+  { product, mobileBigCard, color, buttonColor }: {
+    product: Product;
+    mobileBigCard: boolean;
+    color: string;
+    buttonColor: string;
+  },
 ) {
   const {
     url,
@@ -53,7 +69,7 @@ function PCard(
               loading="lazy"
             />
           </figure>
-          <p class="font-[700] text-primary pb-3">{brand?.name}</p>
+          <p class="font-[700] pb-3" style={{ color }}>{brand?.name}</p>
           {name && (
             <>
               <p class="block md:hidden text-[12px] text-[#00000080]">
@@ -79,12 +95,12 @@ function PCard(
                 </p>
               )}
             </span>
-            <p class="text-primary font-[700] text-lg rounded-[10px]">
+            <p class="font-[700] text-lg rounded-[10px]" style={{ color }}>
               {formatPrice(price, offers!.priceCurrency!)}
             </p>
           </div>
           <div class="md:flex hidden items-center gap-3">
-            <p class="text-primary font-[700] text-lg rounded-[10px]">
+            <p class="font-[700] text-lg rounded-[10px]" style={{ color }}>
               {formatPrice(price, offers!.priceCurrency!)}
             </p>
             <span class="flex items-center gap-3 mt-2">
@@ -104,13 +120,11 @@ function PCard(
           </div>
 
           <p class="text-[12px] pb-2 text-[#00000066]">ou {installments}</p>
-          <a href={url} class="md:hidden">
-            <button class="w-full py-1 uppercase rounded-[5px] border-[#17A087] text-[#17A087] border-2 border-solid hover:text-white hover:bg-[#17A087]">
-              Comprar
-            </button>
-          </a>
-          <a href={url} class="hidden md:block">
-            <button class="w-full py-1 uppercase rounded-[5px] border-[#17A087] text-[#17A087] border-2 border-solid hover:text-white hover:bg-[#17A087]">
+          <a href={url}>
+            <button
+              class="w-full py-1 uppercase rounded-[5px] border-2 border-solid hover:text-white hover:bg-[#17A087]"
+              style={{ borderColor: buttonColor, color: buttonColor }}
+            >
               Adicionar ao carrinho
             </button>
           </a>
@@ -121,14 +135,23 @@ function PCard(
 }
 
 function ProductCarousel(
-  { header, list1, categories, mobileBigCard, hide, cardImage, alt }: Props,
+  {
+    header,
+    list1,
+    categories,
+    mobileBigCard,
+    hide,
+    cardImage,
+    alt,
+    color,
+    buttonColor,
+  }: Props,
 ) {
-  console.log(cardImage);
   const [currentIndex1, setCurrentIndex] = useState(0);
-
+  const id = useId();
   const moveCarouselToIndex = (index: number) => {
     const carouselContainer = document.querySelector(
-      "#carousel-product" + header?.title[0],
+      "#carousel-product" + id,
     ) as
       | HTMLElement
       | null;
@@ -163,11 +186,11 @@ function ProductCarousel(
   }, [currentIndex1]);
 
   return (
-    <div class="w-full px-4 py-8 lg:w-11/12 m-auto lg:px-14 relative">
+    <div class="py-8 w-11/12 m-auto relative">
       <div class="flex flex-col gap-6 lg:gap-8 text-base-content lg:py-5">
         {hide?.navButtons ? <></> : (
           <button
-            class="hidden lg:flex items-center prev-btn absolute left-4 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+            class="hidden lg:flex items-center prev-btn absolute -left-10 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
             onClick={prevSlide}
           >
             {"<"}
@@ -177,7 +200,8 @@ function ProductCarousel(
           <h3
             class={`${
               header?.title ? "block" : "hidden"
-            } text-primary text-center text-[1.5em] font-semibold md:text-[35px] uppercase`}
+            } text-center text-[1.5em] font-semibold md:text-[35px] uppercase`}
+            style={{ color }}
           >
             {header?.title}
           </h3>
@@ -208,11 +232,11 @@ function ProductCarousel(
         )}
         <div
           class={`carousel carousel-start gap-4 lg:gap-6 row-start-2 row-end-5 w-full h-[551px]`}
-          id={"carousel-product" + header?.title[0]}
+          id={"carousel-product" + id}
         >
           {list1?.map((product, index) => (
             <div
-              class="flex gap-4 carousel-item last:pr-6 lg:pl-0 h-[500px]"
+              class="flex gap-4 carousel-item h-[500px]"
               id={"carousel-item-product"}
               key={index + "subdiv"}
             >
@@ -220,7 +244,13 @@ function ProductCarousel(
                 <Image src={cardImage} alt={alt} width={317} height={481} />
               )}
               {product?.map((a, i) => (
-                <PCard product={a} mobileBigCard={mobileBigCard} key={i} />
+                <PCard
+                  product={a}
+                  mobileBigCard={mobileBigCard}
+                  key={i}
+                  color={color}
+                  buttonColor={buttonColor}
+                />
               ))}
             </div>
           ))}
@@ -256,7 +286,7 @@ function ProductCarousel(
           )}
         {hide?.navButtons ? <></> : (
           <button
-            class="hidden lg:flex items-center next-btn absolute right-2 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+            class="hidden lg:flex items-center next-btn absolute -right-10 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
             onClick={nextSlide}
           >
             {">"}
