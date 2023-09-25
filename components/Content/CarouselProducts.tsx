@@ -3,6 +3,7 @@ import { formatPrice } from "$store/sdk/format.ts";
 import type { Product } from "deco-sites/std/commerce/types.ts";
 import { useOffer } from "deco-sites/fashion/sdk/useOffer.ts";
 import { useEffect, useState } from "preact/hooks";
+import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 
 export interface Props {
   header?: {
@@ -12,6 +13,12 @@ export interface Props {
   list1: Array<Product[] | null>;
   categories?: Array<string>;
   mobileBigCard: boolean;
+  hide?: {
+    skuSelector?: boolean;
+    navButtons?: boolean;
+  };
+  cardImage?: LiveImage;
+  alt?: string;
 }
 
 function PCard(
@@ -29,11 +36,11 @@ function PCard(
   const [front] = images ?? [];
 
   return (
-    <div class="PCARD">
+    <div class="PCARD h-full">
       <div
         class={`py-2 flex hover:shadow-2xl transition flex-col md:w-[260px] ${
-          mobileBigCard ? "w-[75vw]" : "w-40"
-        } border-r-[2px] border-t-[2px] shadow-xl border-primary-content border-solid rounded-[10px] relative`}
+          mobileBigCard ? "w-60" : "w-40"
+        } border-r-[2px] border-t-[2px] shadow-xl border-primary-content border-solid rounded-[10px] relative h-full `}
       >
         <div class="px-2 rounded-[10px]">
           <figure>
@@ -113,7 +120,10 @@ function PCard(
   );
 }
 
-function ProductCarousel({ header, list1, categories, mobileBigCard }: Props) {
+function ProductCarousel(
+  { header, list1, categories, mobileBigCard, hide, cardImage, alt }: Props,
+) {
+  console.log(cardImage);
   const [currentIndex1, setCurrentIndex] = useState(0);
 
   const moveCarouselToIndex = (index: number) => {
@@ -155,12 +165,14 @@ function ProductCarousel({ header, list1, categories, mobileBigCard }: Props) {
   return (
     <div class="w-full px-4 py-8 lg:w-11/12 m-auto lg:px-14 relative">
       <div class="flex flex-col gap-6 lg:gap-8 text-base-content lg:py-5">
-        <button
-          class="hidden lg:flex items-center prev-btn absolute left-4 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
-          onClick={prevSlide}
-        >
-          {"<"}
-        </button>
+        {hide?.navButtons ? <></> : (
+          <button
+            class="hidden lg:flex items-center prev-btn absolute left-4 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+            onClick={prevSlide}
+          >
+            {"<"}
+          </button>
+        )}
         <div class="flex items-center justify-center flex-col ">
           <h3
             class={`${
@@ -195,50 +207,61 @@ function ProductCarousel({ header, list1, categories, mobileBigCard }: Props) {
           </div>
         )}
         <div
-          class={`carousel carousel-start gap-4 lg:gap-6 row-start-2 row-end-5 w-full ${
-            mobileBigCard ? "h-[36rem]" : "h-[27rem]"
-          } md:h-[33rem]`}
+          class={`carousel carousel-start gap-4 lg:gap-6 row-start-2 row-end-5 w-full h-[551px]`}
           id={"carousel-product" + header?.title[0]}
         >
           {list1?.map((product, index) => (
             <div
-              class="flex gap-4 carousel-item last:pr-6 lg:pl-0"
+              class="flex gap-4 carousel-item last:pr-6 lg:pl-0 h-[500px]"
               id={"carousel-item-product"}
               key={index + "subdiv"}
             >
+              {!!cardImage && (
+                <Image src={cardImage} alt={alt} width={317} height={481} />
+              )}
               {product?.map((a, i) => (
                 <PCard product={a} mobileBigCard={mobileBigCard} key={i} />
               ))}
             </div>
           ))}
         </div>
-        <div class="items-center justify-center m-auto lg:hidden flex">
-          {list1.length > 1
-            ? list1.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`${
-                  index === currentIndex1 ? "w-6 bg-primary" : "w-2 bg-gray-300"
-                } h-2 rounded-full mx-1`}
-              />
-            ))
-            : list1[0]?.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`${
-                  index === currentIndex1 ? "w-6 bg-primary" : "w-2 bg-gray-300"
-                } h-2 rounded-full mx-1`}
-              />
-            ))}
-        </div>
-        <button
-          class="hidden lg:flex items-center next-btn absolute right-2 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
-          onClick={nextSlide}
-        >
-          {">"}
-        </button>
+        {hide?.skuSelector
+          ? <></>
+          : (
+            <div class="items-center justify-center m-auto lg:hidden flex">
+              {list1.length > 1
+                ? list1.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`${
+                      index === currentIndex1
+                        ? "w-6 bg-primary"
+                        : "w-2 bg-gray-300"
+                    } h-2 rounded-full mx-1`}
+                  />
+                ))
+                : list1[0]?.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`${
+                      index === currentIndex1
+                        ? "w-6 bg-primary"
+                        : "w-2 bg-gray-300"
+                    } h-2 rounded-full mx-1`}
+                  />
+                ))}
+            </div>
+          )}
+        {hide?.navButtons ? <></> : (
+          <button
+            class="hidden lg:flex items-center next-btn absolute right-2 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+            onClick={nextSlide}
+          >
+            {">"}
+          </button>
+        )}
       </div>
     </div>
   );
