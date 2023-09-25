@@ -2,13 +2,18 @@ import { useEffect, useRef } from "preact/hooks";
 import { useSignal } from "@preact/signals";
 
 export interface Props {
+  /**
+   * @format color
+   * @default #FFFFFF
+   */
+  titleColor: string;
   title: string;
   description: string;
   /** @description if the height of this container pass 400px in some devices, one button to see more will apper*/
   sections: { question: string; awnser: string }[];
 }
 
-function Questions({ title, description, sections }: Props) {
+function Questions({ title, description, sections, titleColor }: Props) {
   const button = useRef<HTMLButtonElement | null>(null);
   const card = useRef<HTMLDivElement | null>(null);
   const isRender = useSignal<boolean>(false);
@@ -35,7 +40,10 @@ function Questions({ title, description, sections }: Props) {
   return (
     <div class="flex justify-start items-center m-auto w-11/12 flex-col relative gap-4 py-4">
       {title && (
-        <h2 class="text-primary text-2xl uppercase text-center font-medium">
+        <h2
+          class="text-primary text-2xl uppercase text-center font-medium"
+          style={{ color: titleColor }}
+        >
           {title}
         </h2>
       )}
@@ -51,7 +59,9 @@ function Questions({ title, description, sections }: Props) {
               {index + 1}
             </span>
             <div>
-              <h2>{question}</h2>
+              <h2 style={{ color: titleColor }} class="font-bold">
+                {question}
+              </h2>
               <p>{awnser}</p>
             </div>
           </div>
