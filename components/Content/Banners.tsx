@@ -4,6 +4,7 @@ import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 import Dots from "$store/components/Content/Dots.tsx";
+import Image from "deco-sites/std/packs/image/components/Image.tsx";
 
 /**
  * @titleBy alt
@@ -29,6 +30,10 @@ export interface Props {
    * @description time (in seconds) to start the carousel autoplay
    */
   interval?: number;
+  /** @description Logo Image for Lps */
+  logo?: LiveImage;
+  alt?: string;
+  href?: string;
 }
 
 function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
@@ -42,7 +47,7 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
   return (
     <a
       href={`/s?q=${href}`}
-      class="relative h-[375px] overflow-y-hidden w-full"
+      class="relative h-fit max-h-[375px] overflow-y-hidden w-full"
     >
       <Picture preload={lcp}>
         <Source
@@ -60,7 +65,7 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
           height={340}
         />
         <img
-          class="object-fill w-full h-full"
+          class="object-cover w-full"
           loading={lcp ? "eager" : "lazy"}
           src={desktop}
           alt={alt}
@@ -70,13 +75,22 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
   );
 }
 
-function Banners({ images, preload, interval }: Props) {
+function Banners({ images, preload, interval, logo, alt, href }: Props) {
   const id = useId();
   return (
     <div
       id={id}
-      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] h-[450px]  mt-[100px]"
+      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] h-fit  mb-[50px] relative"
     >
+      {logo && (
+        <div
+          class="absolute inset-1 flex h-fit justify-center z-10"
+          href={href}
+        >
+          <Image src={logo} alt={alt} width={140} height={50} />
+        </div>
+      )}
+
       <Slider
         class="carousel carousel-center w-full col-span-full row-span-full gap-6"
         id="carousel-banner"
@@ -91,9 +105,13 @@ function Banners({ images, preload, interval }: Props) {
         ))}
       </Slider>
 
-      <Dots
-        images={images}
-      />
+      {(images?.length ?? 0) > 1 && (
+        <div class="absolute -bottom-10 left-1/2 right-1/2 z-10 w-fit">
+          <Dots
+            images={images}
+          />
+        </div>
+      )}
 
       <SliderJS
         rootId={id}
