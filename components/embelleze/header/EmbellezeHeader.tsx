@@ -92,7 +92,7 @@ function EmbellezeHeader({
           logo={logo}
           paths={paths}
         >
-          <div class="bg-base-100 fixed w-full z-10 
+          <div class="bg-base-100 fixed w-full z-20 
               h-40">
             <div class="w-screen bg-primary">
               <div class="w-[80vw] flex m-auto items-center justify-between">
