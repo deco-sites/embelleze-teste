@@ -10,6 +10,8 @@ import IconBrandLine from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/brand-
 import IconBrandYoutube from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/brand-youtube.tsx";
 import IconBrandInstagram from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/brand-instagram.tsx";
 import IconSearch from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/search.tsx";
+import { useId } from "$store/sdk/useId.ts";
+import Button from "$store/components/ui/Button.tsx";
 
 export interface NavItem {
   label: string;
@@ -80,20 +82,18 @@ function EmbellezeHeader({
   paths,
 }: Props) {
   const searchbar = { ..._searchbar, products, suggestions };
+  const id = useId();
   return (
     <>
-      <header>
+      <header style={{ height: 160 }}>
         <Drawers
           menu={{ items: navItems }}
           searchbar={searchbar}
           logo={logo}
           paths={paths}
         >
-          <div
-            class={`h-[14.5vh] bg-base-100 fixed w-full z-50 ${
-              navItems.length > 0 ? "lg:h-36" : "lg:h-24"
-            }`}
-          >
+          <div class="bg-base-100 fixed w-full z-10 
+              h-40">
             <div class="w-screen bg-primary">
               <div class="w-[80vw] flex m-auto items-center justify-between">
                 <Alert alerts={alerts} />
@@ -165,17 +165,21 @@ function EmbellezeHeader({
                   ))}
                 </div>
               )}
-            <div class="w-[100%] lg:hidden relative">
-              <input
-                class="w-full p-2 text-xs text-primary"
-                type="type"
-                placeholder="O que você procura?"
-              >
-              </input>
-              <IconSearch
-                class="w-5 h-5 right-2 absolute top-0 bottom-0 m-auto text-primary"
-                style={{ position: "absolute" }}
-              />
+            <div className="w-[100%] lg:hidden relative">
+              <form action="/s" method="GET" id="formId">
+                <input
+                  className="w-full p-2 text-xs text-primary"
+                  type="text"
+                  name="q" // Adicione o atributo 'name' com o valor 'q'
+                  placeholder="O que você procura?"
+                />
+                <button type="submit" aria-label="Search">
+                  <IconSearch
+                    className="w-5 h-5 right-2 absolute top-0 bottom-0 m-auto text-primary"
+                    style={{ position: "absolute" }}
+                  />
+                </button>
+              </form>
             </div>
           </div>
         </Drawers>

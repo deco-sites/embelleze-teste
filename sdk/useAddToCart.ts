@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
 import { useCallback } from "preact/hooks";
-import { useCart } from "deco-sites/std/packs/vtex/hooks/useCart.ts";
+import { useCart } from "apps/vtex/hooks/useCart.ts";
 import { useUI } from "deco-sites/fashion/sdk/useUI.ts";
 import { sendEvent } from "deco-sites/fashion/sdk/analytics.tsx";
 
@@ -35,7 +35,7 @@ export const useAddToCart = (
     try {
       isAddingToCart.value = true;
       await addItems({
-        orderItems: [{ id: skuId, seller: sellerId, quantity }],
+        orderItems: [{ id: skuId, seller: sellerId, quantity: quantity }],
       });
 
       sendEvent({
@@ -43,7 +43,7 @@ export const useAddToCart = (
         params: {
           items: [{
             item_id: productGroupId,
-            quantity: 1,
+            quantity,
             price,
             discount,
             item_name: name,
@@ -56,7 +56,7 @@ export const useAddToCart = (
     } finally {
       isAddingToCart.value = false;
     }
-  }, [skuId, sellerId]);
+  }, [skuId, sellerId, quantity]);
 
   return { onClick, loading: isAddingToCart.value };
 };

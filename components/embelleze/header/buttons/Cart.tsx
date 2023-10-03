@@ -1,6 +1,6 @@
 import Button from "$store/components/ui/Button.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
-import { useUI } from "$store/sdk/useUI.ts";
+import { useUI } from "$store/sdk/embelleze/useUI.ts";
 import { useCart } from "deco-sites/std/packs/vtex/hooks/useCart.ts";
 import IconShoppingBag from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/shopping-bag.tsx";
 
