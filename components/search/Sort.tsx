@@ -40,12 +40,13 @@ function Sort({ sortOptions }: Props) {
       onInput={applySort}
       class="w-min h-[36px] px-1 rounded m-2 text-base-content cursor-pointer outline-none"
     >
-      {sortOptions.map(({ value, label }) =>({
+      {sortOptions.map(({ value, label }) => ({
         value,
         label: portugueseMappings[label as keyof typeof portugueseMappings],
-        backSort: label
-      })
-      ).filter(({ label, value }) => label).map(({ value, label, backSort }) => (
+        backSort: label,
+      })).filter(({ label, value }) => label).map((
+        { value, label, backSort },
+      ) => (
         <option key={value} value={backSort} selected={backSort === sort}>
           <span class="text-sm">{label}</span>
         </option>
