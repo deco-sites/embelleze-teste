@@ -1,4 +1,4 @@
-import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
+import type { ProductDetailsPage } from "apps/commerce/types.ts";
 import { useSignal } from "@preact/signals";
 import Icon from "$store/components/ui/Icon.tsx";
 import PopUp from "$store/components/ui/PopUp.tsx";

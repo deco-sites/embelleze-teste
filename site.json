@@ -1,8 +1,0 @@
-{
-  "siteId": 2093,
-  "namespace": "deco-sites/embelleze",
-  "imports": [
-    "$live/live.gen.ts",
-    "deco-sites/std/live.gen.ts"
-  ]
-}

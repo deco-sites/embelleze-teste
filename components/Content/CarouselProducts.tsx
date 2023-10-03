@@ -1,6 +1,6 @@
 import Image from "deco-sites/std/components/Image.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
-import type { Product } from "deco-sites/std/commerce/types.ts";
+import type { Product } from "apps/commerce/types.ts";
 import { useOffer } from "deco-sites/fashion/sdk/useOffer.ts";
 import { useEffect, useState } from "preact/hooks";
 import { useId } from "$store/sdk/useId.ts";
