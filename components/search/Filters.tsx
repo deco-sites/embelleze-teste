@@ -80,15 +80,15 @@ function Filters({ filters }: Props) {
     try {
       const urlObject = new URL(window.location.href);
       const searchParams = urlObject.searchParams;
-  
+
       // Verifica se o parâmetro 's?q' existe na URL
-      if (searchParams.has('s?q')) {
-        const searchTerm = searchParams.get('s?q');
+      if (searchParams.has("s?q")) {
+        const searchTerm = searchParams.get("s?q");
         return `/s?q=${searchTerm}`;
       } else {
         // Verifica se o parâmetro 'q' existe na URL
-        if (searchParams.has('q')) {
-          const searchTerm = searchParams.get('q');
+        if (searchParams.has("q")) {
+          const searchTerm = searchParams.get("q");
           return `/s?q=${searchTerm}`;
         } else {
           return "/";
