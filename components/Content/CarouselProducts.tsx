@@ -33,7 +33,7 @@ export interface Props {
   color: string;
 }
 
-function PCard(
+export function PCard(
   { product, mobileBigCard, color, buttonColor }: {
     product: Product;
     mobileBigCard: boolean;
@@ -53,10 +53,10 @@ function PCard(
   const [front] = images ?? [];
 
   return (
-    <div class="PCARD h-full">
+    <div class="PCARD h-full  min-h-[530px]">
       <div
-        class={`py-2 flex hover:shadow-2xl transition flex-col md:w-[260px] ${
-          mobileBigCard ? "w-60" : "w-40"
+        class={`py-2 flex hover:shadow-2xl transition flex-col md:max-w-[260px] ${
+          mobileBigCard ? "max-w-60" : "max-w-40"
         } border-r-[2px] border-t-[2px] shadow-xl border-primary-content border-solid rounded-[10px] relative h-full `}
       >
         <div class="px-2 rounded-[10px] h-[250px]">
