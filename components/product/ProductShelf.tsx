@@ -9,7 +9,7 @@ import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
-import type { Product } from "deco-sites/std/commerce/types.ts";
+import type { Product } from "apps/commerce/types.ts";
 
 export interface Props {
   products: Product[] | null;

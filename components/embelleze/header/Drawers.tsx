@@ -19,6 +19,8 @@ const MenuProductsChild = lazy(() =>
   import("$store/components/embelleze/header/MenuProductsChild.tsx")
 );
 
+const Cart = lazy(() => import("$store/components/minicart/Cart.tsx"));
+
 export interface Props {
   menu: MenuProps;
   searchbar?: SearchbarProps;
@@ -108,6 +110,7 @@ function Drawers({ menu, logo, children, paths }: Props) {
     productsChild,
     displayMenuProductsChild,
     productsChild2,
+    displayCart,
   } = useUI();
 
   return (
@@ -137,25 +140,42 @@ function Drawers({ menu, logo, children, paths }: Props) {
         </Aside>
       }
     >
-      <Drawer
-        open={displayMenuProducts.value}
-        onClose={() => displayMenuProducts.value = false}
+      <Drawer // right drawer
+        class="drawer-end"
+        open={displayCart.value}
+        onClose={() => displayCart.value = false}
         aside={
           <Aside
+            title="Minha sacola"
+            chevronClick={() => displayCart.value = false}
+            onClose={() => displayCart.value = false}
             displayMenu={displayMenu.value}
-            title={productsChild.value.label}
-            onClose={() => displayMenuProducts.value = false}
-            chevronClick={() => {
-              displayMenuProducts.value = false;
-              displayMenu.value = true;
-            }}
-            open={displayMenuProducts.value}
+            open={displayMenu.value}
           >
-            <MenuProducts />
+            <Cart />
           </Aside>
         }
       >
-        {children}
+        <Drawer
+          open={displayMenuProducts.value}
+          onClose={() => displayMenuProducts.value = false}
+          aside={
+            <Aside
+              displayMenu={displayMenu.value}
+              title={productsChild.value.label}
+              onClose={() => displayMenuProducts.value = false}
+              chevronClick={() => {
+                displayMenuProducts.value = false;
+                displayMenu.value = true;
+              }}
+              open={displayMenuProducts.value}
+            >
+              <MenuProducts />
+            </Aside>
+          }
+        >
+          {children}
+        </Drawer>
       </Drawer>
     </Drawer>
   );

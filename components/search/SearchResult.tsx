@@ -6,7 +6,7 @@ import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/product
 import { useOffer } from "$store/sdk/useOffer.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 import { Layout as cardLayout } from "$store/components/product/ProductCard.tsx";
-import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
+import type { ProductListingPage } from "apps/commerce/types.ts";
 
 export interface Layout {
   /**
@@ -22,7 +22,6 @@ export interface Layout {
 export interface Props {
   page: ProductListingPage | null;
   layout?: Layout;
-  cardLayout?: cardLayout;
 }
 
 function NotFound() {
@@ -36,9 +35,12 @@ function NotFound() {
 function Result({
   page,
   layout,
-  cardLayout,
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
+
+  const records = pageInfo.records ?? products.length;
+  const recordPerPage = pageInfo.recordPerPage ?? 1;
+  const value = Math.ceil(records / recordPerPage);
 
   return (
     <>
@@ -47,17 +49,19 @@ function Result({
           sortOptions={sortOptions}
           filters={filters}
           breadcrumb={breadcrumb}
+          pageInfo={pageInfo}
+          productsInPage={products.length}
           displayFilter={layout?.variant === "drawer"}
         />
 
         <div class="flex flex-row">
           {layout?.variant === "aside" && filters.length > 0 && (
-            <aside class="hidden sm:block w-min min-w-[250px]">
+            <aside class="hidden md:block w-min min-w-[250px]">
               <Filters filters={filters} />
             </aside>
           )}
           <div class="flex-grow">
-            <ProductGallery products={products} layout={cardLayout} />
+            <ProductGallery products={products} />
           </div>
         </div>
 
@@ -67,20 +71,35 @@ function Result({
               aria-label="previous page link"
               rel="prev"
               href={pageInfo.previousPage ?? "#"}
-              class="btn btn-ghost join-item"
+              class="flex items-center justify-center p-4 rounded-full"
+              style={{ backgroundColor: "rgba(95, 36, 159, 0.1)" }}
             >
-              <Icon id="ChevronLeft" size={24} strokeWidth={2} />
+              <Icon
+                id="ChevronLeft"
+                size={24}
+                strokeWidth={2}
+                class="text-primary"
+              />
             </a>
             <span class="btn btn-ghost join-item">
-              Page {pageInfo.currentPage + 1}
+              Página{" "}
+              <strong class="text-primary">{pageInfo.currentPage + 1}</strong>
+              {" "}
+              de <strong class="text-primary">{value}</strong>
             </span>
             <a
               aria-label="next page link"
               rel="next"
               href={pageInfo.nextPage ?? "#"}
-              class="btn btn-ghost join-item"
+              class="flex items-center justify-center p-4 rounded-full"
+              style={{ backgroundColor: "rgba(95, 36, 159, 0.1)" }}
             >
-              <Icon id="ChevronRight" size={24} strokeWidth={2} />
+              <Icon
+                id="ChevronRight"
+                size={24}
+                strokeWidth={2}
+                class="text-primary"
+              />
             </a>
           </div>
         </div>

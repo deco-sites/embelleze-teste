@@ -1,6 +1,7 @@
-import Image from "deco-sites/std/components/Image.tsx";
+import Image from "apps/website/components/Image.tsx";
+import ImageAuto from "./Image.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
-import type { Product } from "deco-sites/std/commerce/types.ts";
+import type { Product } from "apps/commerce/types.ts";
 import { useOffer } from "deco-sites/fashion/sdk/useOffer.ts";
 import { useEffect, useState } from "preact/hooks";
 import { useId } from "$store/sdk/useId.ts";
@@ -32,7 +33,7 @@ export interface Props {
   color: string;
 }
 
-function PCard(
+export function PCard(
   { product, mobileBigCard, color, buttonColor }: {
     product: Product;
     mobileBigCard: boolean;
@@ -52,20 +53,17 @@ function PCard(
   const [front] = images ?? [];
 
   return (
-    <div class="PCARD h-full">
+    <div class="PCARD h-full  min-h-[530px]">
       <div
-        class={`py-2 flex hover:shadow-2xl transition flex-col md:w-[260px] ${
-          mobileBigCard ? "w-60" : "w-40"
+        class={`py-2 flex hover:shadow-2xl transition flex-col md:max-w-[260px] ${
+          mobileBigCard ? "max-w-60" : "max-w-40"
         } border-r-[2px] border-t-[2px] shadow-xl border-primary-content border-solid rounded-[10px] relative h-full `}
       >
-        <div class="px-2 rounded-[10px]">
-          <figure>
-            <Image
-              class="w-full"
+        <div class="px-2 rounded-[10px] h-[250px]">
+          <figure class="flex object-contain max-h-[270px] items-center justify-center">
+            <ImageAuto
               src={front.url!}
               alt={name}
-              width={140}
-              height={175}
               loading="lazy"
             />
           </figure>
@@ -155,10 +153,12 @@ function ProductCarousel(
     ) as
       | HTMLElement
       | null;
-    const itemWidth = carouselContainer?.querySelector(
+    const itemWidth = carouselContainer?.querySelectorAll(
       `${list1.length > 1 ? "#carousel-item-product" : ".PCARD"}`,
-    )
+    )[index - 1]
       ?.clientWidth ?? 0;
+
+    console.log({ index, itemWidth, carouselContainer });
 
     const newPosition = itemWidth * index;
     if (carouselContainer) {
@@ -214,7 +214,9 @@ function ProductCarousel(
           </p>
         </div>
         {categories && (
-          <div class={"justify-center m-auto flex items-center gap-4"}>
+          <div
+            class={"carousel carousel-start md:m-auto lg:flex-wrap flex items-center gap-4"}
+          >
             {categories.map((category, index) => (
               <button
                 key={category}
@@ -222,7 +224,7 @@ function ProductCarousel(
                   currentIndex1 === index
                     ? "bg-secondary text-white"
                     : "bg-secondary-content text-primary"
-                } uppercase rounded-lg py-[10px] px-4 text-sm font-[700]`}
+                } uppercase rounded-lg py-[10px] px-4 text-sm font-[700] carousel-item`}
                 onClick={() => setCurrentIndex(index)}
               >
                 {category}
@@ -231,12 +233,12 @@ function ProductCarousel(
           </div>
         )}
         <div
-          class={`carousel carousel-start gap-4 lg:gap-6 row-start-2 row-end-5 w-full h-[551px]`}
+          class={`carousel carousel-start gap-4 lg:gap-6 w-full h-[551px]`}
           id={"carousel-product" + id}
         >
           {list1?.map((product, index) => (
             <div
-              class="flex gap-4 carousel-item h-[500px]"
+              class="flex gap-4 carousel-item h-[520px]"
               id={"carousel-item-product"}
               key={index + "subdiv"}
             >

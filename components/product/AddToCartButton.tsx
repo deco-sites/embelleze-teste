@@ -40,7 +40,10 @@ function AddToCartButton(
         {quantity.value}
         <button
           class="rounded-full bg-primary bg-opacity-10 w-6 h-6 text-primary"
-          onClick={() => quantity.value++}
+          onClick={() => {
+            quantity.value++;
+            console.log(props);
+          }}
         >
           +
         </button>

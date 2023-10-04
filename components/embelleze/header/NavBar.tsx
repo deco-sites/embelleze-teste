@@ -57,12 +57,20 @@ function Navbar({ paths, logo }: {
             />
           </a>
         )}
-        <input
-          type="text"
-          placeholder="O que você procura? Nós podemos te ajudar!"
+        <form
+          action="/s"
+          method="GET"
+          id="formId"
           class="w-3/5 rounded-2xl border-[1px] border-gray-300 text-xs py-2 pl-2"
         >
-        </input>
+          <input
+            type="text"
+            placeholder="O que você procura? Nós podemos te ajudar!"
+            name="q"
+            class="w-full border-none"
+          >
+          </input>
+        </form>
         <div class="flex items-center gap-4">
           <a
             class="flex items-center gap-2"

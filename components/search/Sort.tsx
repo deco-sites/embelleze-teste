@@ -1,5 +1,5 @@
 import { useMemo } from "preact/hooks";
-import { ProductListingPage } from "deco-sites/std/commerce/types.ts";
+import { ProductListingPage } from "apps/commerce/types.ts";
 import type { JSX } from "preact";
 
 const SORT_QUERY_PARAM = "sort";
@@ -38,13 +38,17 @@ function Sort({ sortOptions }: Props) {
       id="sort"
       name="sort"
       onInput={applySort}
-      class="w-min h-[36px] px-1 rounded m-2 text-base-content cursor-pointer outline-none"
+      class="w-min p-4 px-1 rounded m-2 cursor-pointer outline-none flex-grow justify-between font-bold text-primary uppercase max-w-[284px] h-[55px] max-h-[55px]"
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.04)" }}
     >
       {sortOptions.map(({ value, label }) => ({
         value,
         label: portugueseMappings[label as keyof typeof portugueseMappings],
-      })).filter(({ label }) => label).map(({ value, label }) => (
-        <option key={value} value={value} selected={value === sort}>
+        backSort: label,
+      })).filter(({ label, value }) => label).map((
+        { value, label, backSort },
+      ) => (
+        <option key={value} value={backSort} selected={backSort === sort}>
           <span class="text-sm">{label}</span>
         </option>
       ))}
