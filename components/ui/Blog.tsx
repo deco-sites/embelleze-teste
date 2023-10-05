@@ -19,6 +19,10 @@ export interface Image {
    */
   titleColor: string;
   title: string;
+  /**
+   * @format textarea
+   * @format html
+   * @description text to be rendered */
   text: string;
 }
 
@@ -48,6 +52,10 @@ export interface Text {
    */
   titleColor: string;
   title: string;
+  /**
+   * @format textarea
+   * @format html
+   * @description text to be rendered */
   message: string;
 }
 
@@ -66,6 +74,10 @@ export interface Video {
     videoId: string;
     isCollum: boolean;
     title?: string;
+    /**
+     * @format textarea
+     * @format html
+     * @description text to be rendered */
     text?: string;
     href?: string;
     buttonText?: string;
@@ -95,7 +107,11 @@ function Blog({ section }: Props) {
                   >
                     {title}
                   </h2>
-                  <p>{text}</p>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: text,
+                    }}
+                  />
                 </div>
                 <Image
                   src={img}
@@ -120,7 +136,11 @@ function Blog({ section }: Props) {
                 >
                   {title}
                 </h2>
-                <p>{message}</p>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: message,
+                  }}
+                />
               </div>
             );
           }
@@ -192,7 +212,11 @@ function Blog({ section }: Props) {
                         >
                           {title}
                         </h2>
-                        <p>{text}</p>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: text,
+                          }}
+                        />
                         {buttonText && (
                           <a
                             class="text-white p-3 rounded-xl"
