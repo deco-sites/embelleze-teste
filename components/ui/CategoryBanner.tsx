@@ -1,6 +1,8 @@
 import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import type { SectionProps } from "$live/types.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import type { Props as CarouselProps } from "$store/components/Content/Carousel.tsx";
+import Carousel from "$store/components/Content/Carousel.tsx";
 
 /**
  * @titleBy matcher
@@ -10,7 +12,10 @@ export interface Banner {
   matcher: string;
   /** @description text to be rendered on top of the image */
   title?: string;
-  /** @description text to be rendered on top of the image */
+  /**
+   * @format textarea
+   * @format html
+   * @description text to be rendered on top of the image */
   subtitle?: string;
   image: {
     /** @description Image for big screens */
@@ -20,6 +25,7 @@ export interface Banner {
     /** @description image alt text */
     alt?: string;
   };
+  carousel?: CarouselProps;
 }
 
 function Banner({ banner }: SectionProps<ReturnType<typeof loader>>) {
@@ -30,7 +36,7 @@ function Banner({ banner }: SectionProps<ReturnType<typeof loader>>) {
   const { title, subtitle, image } = banner;
 
   return (
-    <div class="grid grid-cols-1 grid-rows-1">
+    <div class="flex flex-col justify-between gap-6">
       <Picture preload class="col-start-1 col-span-1 row-start-1 row-span-1">
         <Source
           src={image.mobile}
@@ -47,18 +53,25 @@ function Banner({ banner }: SectionProps<ReturnType<typeof loader>>) {
         <img class="w-full" src={image.desktop} alt={image.alt ?? title} />
       </Picture>
 
-      <div class="container flex flex-col items-center justify-center sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full">
+      <div class="w-11/12 flex flex-col items-center justify-center m-auto gap-4">
         <h1>
-          <span class="text-5xl font-medium text-base-100">
+          <span class="text-5xl font-medium text-primary">
             {title}
           </span>
         </h1>
         <h2>
-          <span class="text-xl font-medium text-base-100">
-            {subtitle}
-          </span>
+          <span
+            class="text-xl font-medium"
+            dangerouslySetInnerHTML={{ __html: subtitle ?? "" }}
+          />
         </h2>
+        <a href="#CategoryText">
+          <button class="border p-2 rounded-lg px-4">
+            VER MAIS +
+          </button>
+        </a>
       </div>
+      {banner.carousel && <Carousel {...banner.carousel} />}
     </div>
   );
 }

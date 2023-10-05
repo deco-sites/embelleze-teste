@@ -31,13 +31,19 @@ function SearchControls(
       aside={
         <>
           <div class="bg-base-100 flex flex-col h-full divide-y overflow-y-hidden">
-            <div class="flex justify-between items-center">
-              <h1 class="px-4 py-3">
-                <span class="font-medium text-2xl">Filtrar</span>
-              </h1>
-              <Button class="btn btn-ghost" onClick={() => open.value = false}>
-                <Icon id="XMark" size={24} strokeWidth={2} />
+            <div class="flex justify-start gap-4 items-center bg-primary px-2 h-[71px]">
+              <Button
+                class="btn btn-ghost rounded-full bg-white bg-opacity-10 "
+                onClick={() => open.value = false}
+              >
+                <Icon id="XMark" class="text-white" size={24} strokeWidth={2} />
               </Button>
+              <h2 class="md:hidden flex-row gap-4 items-center flex">
+                <Icon id="sliders" class="text-secondary" size={20} />
+                <span class="font-medium text-2xl uppercase text-white">
+                  filtros
+                </span>
+              </h2>
             </div>
             <div class="flex-grow overflow-auto">
               <Filters filters={filters} />
@@ -67,7 +73,7 @@ function SearchControls(
 
         <div class="flex flex-row items-center justify-between border-b border-base-200 md:gap-4 md:border-none w-full pb-8">
           <div class="md:flex flex-row gap-4 items-center hidden">
-            <Icon id="sliders" size={20} />
+            <Icon id="sliders" class="text-primary" size={20} />
             <span class="uppercase font-bold text-primary text-lg">
               filtros
             </span>
@@ -82,7 +88,7 @@ function SearchControls(
             style={{ backgroundColor: "rgba(0, 0, 0, 0.04)" }}
           >
             Filtrar
-            <Icon id="sliders" size={20} />
+            <Icon id="sliders" class="text-primary" size={20} />
           </Button>
           <p
             id="return-fill"
