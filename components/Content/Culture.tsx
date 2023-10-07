@@ -19,16 +19,16 @@ function Culture({ section }: Props) {
   };
 
   return (
-    <div class="flex m-auto md:w-85 md:flex-row w-11/12 max-w-[2000px] flex-col flex-wrap justify-between relative">
+    <div class="flex m-auto md:w-85 md:flex-row w-11/12 max-w-[1440px] flex-col flex-wrap justify-between relative">
       {section?.map(({ title, icon, text, alt }, index) => (
         <div
-          class="flex flex-row justify-start items-start gap-4 md:w-[328px] mb-9 h-32 w-[100%]"
+          class="flex flex-row justify-start items-start gap-4 md:w-[328px] mb-9 w-[100%]"
           key={index}
         >
           <img src={icon} alt={alt} width={36} height={36} />
           <div>
-            <h2 class="uppercase text-tertiary font-bold mb-3">{title}</h2>
-            <p class="text-start text-sm">{hideStringEnd(text, 183)}</p>
+            <h2 class="uppercase text-tertiary font-bold mb-4">{title}</h2>
+            <p class="text-start text-sm font-normal">{hideStringEnd(text, 183)}</p>
           </div>
         </div>
       ))}

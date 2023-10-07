@@ -100,7 +100,7 @@ function Carousel(
     <section class="flex justify-between m-auto md:w-85 w-11/12 flex-col">
       {title && (
         <h2
-          class="text-2xl uppercase text-center"
+          class="text-3xl uppercase text-center font-bold"
           style={{ color: titleColor }}
         >
           {title}
