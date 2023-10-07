@@ -63,7 +63,7 @@ function Navbar({ paths, logo }: {
           action="/s"
           method="GET"
           id="formId"
-          class="w-3/5 rounded-2xl border-[1px] border-gray-300 text-xs py-2 pl-2"
+          class="flex-grow rounded-2xl border-[1px] border-gray-300 text-xs py-2 pl-2"
         >
           <input
             type="text"
@@ -73,25 +73,25 @@ function Navbar({ paths, logo }: {
           >
           </input>
         </form>
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-6">
           <a
             class="flex items-center gap-2"
             href={paths.loginHref}
             aria-label="Log in"
           >
             <div class="bg-primary-content p-1 rounded-full">
-              <IconUser class="w-5 h-5" />
+              <IconUser class="w-6 h-6 text-primary" />
             </div>
-            <p class="text-[0.8em] text-[#541693]">
+            <p class="text-[1rem] text-[#541693]">
               Entre ou <br /> Cadastre-se
             </p>
           </a>
           <a
-            class="btn btn-circle btn-sm btn-ghost bg-primary-content p-1"
+            class="btn btn-circle btn-sm btn-ghost bg-primary-content p-1 w-9 h-9"
             href={paths.favouriteHref}
             aria-label="Wishlist"
           >
-            <IconHeart class="w-5 h-5" />
+            <IconHeart class="w-6 h-6 text-primary" />
           </a>
           <CartButton />
         </div>
