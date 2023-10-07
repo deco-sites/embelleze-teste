@@ -22,13 +22,15 @@ export interface Props {
 function Images(
   { images, isCarrousel, title, description, backgroundColor }: Props,
 ) {
+  const titleFirstWord = title ? title.split(' ')[0] + ' ': '';
+  const remainingTitle = title ? title.split(' ').slice(1).join(' ') : '';
   return (
     <section
       class="flex m-auto w-11/12 flex-col gap-4 p-4 rounded-lg"
       style={{ backgroundColor }}
     >
       {title && (
-        <h2 class="text-primary text-2xl uppercase text-center">{title}</h2>
+        <h2 class="text-primary text-2xl uppercase text-center"><span class="text-secondary">{titleFirstWord}</span>{remainingTitle}</h2>
       )}
       {description && <p class="text-sm text-center">{description}</p>}
       {isCarrousel
