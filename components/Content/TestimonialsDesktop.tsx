@@ -106,7 +106,7 @@ function TestimonialsDesktop({ section }: Props) {
                     <p class="text-start">
                       {opinion !== undefined
                         ? opinion
-                        : "Cliente não escreveu uma avaliação, apenas deu a nota do produto."}
+                        : "Cliente não escreveu uma avaliação, apenas deu a nota."}
                     </p>
                     <h2 class="text-primary text-base uppercase text-end">
                       {name}
