@@ -80,6 +80,7 @@ function StoreReviews() {
       {opnioes.value.length > 0 && (
         <Testimonials
           section={opnioes.value}
+          isStore={true}
           title="Depoimentos"
           description="O que dizem sobre os nossos produtos:"
         />
