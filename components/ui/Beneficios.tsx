@@ -26,7 +26,7 @@ function Beneficios({ beneficio, background, textColor }: Props) {
         {beneficio.map(({ alt, image, text }) => (
           <div class="flex justify-start gap-4 items-center carousel-item">
             <Image src={image} alt={alt} width={35} height={35} />
-            <p class="uppercase font-medium" style={{ color: textColor }}>
+            <p class="uppercase font-semibold" style={{ color: textColor }}>
               {text}
             </p>
           </div>
