@@ -42,7 +42,7 @@ function Navbar({ paths, logo }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden lg:flex h-[10vh] items-center m-auto w-[90%] justify-between">
+      <div class="hidden lg:flex py-4 items-center m-auto w-[90%] justify-between">
         {logo && (
           <a
             href="/"
