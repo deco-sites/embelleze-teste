@@ -61,13 +61,13 @@ function TestimonialsDesktop({ section, isStore }: Props) {
   return (
     <div class="relative">
       <button
-        class="flex items-center prev-btn absolute -left-12 bottom-1/2 transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+        class="flex items-center prev-btn absolute -left-12 bottom-1/2 top-1/2 transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
         onClick={prevSlide}
       >
         {"<"}
       </button>
       <div
-        class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 min-h-[300px] h-fit flex items-end"
+        class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 h-fit flex items-end"
         id="carousel"
       >
         <div class=" flex gap-4 carousel-content transition-transform duration-300 ease-in-out w-full">
@@ -139,7 +139,7 @@ function TestimonialsDesktop({ section, isStore }: Props) {
           ))}
         </div>
         <button
-          class="flex items-center next-btn absolute -right-12 bottom-1/2 transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+          class="flex items-center next-btn absolute -right-12 bottom-1/2 top-1/2 transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
           onClick={nextSlide}
         >
           {">"}
