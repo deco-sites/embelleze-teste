@@ -11,6 +11,7 @@ export interface Props {
   images?: Banner[];
   isCarrousel: boolean;
   title?: string;
+  instagramUser?: string;
   description?: string;
   /**
    * @format color
@@ -20,7 +21,7 @@ export interface Props {
 }
 
 function Images(
-  { images, isCarrousel, title, description, backgroundColor }: Props,
+  { images, isCarrousel, title, description, backgroundColor, instagramUser }: Props,
 ) {
   return (
     <section
@@ -28,9 +29,9 @@ function Images(
       style={{ backgroundColor }}
     >
       {title && (
-        <h2 class="text-primary text-2xl uppercase text-center">{title}</h2>
+        <h2 class="text-primary text-3xl font-bold uppercase text-center">{instagramUser && <span class="text-secondary">{instagramUser + ' '}</span>}{title}</h2>
       )}
-      {description && <p class="text-sm text-center">{description}</p>}
+      {description && <p class="text-base text-center">{description}</p>}
       {isCarrousel
         ? (
           <div class="carousel gap-4 row-start-2 row-end-5 items-end md:py-4 w-full">
