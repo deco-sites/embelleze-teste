@@ -72,7 +72,7 @@ function Section(
           height={162}
         />
         <h2
-          class="text-base uppercase text-center"
+          class="text-base uppercase text-center font-bold"
           style={{ color: textColor }}
         >
           {title}
