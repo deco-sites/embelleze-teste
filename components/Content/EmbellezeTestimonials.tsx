@@ -23,7 +23,7 @@ function EmbellezeTestimonials(
   { section, title, description, isStore }: Props,
 ) {
   return (
-    <div class="flex justify-between m-auto w-11/12 flex-col relative gap-4 py-4">
+    <div class="flex justify-between m-auto w-11/12 flex-col relative gap-4 py-4 max-w-[1440px]">
       {title && (
         <h2 class="text-primary text-3xl uppercase text-center font-semibold">
           {title}
