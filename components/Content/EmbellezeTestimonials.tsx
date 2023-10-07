@@ -16,20 +16,23 @@ export interface Props {
   title?: string;
   description?: string;
   section: Array<Section>;
+  isStore?: boolean;
 }
 
-function EmbellezeTestimonials({ section, title, description }: Props) {
+function EmbellezeTestimonials(
+  { section, title, description, isStore }: Props,
+) {
   return (
-    <div class="flex justify-between m-auto w-11/12 flex-col relative gap-4 py-4">
+    <div class="flex justify-between m-auto w-11/12 flex-col relative gap-4 py-4 max-w-[1440px]">
       {title && (
-        <h2 class="text-primary text-2xl uppercase text-center font-medium">
+        <h2 class="text-primary text-3xl uppercase text-center font-semibold">
           {title}
         </h2>
       )}
       {description && <p class="text-sm text-center">{description}</p>}
       {window.innerWidth <= 1300
-        ? <TestimonialsMobile section={section} />
-        : <TestimonialsDesktop section={section} />}
+        ? <TestimonialsMobile section={section} isStore={isStore} />
+        : <TestimonialsDesktop section={section} isStore={isStore} />}
     </div>
   );
 }

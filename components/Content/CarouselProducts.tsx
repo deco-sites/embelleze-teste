@@ -47,19 +47,29 @@ export function PCard(
     offers,
     brand,
     // category,
+    additionalProperty,
   } = product;
   const { listPrice, price, installments } = useOffer(offers);
   const [front] = images ?? [];
 
   return (
-    <div class="PCARD h-full  min-h-[530px]">
+    <div class="PCARD h-full w-full relative">
+      <div class="flex flex-col justify-center gap-2 flex-wrap flex-grow items-center absolute top-4 left-4 z-10">
+        {additionalProperty?.filter(({ description }) =>
+          description === "highlight"
+        ).map(({ value }) => (
+          <span class="bg-primary p-2 rounded-lg text-white text-sm font-medium max-h-7 uppercase flex items-center justify-center">
+            {value}
+          </span>
+        ))}
+      </div>
       <div
-        class={`py-2 flex hover:shadow-2xl transition flex-col ${
+        class={`py-2 flex hover:shadow-2xl transition flex-col justify-between ${
           mobileBigCard ? "max-w-60" : "max-w-40"
-        } border-r-[2px] border-t-[2px] shadow-xl border-primary-content border-solid rounded-[10px] relative h-full `}
+        } border-[2px] border-primary-content border-solid rounded-[10px] relative h-full `}
       >
-        <div class="px-2 rounded-[10px] h-[250px]">
-          <figure class="flex object-contain w-[200px] h-[200px] items-center justify-center">
+        <div class="px-2 rounded-[10px] h-full flex-col justify-between flex">
+          <figure class="flex object-contain w-[200px] h-[260px] items-center justify-center mx-auto">
             <Image
               class="h-[200px] object-contain"
               src={front.url!}
@@ -121,8 +131,17 @@ export function PCard(
 
           <p class="text-[12px] pb-2 text-[#00000066]">ou {installments}</p>
           <a href={url}>
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `
+                .buyButton:hover {
+                  color: white !important;
+                }
+              `,
+              }}
+            />
             <button
-              class="w-full py-1 uppercase rounded-[5px] border-2 border-solid hover:text-white hover:bg-[#17A087]"
+              class="buyButton w-full py-1 uppercase rounded-[5px] border-2 border-solid hover:text-white hover:bg-[#17A087]"
               style={{ borderColor: buttonColor, color: buttonColor }}
             >
               Adicionar ao carrinho
@@ -188,11 +207,11 @@ function ProductCarousel(
   }, [currentIndex1]);
 
   return (
-    <div class="py-8 w-11/12 m-auto relative">
-      <div class="flex flex-col gap-6 lg:gap-8 text-base-content lg:py-5">
+    <div class="py-8 w-11/12 m-auto max-w-[1440px]">
+      <div class="flex flex-col gap-6 lg:gap-8 text-base-content lg:py-5 relative">
         {hide?.navButtons ? <></> : (
           <button
-            class="hidden lg:flex items-center prev-btn absolute -left-10 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+            class="hidden lg:flex items-center prev-btn absolute 2xl:-left-14 -left-11 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
             onClick={prevSlide}
           >
             {"<"}
@@ -240,7 +259,7 @@ function ProductCarousel(
         >
           {list1?.map((product, index) => (
             <div
-              class="flex gap-4 carousel-item h-[520px]"
+              class="flex gap-8 carousel-item h-[480px]"
               id={"carousel-item-product"}
               key={index + "subdiv"}
             >
@@ -248,13 +267,15 @@ function ProductCarousel(
                 <Image src={cardImage} alt={alt} width={317} height={481} />
               )}
               {product?.map((a, i) => (
-                <PCard
-                  product={a}
-                  mobileBigCard={mobileBigCard}
-                  key={i}
-                  color={color}
-                  buttonColor={buttonColor}
-                />
+                <div class="w-[284px]">
+                  <PCard
+                    product={a}
+                    mobileBigCard={mobileBigCard}
+                    key={i}
+                    color={color}
+                    buttonColor={buttonColor}
+                  />
+                </div>
               ))}
             </div>
           ))}
@@ -290,7 +311,7 @@ function ProductCarousel(
           )}
         {hide?.navButtons ? <></> : (
           <button
-            class="hidden lg:flex items-center next-btn absolute -right-10 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+            class="hidden lg:flex items-center next-btn absolute 2xl:-right-14 -right-11 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
             onClick={nextSlide}
           >
             {">"}

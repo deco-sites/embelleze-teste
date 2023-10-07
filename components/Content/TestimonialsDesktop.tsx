@@ -8,9 +8,10 @@ export interface Props {
   title?: string;
   description?: string;
   section: Array<Section>;
+  isStore?: boolean;
 }
 
-function TestimonialsDesktop({ section }: Props) {
+function TestimonialsDesktop({ section, isStore }: Props) {
   const starArray = [1, 2, 3, 4, 5];
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -60,13 +61,13 @@ function TestimonialsDesktop({ section }: Props) {
   return (
     <div class="relative">
       <button
-        class="flex items-center prev-btn absolute -left-12 bottom-1/2 transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+        class="flex items-center prev-btn absolute -left-12 bottom-1/2 top-1/2 transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
         onClick={prevSlide}
       >
         {"<"}
       </button>
       <div
-        class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 min-h-[300px] h-fit flex items-end"
+        class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 h-fit flex items-end"
         id="carousel"
       >
         <div class=" flex gap-4 carousel-content transition-transform duration-300 ease-in-out w-full">
@@ -80,7 +81,9 @@ function TestimonialsDesktop({ section }: Props) {
                 { comments, user: { name }, opinion, rate: rating },
               ) => (
                 <div
-                  class="border border-purple-500 border-opacity-10 rounded-2xl h-[400px] w-[70vw] relative p-4 box-border flex flex-col gap-4 justify-start"
+                  class={`border border-purple-500 border-opacity-10 rounded-2xl ${
+                    isStore ? "h-auto" : "h-[400px]"
+                  } w-[70vw] relative p-4 box-border flex flex-col gap-4 justify-start`}
                   id="carousel-item"
                 >
                   <div
@@ -106,7 +109,7 @@ function TestimonialsDesktop({ section }: Props) {
                     <p class="text-start">
                       {opinion !== undefined
                         ? opinion
-                        : "Cliente não escreveu uma avaliação, apenas deu a nota do produto."}
+                        : "Cliente não escreveu uma avaliação, apenas deu a nota."}
                     </p>
                     <h2 class="text-primary text-base uppercase text-end">
                       {name}
@@ -136,7 +139,7 @@ function TestimonialsDesktop({ section }: Props) {
           ))}
         </div>
         <button
-          class="flex items-center next-btn absolute -right-12 bottom-1/2 transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+          class="flex items-center next-btn absolute -right-12 bottom-1/2 top-1/2 transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
           onClick={nextSlide}
         >
           {">"}

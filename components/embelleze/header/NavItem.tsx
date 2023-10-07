@@ -16,11 +16,14 @@ function NavItem({ item, lastIndex }: { item: INavItem; lastIndex: boolean }) {
         href={href}
         class={`${
           lastIndex
-            ? "bg-secondary text-white rounded-[5px] py-1 px-4"
-            : "px-4 py-3"
+            ? "bg-secondary text-white rounded-[5px] py-1 px-2"
+            : "px-2 py-3"
         }`}
       >
-        <span class="group-hover:underline font-semibold text-lg">
+        <span
+          class="group-hover:underline font-semibold"
+          style={{ lineHeight: "17.5px", fontSize: "14px" }}
+        >
           {label}
         </span>
       </a>
