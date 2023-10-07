@@ -18,33 +18,33 @@ function Alert({ alerts = [], interval = 5 }: Props) {
   return (
     <div id={id} class="relative flex justify-center w-[50%]">
       <div class="w-[50%]">
-      <Slider class="carousel carousel-center bg-primary gap-6">
-        <Slider.PrevButton class="bg-transparent absolute -left-4 my-auto mx-0 h-[30px]">
-          <Icon
-            class="text-base-100"
-            size={15}
-            id="ChevronLeft"
-            strokeWidth={3}
-          />
-        </Slider.PrevButton>
-        {alerts.map((alert, index) => (
-          <Slider.Item index={index} class="carousel-item">
-            <span class="text-secondary-content flex justify-center items-center h-[30px] w-full relative text-[0.7em]">
-              {alert}
-            </span>
-          </Slider.Item>
-        ))}
-        <Slider.NextButton class="bg-transparent absolute -right-4 my-auto mx-0 h-[30px]">
-          <Icon
-            class="text-base-100"
-            size={20}
-            id="ChevronRight"
-            strokeWidth={3}
-          />
-        </Slider.NextButton>
-      </Slider>
+        <Slider class="carousel carousel-center bg-primary gap-6">
+          <Slider.PrevButton class="bg-transparent absolute -left-4 my-auto mx-0 h-[30px]">
+            <Icon
+              class="text-base-100"
+              size={15}
+              id="ChevronLeft"
+              strokeWidth={3}
+            />
+          </Slider.PrevButton>
+          {alerts.map((alert, index) => (
+            <Slider.Item index={index} class="carousel-item">
+              <span class="text-secondary-content flex justify-center items-center h-[30px] w-full relative text-[0.7em]">
+                {alert}
+              </span>
+            </Slider.Item>
+          ))}
+          <Slider.NextButton class="bg-transparent absolute -right-4 my-auto mx-0 h-[30px]">
+            <Icon
+              class="text-base-100"
+              size={20}
+              id="ChevronRight"
+              strokeWidth={3}
+            />
+          </Slider.NextButton>
+        </Slider>
 
-      <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
+        <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
       </div>
     </div>
   );

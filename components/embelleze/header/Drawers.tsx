@@ -45,9 +45,7 @@ const Aside = (
 ) => (
   <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y">
     <div
-      class={`${
-        !displayMenu ? "bg-primary" : "bg-base-100"
-      } relative`}
+      class={`${!displayMenu ? "bg-primary" : "bg-base-100"} relative`}
     >
       <div class="flex h-full justify-between items-center w-[90%] m-auto">
         {!displayMenu && (
