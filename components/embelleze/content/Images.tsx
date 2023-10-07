@@ -46,7 +46,7 @@ function Images(
                   height={280}
                   src={image}
                   alt={alt}
-                  class="object-fill h-[280px] w-[280px] rounded-2xl"
+                  class="object-fill h-[280px] rounded-2xl w-full"
                 />
               </a>
             ))}
@@ -64,7 +64,7 @@ function Images(
                   height={355}
                   src={image}
                   alt={alt}
-                  class="rounded-lg"
+                  class="rounded-lg w-full"
                 />
               </a>
             ))}

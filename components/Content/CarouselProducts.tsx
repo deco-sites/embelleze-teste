@@ -1,5 +1,4 @@
 import Image from "apps/website/components/Image.tsx";
-import ImageAuto from "./Image.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { useOffer } from "deco-sites/fashion/sdk/useOffer.ts";
@@ -55,16 +54,19 @@ export function PCard(
   return (
     <div class="PCARD h-full  min-h-[530px]">
       <div
-        class={`py-2 flex hover:shadow-2xl transition flex-col md:max-w-[260px] ${
+        class={`py-2 flex hover:shadow-2xl transition flex-col ${
           mobileBigCard ? "max-w-60" : "max-w-40"
         } border-r-[2px] border-t-[2px] shadow-xl border-primary-content border-solid rounded-[10px] relative h-full `}
       >
         <div class="px-2 rounded-[10px] h-[250px]">
-          <figure class="flex object-contain max-h-[270px] items-center justify-center">
-            <ImageAuto
+          <figure class="flex object-contain w-[200px] h-[200px] items-center justify-center">
+            <Image
+              class="h-[200px] object-contain"
               src={front.url!}
               alt={name}
               loading="lazy"
+              width={200}
+              fit="contain"
             />
           </figure>
           <p class="font-[700] pb-3" style={{ color }}>{brand?.name}</p>
@@ -155,7 +157,7 @@ function ProductCarousel(
       | null;
     const itemWidth = carouselContainer?.querySelectorAll(
       `${list1.length > 1 ? "#carousel-item-product" : ".PCARD"}`,
-    )[index - 1]
+    )[index]
       ?.clientWidth ?? 0;
 
     console.log({ index, itemWidth, carouselContainer });
