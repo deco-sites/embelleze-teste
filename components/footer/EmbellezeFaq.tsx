@@ -42,7 +42,9 @@ function EmbellezeFaq({ section, social, payments }: Props) {
       <section class="flex flex-col">
         {social && (
           <section class="flex flex-col my-4 mr-4">
-            <h2 class="text-primary text-xl uppercase font-semibold">{social?.title}</h2>
+            <h2 class="text-primary text-xl uppercase font-semibold">
+              {social?.title}
+            </h2>
             <div class="flex flex-wrap flex-row">
               {social?.items?.map(({ href, image, description }) => (
                 <a class="mt-2 mr-2" href={href}>
@@ -60,7 +62,9 @@ function EmbellezeFaq({ section, social, payments }: Props) {
         )}
         {payments && (
           <section class="flex flex-col my-4 mr-4">
-            <h2 class="text-primary text-xl uppercase font-semibold">{payments?.title}</h2>
+            <h2 class="text-primary text-xl uppercase font-semibold">
+              {payments?.title}
+            </h2>
             <div class="flex flex-wrap flex-row">
               {payments?.items?.map(({ image, description }) => (
                 <img

@@ -21,7 +21,8 @@ export interface Props {
 }
 
 function Images(
-  { images, isCarrousel, title, description, backgroundColor, instagramUser }: Props,
+  { images, isCarrousel, title, description, backgroundColor, instagramUser }:
+    Props,
 ) {
   return (
     <section
@@ -29,7 +30,12 @@ function Images(
       style={{ backgroundColor }}
     >
       {title && (
-        <h2 class="text-primary text-3xl font-bold uppercase text-center">{instagramUser && <span class="text-secondary">{instagramUser + ' '}</span>}{title}</h2>
+        <h2 class="text-primary text-3xl font-bold uppercase text-center">
+          {instagramUser && (
+            <span class="text-secondary">{instagramUser + " "}</span>
+          )}
+          {title}
+        </h2>
       )}
       {description && <p class="text-base text-center">{description}</p>}
       {isCarrousel
