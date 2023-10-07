@@ -8,14 +8,14 @@ import { useUI } from "$store/sdk/embelleze/useUI.ts";
 
 export interface Props {
   items: INavItem[];
-  paths: { loginHref: string; favouriteHref: string; myBagHref: string };
+  paths: { loginHref: string; favouriteHref: string };
 }
 
 function Menu({ items, paths }: Props) {
   const { displayMenuProducts, displayMenu, productsChild } = useUI();
 
   return (
-    <div class="flex flex-col h-full w-[85vw]">
+    <div class="flex flex-col h-auto w-[85vw]">
       <ul class="flex flex-col uppercase text-xs">
         {items.map((item, index) => (
           <li class="font-medium">
@@ -80,17 +80,6 @@ function Menu({ items, paths }: Props) {
               <IconHeart class="w-4 h-4" />
             </span>
             <span class="text-sm">Favoritos</span>
-          </a>
-        </li>
-        <li>
-          <a
-            class="flex items-center gap-4 px-4 py-2 border-b-[1px]"
-            href={paths.myBagHref}
-          >
-            <span class="rounded-full p-2 bg-primary-content">
-              <IconShoppingBag class="w-4 h-4" />
-            </span>
-            <span class="text-sm">Minha sacola</span>
           </a>
         </li>
       </ul>

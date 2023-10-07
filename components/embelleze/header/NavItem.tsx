@@ -20,7 +20,7 @@ function NavItem({ item, lastIndex }: { item: INavItem; lastIndex: boolean }) {
             : "px-4 py-3"
         }`}
       >
-        <span class="group-hover:underline">
+        <span class="group-hover:underline font-semibold">
           {label}
         </span>
       </a>

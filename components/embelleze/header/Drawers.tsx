@@ -29,7 +29,7 @@ export interface Props {
    * @ignore_gen true
    */
   children?: ComponentChildren;
-  paths: { loginHref: string; favouriteHref: string; myBagHref: string };
+  paths: { loginHref: string; favouriteHref: string };
 }
 
 const Aside = (
@@ -43,11 +43,11 @@ const Aside = (
     open: boolean;
   },
 ) => (
-  <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y">
+  <div class="bg-base-100 grid grid-rows-[auto_1fr] min-h-[100vh] divide-y">
     <div
       class={`${!displayMenu ? "bg-primary" : "bg-base-100"} relative`}
     >
-      <div class="flex h-full justify-between items-center w-[90%] m-auto">
+      <div class="flex h-full justify-between items-center w-11/12 m-auto">
         {!displayMenu && (
           <>
             <Button
@@ -64,7 +64,7 @@ const Aside = (
         {displayMenu && logo && (
           <a
             href="/"
-            class="top-0 bottom-0 m-auto left-0 right-0"
+            class="flex m-auto items-center justify-center"
             aria-label="Store logo"
           >
             <ImageComponent

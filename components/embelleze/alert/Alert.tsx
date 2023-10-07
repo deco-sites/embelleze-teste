@@ -16,8 +16,8 @@ function Alert({ alerts = [], interval = 5 }: Props) {
   const id = useId();
 
   return (
-    <div id={id} class="relative flex justify-center w-[50%]">
-      <div class="w-[50%]">
+    <div id={id} class="relative flex justify-center w-full xl:w-[50%]">
+      <div class="flex md:justify-center w-11/12  xl:w-[50%]">
         <Slider class="carousel carousel-center bg-primary gap-6">
           <Slider.PrevButton class="bg-transparent absolute -left-4 my-auto mx-0 h-[30px]">
             <Icon

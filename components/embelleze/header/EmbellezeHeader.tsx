@@ -68,7 +68,7 @@ export interface Props {
   /** @title Logo */
   logo?: { src: Image; alt: string };
 
-  paths: { loginHref: string; favouriteHref: string; myBagHref: string };
+  paths: { loginHref: string; favouriteHref: string };
 }
 
 function EmbellezeHeader({
@@ -85,7 +85,7 @@ function EmbellezeHeader({
   const id = useId();
   return (
     <>
-      <header style={{ height: 160 }}>
+      <header class="xl:h-[160px] h-[125px]">
         <Drawers
           menu={{ items: navItems }}
           searchbar={searchbar}
@@ -95,9 +95,9 @@ function EmbellezeHeader({
           <div class="bg-base-100 fixed w-full z-20 
               h-auto">
             <div class="w-screen bg-primary">
-              <div class="w-[80vw] max-w-[1440px] gap-6  flex m-auto items-center justify-between">
+              <div class="w-11/12 max-w-[2000px] gap-6  flex m-auto items-center justify-between">
                 <Alert alerts={alerts} />
-                <ul class="hidden lg:flex items-center text-[0.56em] gap-6 justify-end uppercase text-white">
+                <ul class="hidden xl:flex items-center text-[0.56em] gap-6 justify-end uppercase text-white">
                   <li>
                     <a
                       href={social.Whatsapp.href}
@@ -156,7 +156,7 @@ function EmbellezeHeader({
             </div>
             {navItems.length > 0 &&
               (
-                <div class="hidden lg:flex justify-content m-auto w-[90%] max-w-[1440px] text-[#541693] uppercase items-center text-sm gap-5">
+                <div class="hidden xl:flex justify-center m-auto w-11/12 max-w-[2000px] text-[#541693] uppercase items-center text-sm gap-5 min-h-[35px]">
                   {navItems.map((item, index) => (
                     <NavItem
                       item={item}
@@ -165,8 +165,8 @@ function EmbellezeHeader({
                   ))}
                 </div>
               )}
-            <div className="w-[100%] lg:hidden relative">
-              <form action="/s" method="GET" id="formId">
+            <div className="w-[100%] xl:hidden relative">
+              <form action="/s" method="GET" id="formId" class="min-h-[40px]">
                 <input
                   className="w-full p-2 text-xs text-primary"
                   type="text"

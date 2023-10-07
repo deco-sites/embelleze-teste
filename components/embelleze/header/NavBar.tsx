@@ -7,30 +7,31 @@ import type { Image } from "deco-sites/std/components/types.ts";
 
 function Navbar({ paths, logo }: {
   logo?: { src: Image; alt: string };
-  paths: { loginHref: string; favouriteHref: string; myBagHref: string };
+  paths: { loginHref: string; favouriteHref: string };
 }) {
   return (
     <>
       {/* Mobile Version */}
       <div
         style={{ height: navbarHeight }}
-        class="lg:hidden border-b border-base-200 w-full text-primary"
+        class="xl:hidden border-b border-base-200 w-full text-primary"
       >
-        <div class="w-[90%] m-auto flex flex-row justify-between items-center">
+        <div class="w-11/12 m-auto flex flex-row justify-between items-center gap-4">
           <MenuButton />
 
           {logo && (
             <a
               href="/"
-              class="flex-grow justify-center flex items-center"
+              class="flex-grow justify-center flex items-center h-[42px] w-[238px] object-contain"
               style={{ minHeight: navbarHeight }}
               aria-label="Store logo"
             >
               <ImageComponent
+                class="object-contain"
                 src={logo.src}
                 alt={logo.alt}
-                width={126}
-                height={30}
+                width={238}
+                height={42}
               />
             </a>
           )}
@@ -42,12 +43,12 @@ function Navbar({ paths, logo }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden lg:flex py-4 items-center m-auto w-[90%]  max-w-[1440px] justify-between gap-8 max-h-[75px]">
+      <div class="hidden xl:flex py-4 items-center m-auto w-[90%]  max-w-[2000px] justify-between gap-8 max-h-[75px]">
         {logo && (
           <a
             href="/"
             aria-label="Store logo"
-            class="block px-4 py-3 h-[42px] w-[238px]"
+            class="flex items-center px-4 py-3 h-[42px] w-[238px]"
           >
             <ImageComponent
               class="w-full"
