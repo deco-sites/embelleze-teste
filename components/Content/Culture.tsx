@@ -28,7 +28,9 @@ function Culture({ section }: Props) {
           <img src={icon} alt={alt} width={36} height={36} />
           <div>
             <h2 class="uppercase text-tertiary font-bold mb-4">{title}</h2>
-            <p class="text-start text-sm font-medium opacity-[0.6]">{hideStringEnd(text, 183)}</p>
+            <p class="text-start text-sm font-medium opacity-[0.6]">
+              {hideStringEnd(text, 183)}
+            </p>
           </div>
         </div>
       ))}
