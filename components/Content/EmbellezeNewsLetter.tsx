@@ -41,9 +41,9 @@ function EmbellezeNewsLetter({ title, form: { button, inputs } }: Props) {
   };
 
   return (
-    <div class=" m-auto md:w-85 w-11/12">
+    <div class=" m-auto md:w-85 w-11/12 max-w-[1440px]">
       <form
-        class="p-4 max-w-1/2 flex-wrap flex flex-col items-center gap-4 lg:justify-start lg:flex-row bg-primary rounded-2xl"
+        class="py-8 px-6 max-w-[1/2 ]flex-wrap flex flex-col items-center gap-4 lg:justify-start lg:flex-row bg-primary rounded-2xl"
         onSubmit={handleSubmit}
       >
         <h2 class="text-base-100 text-xl uppercase text-center">{title}</h2>
