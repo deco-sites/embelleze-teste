@@ -37,13 +37,13 @@ export default function CartButton() {
         </span>
       )}
       <Button
-        class="btn-circle btn-sm btn-ghost bg-primary-content p-1"
+        class="btn-circle btn-sm btn-ghost bg-primary-content p-1 w-9 h-9"
         aria-label="open cart"
         data-deco={displayCart.value && "open-cart"}
         loading={loading.value}
         onClick={onClick}
       >
-        <IconShoppingBag class="w-5 h-5" />
+        <IconShoppingBag class="w-6 h-6 text-primary" />
       </Button>
     </div>
   );

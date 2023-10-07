@@ -16,11 +16,14 @@ function NavItem({ item, lastIndex }: { item: INavItem; lastIndex: boolean }) {
         href={href}
         class={`${
           lastIndex
-            ? "bg-secondary text-white rounded-[5px] py-1 px-4"
-            : "px-4 py-3"
+            ? "bg-secondary text-white rounded-[5px] py-1 px-2"
+            : "px-2 py-3"
         }`}
       >
-        <span class="group-hover:underline">
+        <span
+          class="group-hover:underline font-semibold"
+          style={{ lineHeight: "17.5px", fontSize: "14px" }}
+        >
           {label}
         </span>
       </a>
@@ -29,7 +32,7 @@ function NavItem({ item, lastIndex }: { item: INavItem; lastIndex: boolean }) {
         (
           <div
             class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center gap-6 border-t-[1px] border-solid border-gray-200 w-screen"
-            style={{ top: "0px", left: "0px", marginTop: "22vh" }}
+            style={{ top: "0px", left: "0px", marginTop: "0" }}
           >
             {image?.src && (
               <Image

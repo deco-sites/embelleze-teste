@@ -7,9 +7,10 @@ export interface Props {
   title?: string;
   description?: string;
   section: Array<Section>;
+  isStore?: boolean;
 }
 
-function TestimonialsMobile({ section }: Props) {
+function TestimonialsMobile({ section, isStore }: Props) {
   const starArray = [1, 2, 3, 4, 5];
 
   const moveCarouselToIndex = (index: number) => {
@@ -46,7 +47,9 @@ function TestimonialsMobile({ section }: Props) {
             { user: { name }, opinion, rate: rating, comments },
           ) => (
             <div
-              class="border border-purple-500 border-opacity-10 rounded-2xl h-[400px] w-[60vw] max-w-[400px] relative p-4 box-border flex flex-col gap-4 justify-start"
+              class={`border border-purple-500 border-opacity-10 rounded-2xl ${
+                isStore ? "h-auto" : "h-[400px]"
+              } w-[60vw] max-w-[400px] relative p-4 box-border flex flex-col gap-4 justify-start`}
               id="carousel-item"
             >
               <div
@@ -72,7 +75,7 @@ function TestimonialsMobile({ section }: Props) {
                 <p class="text-start">
                   {opinion !== undefined
                     ? opinion
-                    : "Cliente não escreveu uma avaliação, apenas deu a nota do produto."}
+                    : "Cliente não escreveu uma avaliação, apenas deu a nota."}
                 </p>
                 <h2 class="text-primary text-base uppercase text-end">
                   {name}
