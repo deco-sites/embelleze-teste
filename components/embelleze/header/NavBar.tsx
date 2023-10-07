@@ -47,9 +47,10 @@ function Navbar({ paths, logo }: {
           <a
             href="/"
             aria-label="Store logo"
-            class="block px-4 py-3 w-[160px]"
+            class="block px-4 py-3 w-[20%]"
           >
             <ImageComponent
+              class="w-full"
               src={logo.src}
               alt={logo.alt}
               width={126}
