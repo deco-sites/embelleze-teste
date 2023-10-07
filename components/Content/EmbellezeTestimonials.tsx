@@ -16,10 +16,12 @@ export interface Props {
   title?: string;
   description?: string;
   section: Array<Section>;
-  isStore?: boolean
+  isStore?: boolean;
 }
 
-function EmbellezeTestimonials({ section, title, description, isStore }: Props) {
+function EmbellezeTestimonials(
+  { section, title, description, isStore }: Props,
+) {
   return (
     <div class="flex justify-between m-auto w-11/12 flex-col relative gap-4 py-4">
       {title && (
