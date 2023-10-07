@@ -30,9 +30,9 @@ function Images(
       style={{ backgroundColor }}
     >
       {title && (
-        <h2 class="text-primary text-2xl uppercase text-center"><span class="text-secondary">{titleFirstWord}</span>{remainingTitle}</h2>
+        <h2 class="text-primary text-3xl font-bold uppercase text-center"><span class="text-secondary">{titleFirstWord}</span>{remainingTitle}</h2>
       )}
-      {description && <p class="text-sm text-center">{description}</p>}
+      {description && <p class="text-base text-center">{description}</p>}
       {isCarrousel
         ? (
           <div class="carousel gap-4 row-start-2 row-end-5 items-end md:py-4 w-full">
