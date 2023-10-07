@@ -8,12 +8,12 @@ import * as $$1 from "./islands/Banners.tsx";
 import * as $$2 from "./islands/CarouselProducts.tsx";
 import * as $$3 from "./islands/ClipBord.tsx";
 import * as $$4 from "./islands/Dots.tsx";
-import * as $$5 from "./islands/Embelleze/Buttons.tsx";
-import * as $$6 from "./islands/Embelleze/Drawers.tsx";
-import * as $$7 from "./islands/Embelleze/SearchBar.tsx";
-import * as $$8 from "./islands/EmbellezeFooter.tsx";
-import * as $$9 from "./islands/EmbellezeNewsLetter.tsx";
-import * as $$10 from "./islands/EmbellezeTestimonials.tsx";
+import * as $$5 from "./islands/EmbellezeFooter.tsx";
+import * as $$6 from "./islands/EmbellezeNewsLetter.tsx";
+import * as $$7 from "./islands/EmbellezeTestimonials.tsx";
+import * as $$8 from "./islands/Embelleze/Buttons.tsx";
+import * as $$9 from "./islands/Embelleze/Drawers.tsx";
+import * as $$10 from "./islands/Embelleze/SearchBar.tsx";
 import * as $$11 from "./islands/Filters.tsx";
 import * as $$12 from "./islands/Header/Buttons.tsx";
 import * as $$13 from "./islands/Header/Drawers.tsx";
@@ -40,12 +40,12 @@ const manifest = {
     "./islands/CarouselProducts.tsx": $$2,
     "./islands/ClipBord.tsx": $$3,
     "./islands/Dots.tsx": $$4,
-    "./islands/Embelleze/Buttons.tsx": $$5,
-    "./islands/Embelleze/Drawers.tsx": $$6,
-    "./islands/Embelleze/SearchBar.tsx": $$7,
-    "./islands/EmbellezeFooter.tsx": $$8,
-    "./islands/EmbellezeNewsLetter.tsx": $$9,
-    "./islands/EmbellezeTestimonials.tsx": $$10,
+    "./islands/EmbellezeFooter.tsx": $$5,
+    "./islands/EmbellezeNewsLetter.tsx": $$6,
+    "./islands/EmbellezeTestimonials.tsx": $$7,
+    "./islands/Embelleze/Buttons.tsx": $$8,
+    "./islands/Embelleze/Drawers.tsx": $$9,
+    "./islands/Embelleze/SearchBar.tsx": $$10,
     "./islands/Filters.tsx": $$11,
     "./islands/Header/Buttons.tsx": $$12,
     "./islands/Header/Drawers.tsx": $$13,
