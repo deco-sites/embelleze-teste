@@ -41,19 +41,19 @@ function EmbellezeNewsLetter({ title, form: { button, inputs } }: Props) {
   };
 
   return (
-    <div class=" m-auto md:w-85 w-11/12 max-w-[1440px]">
+    <div class=" m-auto md:w-85 w-11/12 max-w-[1440px] md:px-[102px]">
       <form
         class="py-8 px-6 max-w-[1/2 ]flex-wrap flex flex-col items-center gap-4 lg:justify-start lg:flex-row bg-primary rounded-2xl"
         onSubmit={handleSubmit}
       >
-        <h2 class="text-base-100 text-xl uppercase text-center">{title}</h2>
+        <h2 class="text-base-100 text-xl uppercase text-center font-semibold">{title}</h2>
         {inputs &&
           inputs.map(({ placeholder, name }) => (
             <input
               type="text"
               name={name}
               placeholder={placeholder}
-              class="bg-transparent border rounded-2xl text-center h-10 w-full max-w-xs border-gray-400 placeholder:text-base-100 lg:w-56 lg:text-start md:pl-2"
+              class="bg-transparent border rounded-2xl text-center h-10 w-full flex-grow border-gray-400 placeholder:text-base-100 lg:w-56 lg:text-start md:pl-2"
             />
           ))}
         <button
