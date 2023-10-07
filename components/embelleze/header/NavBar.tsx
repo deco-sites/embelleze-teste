@@ -42,19 +42,19 @@ function Navbar({ paths, logo }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden lg:flex py-4 items-center m-auto w-[90%] justify-between">
+      <div class="hidden lg:flex py-4 items-center m-auto w-[90%]  max-w-[1440px] justify-between gap-8 max-h-[75px]">
         {logo && (
           <a
             href="/"
             aria-label="Store logo"
-            class="block px-4 py-3 w-[20%]"
+            class="block px-4 py-3 h-[42px] w-[238px]"
           >
             <ImageComponent
               class="w-full"
               src={logo.src}
               alt={logo.alt}
-              width={126}
-              height={30}
+              width={238}
+              height={42}
             />
           </a>
         )}

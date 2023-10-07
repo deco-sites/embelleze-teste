@@ -16,9 +16,10 @@ function Alert({ alerts = [], interval = 5 }: Props) {
   const id = useId();
 
   return (
-    <div id={id} class="relative">
-      <Slider class="carousel carousel-center bg-primary gap-6 w-[80vw] lg:w-[40vw]">
-        <Slider.PrevButton class="bg-transparent absolute left-0 my-auto mx-0 h-[30px]">
+    <div id={id} class="relative flex justify-center w-[50%]">
+      <div class="w-[50%]">
+      <Slider class="carousel carousel-center bg-primary gap-6">
+        <Slider.PrevButton class="bg-transparent absolute -left-4 my-auto mx-0 h-[30px]">
           <Icon
             class="text-base-100"
             size={15}
@@ -28,12 +29,12 @@ function Alert({ alerts = [], interval = 5 }: Props) {
         </Slider.PrevButton>
         {alerts.map((alert, index) => (
           <Slider.Item index={index} class="carousel-item">
-            <span class="text-secondary-content flex justify-center items-center h-[30px] w-[80vw] lg:w-[40vw] relative text-[0.7em]">
+            <span class="text-secondary-content flex justify-center items-center h-[30px] w-full relative text-[0.7em]">
               {alert}
             </span>
           </Slider.Item>
         ))}
-        <Slider.NextButton class="bg-transparent absolute right-0 my-auto mx-0 h-[30px]">
+        <Slider.NextButton class="bg-transparent absolute -right-4 my-auto mx-0 h-[30px]">
           <Icon
             class="text-base-100"
             size={20}
@@ -44,6 +45,7 @@ function Alert({ alerts = [], interval = 5 }: Props) {
       </Slider>
 
       <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
+      </div>
     </div>
   );
 }

@@ -95,9 +95,9 @@ function EmbellezeHeader({
           <div class="bg-base-100 fixed w-full z-20 
               h-auto">
             <div class="w-screen bg-primary">
-              <div class="w-[80vw] flex m-auto items-center justify-between">
+              <div class="w-[80vw] max-w-[1440px] gap-6  flex m-auto items-center justify-between">
                 <Alert alerts={alerts} />
-                <ul class="hidden lg:flex items-center justify-between text-[0.56em] w-[30vw] uppercase text-white">
+                <ul class="hidden lg:flex items-center text-[0.56em] gap-6 justify-end uppercase text-white">
                   <li>
                     <a
                       href={social.Whatsapp.href}
@@ -156,7 +156,7 @@ function EmbellezeHeader({
             </div>
             {navItems.length > 0 &&
               (
-                <div class="hidden lg:flex m-auto w-[90%]  text-[#541693] uppercase items-center text-sm gap-5">
+                <div class="hidden lg:flex justify-content m-auto w-[90%] max-w-[1440px] text-[#541693] uppercase items-center text-sm gap-5">
                   {navItems.map((item, index) => (
                     <NavItem
                       item={item}
