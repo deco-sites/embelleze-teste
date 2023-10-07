@@ -28,7 +28,7 @@ export interface Props {
 
 function EmbellezeFaq({ section, social, payments }: Props) {
   return (
-    <div class="flex-wrap flex justify-between m-auto md:w-85 w-11/12 flex-col md:flex-row">
+    <div class="flex-wrap flex justify-between m-auto md:w-85 w-11/12 max-w-[1440px] xl:px-[102px] flex-col md:flex-row py-[42px]">
       {section?.map(({ title, items }: ISection) => (
         <section class="flex flex-col my-4 mr-4">
           <h2 class="text-primary text-xl uppercase">{title}</h2>
