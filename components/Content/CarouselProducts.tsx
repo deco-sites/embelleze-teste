@@ -207,7 +207,7 @@ function ProductCarousel(
   }, [currentIndex1]);
 
   return (
-    <div class="py-8 w-11/12 m-auto max-w-[1440px]">
+    <div class="py-8 w-11/12 m-auto max-w-[1300px]">
       <div class="flex flex-col gap-6 lg:gap-8 text-base-content lg:py-5 relative">
         {hide?.navButtons ? <></> : (
           <button

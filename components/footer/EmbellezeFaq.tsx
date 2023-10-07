@@ -28,10 +28,10 @@ export interface Props {
 
 function EmbellezeFaq({ section, social, payments }: Props) {
   return (
-    <div class="flex-wrap flex justify-between m-auto md:w-85 w-11/12 max-w-[1440px] xl:px-[102px] flex-col md:flex-row py-[42px]">
+    <div class="flex-wrap flex justify-between m-auto md:w-85 w-11/12 max-w-[1300px] flex-col md:flex-row py-[42px]">
       {section?.map(({ title, items }: ISection) => (
         <section class="flex flex-col my-4 mr-4">
-          <h2 class="text-primary text-xl uppercase">{title}</h2>
+          <h2 class="text-primary text-xl uppercase font-semibold">{title}</h2>
           <>
             {items?.map(({ label, href }) => (
               <a class="mt-2" href={href}>{label}</a>
@@ -42,7 +42,7 @@ function EmbellezeFaq({ section, social, payments }: Props) {
       <section class="flex flex-col">
         {social && (
           <section class="flex flex-col my-4 mr-4">
-            <h2 class="text-primary text-xl uppercase">{social?.title}</h2>
+            <h2 class="text-primary text-xl uppercase font-semibold">{social?.title}</h2>
             <div class="flex flex-wrap flex-row">
               {social?.items?.map(({ href, image, description }) => (
                 <a class="mt-2 mr-2" href={href}>
@@ -60,7 +60,7 @@ function EmbellezeFaq({ section, social, payments }: Props) {
         )}
         {payments && (
           <section class="flex flex-col my-4 mr-4">
-            <h2 class="text-primary text-xl uppercase">{payments?.title}</h2>
+            <h2 class="text-primary text-xl uppercase font-semibold">{payments?.title}</h2>
             <div class="flex flex-wrap flex-row">
               {payments?.items?.map(({ image, description }) => (
                 <img

@@ -25,7 +25,7 @@ function Images(
 ) {
   return (
     <section
-      class="flex m-auto w-11/12 flex-col gap-4 p-4 rounded-lg"
+      class="flex m-auto w-11/12 flex-col gap-4 p-4 rounded-lg max-w-[1300px]"
       style={{ backgroundColor }}
     >
       {title && (

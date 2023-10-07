@@ -16,7 +16,7 @@ function MainBanner({ alt, mobile, href, desktop }: Props) {
     <div>
       <a
         href={href}
-        class="relative h-[230px] w-[100vw] md:h-[340px] "
+        class="relative h-[230px] w-[100vw] md:h-[340px] max-w-[1300px] "
       >
         <Picture preload={false}>
           <Source
@@ -34,7 +34,7 @@ function MainBanner({ alt, mobile, href, desktop }: Props) {
             height={340}
           />
           <img
-            class="flex m-auto object-fill w-full h-full md:w-11/12 md:rounded-3xl"
+            class="flex m-auto object-fill w-full h-full md:w-11/12 md:rounded-3xl max-w-[1300px]"
             loading={"lazy"}
             src={desktop}
             alt={alt}
