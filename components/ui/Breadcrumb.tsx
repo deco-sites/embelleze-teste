@@ -5,7 +5,7 @@ interface Props {
 }
 
 function Breadcrumb({ itemListElement = [] }: Props) {
-  const items = [{ name: "Home", item: "/" }, ...itemListElement];
+  const items = [{ name: "Inicio", item: "/" }, ...itemListElement];
 
   return (
     <div class="breadcrumbs">
@@ -14,7 +14,7 @@ function Breadcrumb({ itemListElement = [] }: Props) {
           .filter(({ name, item }) => name && item)
           .map(({ name, item }) => (
             <li>
-              <a href={item}>{name}</a>
+              <a href={item} class="font-normal uppercase opacity-60">{name}</a>
             </li>
           ))}
       </ul>

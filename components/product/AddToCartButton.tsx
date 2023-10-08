@@ -29,7 +29,7 @@ function AddToCartButton(
 
   return (
     <div class="flex justify-between items-center relative h-fit gap-4">
-      <div class="border rounded-lg flex items-center justify-between flex-grow h-[43px] p-2">
+      <div class="border rounded-lg flex items-center justify-between flex-grow h-[43px] p-2 max-w-[116px]">
         <button
           class="rounded-full bg-primary bg-opacity-10 w-6 h-6 text-primary"
           onClick={() =>
@@ -42,7 +42,6 @@ function AddToCartButton(
           class="rounded-full bg-primary bg-opacity-10 w-6 h-6 text-primary"
           onClick={() => {
             quantity.value++;
-            console.log(props);
           }}
         >
           +
@@ -51,7 +50,7 @@ function AddToCartButton(
       <Button
         data-deco="add-to-cart"
         {...props}
-        class="btn-primary flex-grow-[2] max-h-8 min-h-[43px]"
+        class="btn-primary bg-[#17A087] flex-grow-[2] max-h-8 min-h-[43px] uppercase border-none rounded-lg"
       >
         Adicionar à Sacola
       </Button>

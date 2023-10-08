@@ -68,12 +68,20 @@ function ProductAbout(
           </div>
           <div class="flex flex-col gap-2 items-start">
             <p class="font-bold text-black uppercase w-fit">{response?.name}</p>
-            <p>{response?.value}</p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: response?.value ?? "",
+              }}
+            />
           </div>
         </div>
         {tag.value === "Benefícios" && (
           <PopUp title="composição flex">
-            {composicao?.value}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: composicao?.value ?? "",
+              }}
+            />
           </PopUp>
         )}
       </div>

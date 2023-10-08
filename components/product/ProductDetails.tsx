@@ -97,7 +97,11 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           <h1>
             <span class="font-medium text-xl text-primary">{name}</span>
           </h1>
-          <span>{description?.slice(0, 180)}</span>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: description?.slice(0, 180) ?? "",
+            }}
+          />
         </div>
 
         <div class="flex justify-between gap-2 flex-row w-full items-center">
@@ -344,13 +348,13 @@ function Details({
    */
   return (
     <>
-      <div class="flex flex-col w-11/12 m-auto relative">
+      <div class="flex flex-col w-11/12 m-auto relative max-w-[1300px]">
         <Breadcrumb
           itemListElement={page.breadcrumbList?.itemListElement.slice(0, -1)}
         />
         <div
           id={id}
-          class="flex flex-col xl:grid gap-4 xl:grid-cols-[auto] xl:grid-rows-[auto] xl:justify-between w-full h-fit"
+          class="flex flex-col xl:grid xl:grid-cols-[auto] xl:grid-rows-[auto] xl:justify-between w-full h-fit gap-8"
         >
           {/* Image Slider */}
           <div class="order-2 relative row-span-2 sm:col-start-2 sm:row-start-1 sm:row-end-3 h-fit xl:max-w-[680px] xl:w-[600px] w-full">
@@ -439,7 +443,11 @@ function Details({
           <h2 class="uppercase text-primary font-bold text-2xl">
             SOBRE O PRODUTO
           </h2>
-          <p>{product.description}</p>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: product.description ?? "",
+            }}
+          />
           <ProductAbout
             additionalProperty={product.isVariantOf?.additionalProperty}
           />
