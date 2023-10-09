@@ -66,7 +66,7 @@ export function PCard(
       <div
         class={`py-2 flex hover:shadow-2xl transition flex-col justify-between ${
           mobileBigCard ? "max-w-60" : "max-w-40"
-        } border-[2px] border-primary-content border-solid rounded-[10px] relative h-full `}
+        } border-[2px] border-[#552B9A1A] border-opacity-10 border-solid rounded-[10px] relative h-full `}
       >
         <div class="px-2 rounded-[10px] h-full flex-col justify-between flex">
           <figure class="flex object-contain w-[200px] h-[260px] items-center justify-center mx-auto">
