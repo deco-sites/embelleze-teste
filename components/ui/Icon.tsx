@@ -19,6 +19,7 @@ export type AvailableIcons =
   | "Discount"
   | "Elo"
   | "EmbellezeLogo"
+  | "EmbellezeLogoSecondary"
   | "Facebook"
   | "FilterList"
   | "Hands"

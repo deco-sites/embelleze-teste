@@ -42,6 +42,7 @@ import * as $$$$$$36 from "./sections/Images/BannerGrid.tsx";
 import * as $$$$$$37 from "./sections/Category/CategoryList.tsx";
 import * as $$$$$$38 from "./sections/Category/CategoryText.tsx";
 import * as $$$$$$39 from "./sections/Category/CategoryBanner.tsx";
+import * as $$$$$$40 from "./sections/Category/Menu.tsx";
 import * as $$$$$$$$$$$0 from "./apps/site.ts";
 
 const manifest = {
@@ -49,6 +50,7 @@ const manifest = {
     "deco-sites/embelleze/sections/Category/CategoryBanner.tsx": $$$$$$39,
     "deco-sites/embelleze/sections/Category/CategoryList.tsx": $$$$$$37,
     "deco-sites/embelleze/sections/Category/CategoryText.tsx": $$$$$$38,
+    "deco-sites/embelleze/sections/Category/Menu.tsx": $$$$$$40,
     "deco-sites/embelleze/sections/Content/Banners.tsx": $$$$$$27,
     "deco-sites/embelleze/sections/Content/Benefits.tsx": $$$$$$25,
     "deco-sites/embelleze/sections/Content/Blog.tsx": $$$$$$30,
