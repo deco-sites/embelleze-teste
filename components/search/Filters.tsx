@@ -101,10 +101,10 @@ function Filters({ filters }: Props) {
 
   function transformFilterLabel(label: string) {
     switch (label.toLowerCase()) {
-      case 'brands':
-        return 'marcas';
-      case 'departments':
-        return 'departamentos';
+      case "brands":
+        return "marcas";
+      case "departments":
+        return "departamentos";
       default:
         return label;
     }
@@ -144,7 +144,7 @@ function Filters({ filters }: Props) {
         </div>
       )}
       {filters
-        .filter(isToggle).filter((filter) => filter?.values?.length ?? 0 < 1  )
+        .filter(isToggle).filter((filter) => filter?.values?.length ?? 0 < 1)
         .map((filter, index) => (
           <div class="flex flex-col gap-4 w-full">
             <div
@@ -184,8 +184,8 @@ function Filters({ filters }: Props) {
                 <span class="flex content-center flex-wrap h-9 font-bold text-primary uppercase">
                   {
                     transformFilterLabel(filter.label)
-                  // filter.label
-                  // filter.label.toLowerCase() == "brands" && "marcas"
+                    // filter.label
+                    // filter.label.toLowerCase() == "brands" && "marcas"
                   }
                 </span>
 
