@@ -25,8 +25,7 @@ import Beneficios, {
 import type { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import BuyTogether from "./BuyTogether.tsx";
 "$store/components/product/ProductAbout.tsx";
-import BuyProductScroll from "$store/components/product/BuyProductScroll.tsx"
-
+import BuyProductScroll from "$store/components/product/BuyProductScroll.tsx";
 
 export interface Props {
   page: ProductDetailsPage | null;
