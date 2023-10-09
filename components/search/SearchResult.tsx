@@ -44,7 +44,7 @@ function Result({
 
   return (
     <>
-      <div class="container px-4 sm:py-10">
+      <div class="flex flex-col w-11/12 m-auto py-10 max-w-[1300px]">
         <SearchControls
           sortOptions={sortOptions}
           filters={filters}
@@ -54,13 +54,13 @@ function Result({
           displayFilter={layout?.variant === "drawer"}
         />
 
-        <div class="flex flex-row">
+        <div class="flex flex-row justify-between">
           {layout?.variant === "aside" && filters.length > 0 && (
             <aside class="hidden md:block w-min min-w-[250px]">
               <Filters filters={filters} />
             </aside>
           )}
-          <div class="flex-grow">
+          <div class="flex-grow lg:max-w-[918px]">
             <ProductGallery products={products} />
           </div>
         </div>

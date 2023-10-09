@@ -15,12 +15,14 @@ function ProductGallery({ products }: Props) {
   return (
     <div class="grid grid-cols-2 items-center lg:grid-cols-3 gap-10">
       {products?.map((product, index) => (
+        <div class="max-w-[284px]">
         <PCard
           product={product}
           mobileBigCard={true}
-          buttonColor=""
-          color=""
-        />
+          buttonColor="#17A087"
+          color="#552B9A"
+          />
+          </div>
       ))}
     </div>
   );
