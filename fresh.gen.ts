@@ -5,33 +5,34 @@
 import * as $0 from "./routes/_app.tsx";
 import * as $$0 from "./islands/AddToCartButton.tsx";
 import * as $$1 from "./islands/Banners.tsx";
-import * as $$2 from "./islands/BuyTogether.tsx";
-import * as $$3 from "./islands/CarouselProducts.tsx";
-import * as $$4 from "./islands/ClipBord.tsx";
-import * as $$5 from "./islands/Controls.tsx";
-import * as $$6 from "./islands/Dots.tsx";
-import * as $$7 from "./islands/Embelleze/Buttons.tsx";
-import * as $$8 from "./islands/Embelleze/Drawers.tsx";
-import * as $$9 from "./islands/Embelleze/SearchBar.tsx";
-import * as $$10 from "./islands/EmbellezeFooter.tsx";
-import * as $$11 from "./islands/EmbellezeNewsLetter.tsx";
-import * as $$12 from "./islands/EmbellezeTestimonials.tsx";
-import * as $$13 from "./islands/Filters.tsx";
-import * as $$14 from "./islands/Header/Buttons.tsx";
-import * as $$15 from "./islands/Header/Drawers.tsx";
-import * as $$16 from "./islands/Header/Searchbar.tsx";
-import * as $$17 from "./islands/Newsletter.tsx";
-import * as $$18 from "./islands/Opinioes.tsx";
-import * as $$19 from "./islands/OutOfStock.tsx";
-import * as $$20 from "./islands/ProductAbout.tsx";
-import * as $$21 from "./islands/ProductImageZoom.tsx";
-import * as $$22 from "./islands/Questions.tsx";
-import * as $$23 from "./islands/SearchControls.tsx";
-import * as $$24 from "./islands/ShippingSimulation.tsx";
-import * as $$25 from "./islands/SliderJS.tsx";
-import * as $$26 from "./islands/StoreReviews.tsx";
-import * as $$27 from "./islands/Video.tsx";
-import * as $$28 from "./islands/WishlistButton.tsx";
+import * as $$2 from "./islands/BuyProductScroll.tsx";
+import * as $$3 from "./islands/BuyTogether.tsx";
+import * as $$4 from "./islands/CarouselProducts.tsx";
+import * as $$5 from "./islands/ClipBord.tsx";
+import * as $$6 from "./islands/Controls.tsx";
+import * as $$7 from "./islands/Dots.tsx";
+import * as $$8 from "./islands/Embelleze/Buttons.tsx";
+import * as $$9 from "./islands/Embelleze/Drawers.tsx";
+import * as $$10 from "./islands/Embelleze/SearchBar.tsx";
+import * as $$11 from "./islands/EmbellezeFooter.tsx";
+import * as $$12 from "./islands/EmbellezeNewsLetter.tsx";
+import * as $$13 from "./islands/EmbellezeTestimonials.tsx";
+import * as $$14 from "./islands/Filters.tsx";
+import * as $$15 from "./islands/Header/Buttons.tsx";
+import * as $$16 from "./islands/Header/Drawers.tsx";
+import * as $$17 from "./islands/Header/Searchbar.tsx";
+import * as $$18 from "./islands/Newsletter.tsx";
+import * as $$19 from "./islands/Opinioes.tsx";
+import * as $$20 from "./islands/OutOfStock.tsx";
+import * as $$21 from "./islands/ProductAbout.tsx";
+import * as $$22 from "./islands/ProductImageZoom.tsx";
+import * as $$23 from "./islands/Questions.tsx";
+import * as $$24 from "./islands/SearchControls.tsx";
+import * as $$25 from "./islands/ShippingSimulation.tsx";
+import * as $$26 from "./islands/SliderJS.tsx";
+import * as $$27 from "./islands/StoreReviews.tsx";
+import * as $$28 from "./islands/Video.tsx";
+import * as $$29 from "./islands/WishlistButton.tsx";
 
 const manifest = {
   routes: {
@@ -40,33 +41,34 @@ const manifest = {
   islands: {
     "./islands/AddToCartButton.tsx": $$0,
     "./islands/Banners.tsx": $$1,
-    "./islands/BuyTogether.tsx": $$2,
-    "./islands/CarouselProducts.tsx": $$3,
-    "./islands/ClipBord.tsx": $$4,
-    "./islands/Controls.tsx": $$5,
-    "./islands/Dots.tsx": $$6,
-    "./islands/Embelleze/Buttons.tsx": $$7,
-    "./islands/Embelleze/Drawers.tsx": $$8,
-    "./islands/Embelleze/SearchBar.tsx": $$9,
-    "./islands/EmbellezeFooter.tsx": $$10,
-    "./islands/EmbellezeNewsLetter.tsx": $$11,
-    "./islands/EmbellezeTestimonials.tsx": $$12,
-    "./islands/Filters.tsx": $$13,
-    "./islands/Header/Buttons.tsx": $$14,
-    "./islands/Header/Drawers.tsx": $$15,
-    "./islands/Header/Searchbar.tsx": $$16,
-    "./islands/Newsletter.tsx": $$17,
-    "./islands/Opinioes.tsx": $$18,
-    "./islands/OutOfStock.tsx": $$19,
-    "./islands/ProductAbout.tsx": $$20,
-    "./islands/ProductImageZoom.tsx": $$21,
-    "./islands/Questions.tsx": $$22,
-    "./islands/SearchControls.tsx": $$23,
-    "./islands/ShippingSimulation.tsx": $$24,
-    "./islands/SliderJS.tsx": $$25,
-    "./islands/StoreReviews.tsx": $$26,
-    "./islands/Video.tsx": $$27,
-    "./islands/WishlistButton.tsx": $$28,
+    "./islands/BuyProductScroll.tsx": $$2,
+    "./islands/BuyTogether.tsx": $$3,
+    "./islands/CarouselProducts.tsx": $$4,
+    "./islands/ClipBord.tsx": $$5,
+    "./islands/Controls.tsx": $$6,
+    "./islands/Dots.tsx": $$7,
+    "./islands/Embelleze/Buttons.tsx": $$8,
+    "./islands/Embelleze/Drawers.tsx": $$9,
+    "./islands/Embelleze/SearchBar.tsx": $$10,
+    "./islands/EmbellezeFooter.tsx": $$11,
+    "./islands/EmbellezeNewsLetter.tsx": $$12,
+    "./islands/EmbellezeTestimonials.tsx": $$13,
+    "./islands/Filters.tsx": $$14,
+    "./islands/Header/Buttons.tsx": $$15,
+    "./islands/Header/Drawers.tsx": $$16,
+    "./islands/Header/Searchbar.tsx": $$17,
+    "./islands/Newsletter.tsx": $$18,
+    "./islands/Opinioes.tsx": $$19,
+    "./islands/OutOfStock.tsx": $$20,
+    "./islands/ProductAbout.tsx": $$21,
+    "./islands/ProductImageZoom.tsx": $$22,
+    "./islands/Questions.tsx": $$23,
+    "./islands/SearchControls.tsx": $$24,
+    "./islands/ShippingSimulation.tsx": $$25,
+    "./islands/SliderJS.tsx": $$26,
+    "./islands/StoreReviews.tsx": $$27,
+    "./islands/Video.tsx": $$28,
+    "./islands/WishlistButton.tsx": $$29,
   },
   baseUrl: import.meta.url,
 };

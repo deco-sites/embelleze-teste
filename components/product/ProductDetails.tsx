@@ -25,6 +25,8 @@ import Beneficios, {
 import type { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import BuyTogether from "./BuyTogether.tsx";
 "$store/components/product/ProductAbout.tsx";
+import BuyProductScroll from "$store/components/product/BuyProductScroll.tsx"
+
 
 export interface Props {
   page: ProductDetailsPage | null;
@@ -80,7 +82,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
       {/* Breadcrumb */}
       <div class="order-1 row-span-1 row-start-1 pb-2 lg:col-start-3 h-fit flex flex-col gap-4">
         {/* Code and name */}
-        <div>
+        <div class="flex flex-col gap-2">
           <div class="flex items-center justify-between">
             <span class="text-sm text-gray-500 font-bold">
               {brand?.name}
@@ -98,7 +100,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
             </div>
           </div>
           <h1>
-            <span class="font-medium text-xl text-primary">{name}</span>
+            <span class="font-bold text-xl text-primary">{name}</span>
           </h1>
           <div
             dangerouslySetInnerHTML={{
@@ -132,7 +134,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
       <div class="order-3 row-span-3 lg:col-start-3 row-start-3 lg:row-span-2 h-fit">
         <div class="hidden md:block">
           <div class="flex flex-row gap-2 items-center">
-            <span class="font-medium text-xl text-primary">
+            <span class="font-bold text-xl text-primary">
               {formatPrice(price, offers!.priceCurrency!)}
             </span>
             <span class="line-through text-base-300 text-xs">
@@ -204,6 +206,8 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         </div> */
         }
       </div>
+
+      <BuyProductScroll product={product} />
 
       <div
         class="fixed bottom-0 z-50 bg-white flex flex-col gap-2 p-4 w-full left-0 md:hidden"
