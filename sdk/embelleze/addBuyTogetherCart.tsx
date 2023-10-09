@@ -5,8 +5,16 @@ import { useUI } from "deco-sites/fashion/sdk/embelleze/useUI.ts";
 import { sendEvent } from "deco-sites/fashion/sdk/analytics.tsx";
 
 export interface Options {
-  skuId: string;
-  sellerId?: string;
+  /**
+   * skuId
+   */
+  id: string;
+  /**
+   * sellerId
+   */
+  seller?: string;
+  quantity: number;
+
   price: number;
   discount: number;
   /**
@@ -14,11 +22,14 @@ export interface Options {
    */
   name: string;
   productGroupId: string;
-  quantity: number;
+}
+
+export interface Props {
+  orderItems: Options[];
 }
 
 export const useAddToCart = (
-  { skuId, sellerId, price, discount, name, productGroupId, quantity }: Options,
+  { orderItems }: Props,
 ) => {
   const isAddingToCart = useSignal(false);
   const { displayCart } = useUI();
@@ -27,28 +38,35 @@ export const useAddToCart = (
   const onClick = useCallback(async (e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-
-    if (!sellerId) {
+    console.log({ orderItems });
+    if (orderItems.length <= 0) {
       return;
     }
 
     try {
       isAddingToCart.value = true;
       await addItems({
-        orderItems: [{ id: skuId, seller: sellerId, quantity: quantity }],
+        orderItems: orderItems.map(({ id, seller = "", quantity = 1 }) => ({
+          id,
+          seller,
+          quantity,
+        })),
+        // orderItems: [{ id, seller, quantity }],
       });
 
       sendEvent({
         name: "add_to_cart",
         params: {
-          items: [{
-            item_id: productGroupId,
-            quantity,
-            price,
-            discount,
-            item_name: name,
-            item_variant: skuId,
-          }],
+          items: [
+            //   {
+            //   // item_id: productGroupId,
+            //   // quantity,
+            //   // price,
+            //   // discount,
+            //   // item_name: name,
+            //   // item_variant: skuId,
+            // }
+          ],
         },
       });
 
@@ -56,7 +74,7 @@ export const useAddToCart = (
     } finally {
       isAddingToCart.value = false;
     }
-  }, [skuId, sellerId, quantity]);
+  }, [orderItems]);
 
   return { onClick, loading: isAddingToCart.value };
 };

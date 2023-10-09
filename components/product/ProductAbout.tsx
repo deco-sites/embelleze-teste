@@ -24,7 +24,6 @@ function ProductAbout(
   const response = tags?.filter(({ name }) => name === tag.value)[0];
 
   const composicao = tags?.filter(({ name }) => name === "Composição")[0];
-  console.log(response);
 
   const tagsButtons = [
     "Indicação",

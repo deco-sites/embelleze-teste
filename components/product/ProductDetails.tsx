@@ -12,7 +12,6 @@ import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
-import type { ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import Image from "deco-sites/std/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
@@ -23,10 +22,14 @@ import Opinioes from "deco-sites/fashion/components/product/Opinioes.tsx";
 import Beneficios, {
   Props as IBeneficios,
 } from "deco-sites/fashion/components/ui/Beneficios.tsx";
+import type { Product, ProductDetailsPage } from "apps/commerce/types.ts";
+import BuyTogether from "./BuyTogether.tsx";
+"$store/components/product/ProductAbout.tsx";
 
 export interface Props {
   page: ProductDetailsPage | null;
   beneficios: IBeneficios;
+  buyTogether: Product[] | null;
 }
 
 const WIDTH = 500;
@@ -330,7 +333,12 @@ const useStableImages = (product: ProductDetailsPage["product"]) => {
 function Details({
   page,
   beneficios,
-}: { page: ProductDetailsPage; beneficios: IBeneficios }) {
+  buyTogether,
+}: {
+  page: ProductDetailsPage;
+  beneficios: IBeneficios;
+  buyTogether: Product[] | null;
+}) {
   const { product } = page;
   const id = useId();
   const images = product.image ?? [];
@@ -438,6 +446,10 @@ function Details({
 
       <Beneficios {...beneficios} />
 
+      {buyTogether && buyTogether?.length > 0 && (
+        <BuyTogether products={buyTogether} />
+      )}
+
       <div class="flex flex-col w-11/12 m-auto relative">
         <div class="max-w-[772px] m-auto flex flex-col gap-4 items-center">
           <h2 class="uppercase text-primary font-bold text-2xl">
@@ -470,7 +482,7 @@ function Details({
    */
 }
 
-function ProductDetails({ page, beneficios }: Props) {
+function ProductDetails({ page, beneficios, buyTogether }: Props) {
   /**
    * Showcase the different product views we have on this template. In case there are less
    * than two images, render a front-back, otherwhise render a slider
@@ -478,7 +490,15 @@ function ProductDetails({ page, beneficios }: Props) {
    */
   return (
     <div>
-      {page ? <Details page={page} beneficios={beneficios} /> : <NotFound />}
+      {page
+        ? (
+          <Details
+            page={page}
+            beneficios={beneficios}
+            buyTogether={buyTogether}
+          />
+        )
+        : <NotFound />}
     </div>
   );
 }

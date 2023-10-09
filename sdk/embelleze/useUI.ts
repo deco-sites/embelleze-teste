@@ -4,6 +4,7 @@
  */
 
 import { signal } from "@preact/signals";
+import { Product } from "apps/commerce/types.ts";
 
 const displayCart = signal(false);
 const displayMenu = signal(false);
@@ -13,6 +14,7 @@ const productsChild = signal({ label: "", children: [], href: "" });
 const productsChild2 = signal({ label: "", children: [], href: "" });
 const displaySearchPopup = signal(false);
 const displaySearchDrawer = signal(false);
+const productsBuyTogether = signal<Product[]>([]);
 
 const state = {
   displayCart,
@@ -23,6 +25,7 @@ const state = {
   productsChild,
   displayMenuProductsChild,
   productsChild2,
+  productsBuyTogether,
 };
 
 export const useUI = () => state;
