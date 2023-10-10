@@ -26,7 +26,7 @@ export interface Props {
 export const loader = ({ Institutionals = [], menu }: Props, req: Request) => {
   console.log({ test: "test" });
   const Institutional = Institutionals.find(({ matcher }) => {
-    return new URLPattern({ pathname: `/institutional${matcher}` }).test(
+    return new URLPattern({ pathname: `/institucional${matcher}` }).test(
       req.url,
     );
   });
@@ -63,13 +63,13 @@ function Menu(
             <ul class="flex flex-col gap-2">
               {section.map(({ href, text }) => (
                 <li class="flex justify-start gap-2 items-center">
-                  {href.split("/institutional")[1] === matcher && (
+                  {href.split("/institucional")[1] === matcher && (
                     <div class="w-2 h-2 rounded-full bg-secondary" />
                   )}
                   <a
                     href={href}
                     class={`${
-                      href.split("/institutional")[1] === matcher
+                      href.split("/institucional")[1] === matcher
                         ? "text-black font-semibold"
                         : ""
                     }`}
