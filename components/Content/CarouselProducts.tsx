@@ -10,7 +10,7 @@ import {
   Options as UseAddToCartProps,
   useAddToCart,
 } from "$store/sdk/useAddToCart.ts";
-import Icon from "$store/components/ui/Icon.tsx"
+import Icon from "$store/components/ui/Icon.tsx";
 
 export interface Props {
   header?: {
@@ -72,21 +72,21 @@ export function PCard(
   return (
     <div class="PCARD h-full w-full relative">
       <a href={url}>
-      <div class="flex flex-col justify-center gap-2 flex-wrap flex-grow items-center absolute top-4 left-4 z-10">
-        {additionalProperty?.filter(({ description }) =>
-          description === "highlight"
-        ).map(({ value }) => (
-          <span class="bg-primary p-2 rounded-lg text-white text-sm font-medium max-h-7 uppercase flex items-center justify-center">
-            {value}
-          </span>
-        ))}
-      </div>
-      <div
-        class={`py-2 flex hover:shadow-2xl transition flex-col justify-between ${
-          mobileBigCard ? "max-w-60" : "max-w-40"
-        } border-[2px] border-[#552B9A1A] border-opacity-10 border-solid rounded-[10px] relative h-full `}
-      >
-        <div class="px-2 rounded-[10px] h-full flex-col justify-between flex">
+        <div class="flex flex-col justify-center gap-2 flex-wrap flex-grow items-center absolute top-4 left-4 z-10">
+          {additionalProperty?.filter(({ description }) =>
+            description === "highlight"
+          ).map(({ value }) => (
+            <span class="bg-primary p-2 rounded-lg text-white text-sm font-medium max-h-7 uppercase flex items-center justify-center">
+              {value}
+            </span>
+          ))}
+        </div>
+        <div
+          class={`py-2 flex hover:shadow-2xl transition flex-col justify-between ${
+            mobileBigCard ? "max-w-60" : "max-w-40"
+          } border-[2px] border-[#552B9A1A] border-opacity-10 border-solid rounded-[10px] relative h-full `}
+        >
+          <div class="px-2 rounded-[10px] h-full flex-col justify-between flex">
             <figure class="flex object-contain w-[200px] h-[260px] items-center justify-center mx-auto">
               <Image
                 class="h-[200px] object-contain"
@@ -97,79 +97,79 @@ export function PCard(
                 fit="contain"
               />
             </figure>
-          <p class="font-[700] pb-3" style={{ color }}>{brand?.name}</p>
-          {name && (
-            <>
-              <p class="block md:hidden text-[12px] text-[#00000080]">
-                {`${name.length <= 45 ? name : name.slice(0, 42)}...`}
-              </p>
-              <p class="hidden md:block text-[12px] text-[#00000080] h-10">
-                {`${name.length <= 70 ? name : name.slice(0, 60)}...`}
-              </p>
-            </>
-          )}
-          <div class="block md:hidden">
-            <span class="flex items-center gap-2 mt-2">
-              {listPrice && (
-                <p class="line-through text-[#00000066] text-sm">
-                  {formatPrice(listPrice, offers!.priceCurrency!)}
+            <p class="font-[700] pb-3" style={{ color }}>{brand?.name}</p>
+            {name && (
+              <>
+                <p class="block md:hidden text-[12px] text-[#00000080]">
+                  {`${name.length <= 45 ? name : name.slice(0, 42)}...`}
                 </p>
-              )}
-              {price && listPrice && (
-                <p class="bg-secondary text-white rounded-lg font-medium text-xs py-1 px-2">
-                  {(((listPrice - price) / listPrice) * 100).toString().split(
-                    ".",
+                <p class="hidden md:block text-[12px] text-[#00000080] h-10">
+                  {`${name.length <= 70 ? name : name.slice(0, 60)}...`}
+                </p>
+              </>
+            )}
+            <div class="block md:hidden">
+              <span class="flex items-center gap-2 mt-2">
+                {listPrice && (
+                  <p class="line-through text-[#00000066] text-sm">
+                    {formatPrice(listPrice, offers!.priceCurrency!)}
+                  </p>
+                )}
+                {price && listPrice && (
+                  <p class="bg-secondary text-white rounded-lg font-medium text-xs py-1 px-2">
+                    {(((listPrice - price) / listPrice) * 100).toString().split(
+                      ".",
                     )[0]}% OFF
-                </p>
-              )}
-            </span>
-            <p class="font-[700] text-lg rounded-[10px]" style={{ color }}>
-              {formatPrice(price, offers!.priceCurrency!)}
-            </p>
-          </div>
-          <div class="md:flex hidden items-center gap-3">
-            <p class="font-[700] text-lg rounded-[10px]" style={{ color }}>
-              {formatPrice(price, offers!.priceCurrency!)}
-            </p>
-            <span class="flex items-center gap-3 mt-2">
-              {listPrice && (
-                <p class="line-through text-[#00000066] text-sm">
-                  {formatPrice(listPrice, offers!.priceCurrency!)}
-                </p>
-              )}
-              {price && listPrice && (
-                <p class="bg-secondary text-white rounded-lg font-medium text-xs py-1 px-2">
-                  {(((listPrice - price) / listPrice) * 100).toString().split(
-                    ".",
+                  </p>
+                )}
+              </span>
+              <p class="font-[700] text-lg rounded-[10px]" style={{ color }}>
+                {formatPrice(price, offers!.priceCurrency!)}
+              </p>
+            </div>
+            <div class="md:flex hidden items-center gap-3">
+              <p class="font-[700] text-lg rounded-[10px]" style={{ color }}>
+                {formatPrice(price, offers!.priceCurrency!)}
+              </p>
+              <span class="flex items-center gap-3 mt-2">
+                {listPrice && (
+                  <p class="line-through text-[#00000066] text-sm">
+                    {formatPrice(listPrice, offers!.priceCurrency!)}
+                  </p>
+                )}
+                {price && listPrice && (
+                  <p class="bg-secondary text-white rounded-lg font-medium text-xs py-1 px-2">
+                    {(((listPrice - price) / listPrice) * 100).toString().split(
+                      ".",
                     )[0]}% OFF
-                </p>
-              )}
-            </span>
-          </div>
+                  </p>
+                )}
+              </span>
+            </div>
 
-          <p class="text-[12px] pb-2 text-[#00000066]">ou {installments}</p>
-          <a href={url}>
-            <style
-              dangerouslySetInnerHTML={{
-                __html: `
+            <p class="text-[12px] pb-2 text-[#00000066]">ou {installments}</p>
+            <a href={url}>
+              <style
+                dangerouslySetInnerHTML={{
+                  __html: `
                 .buyButton:hover {
                   color: white !important;
                 }
                 `,
-              }}
+                }}
               />
-            <Button
-              data-deco="add-to-cart"
-              {...props}
-              class="btn-primary buyButton hover:bg-[#17A087] border-2 hover:text-white flex-grow-1 max-h-8 min-h-[35px] uppercase border-solid bg-white w-full rounded-[5px]"
-              style={{ borderColor: buttonColor, color: buttonColor }}
+              <Button
+                data-deco="add-to-cart"
+                {...props}
+                class="btn-primary buyButton hover:bg-[#17A087] border-2 hover:text-white flex-grow-1 max-h-8 min-h-[35px] uppercase border-solid bg-white w-full rounded-[5px]"
+                style={{ borderColor: buttonColor, color: buttonColor }}
               >
-              Adicionar à sacola
-            </Button>
-          </a>
+                Adicionar à sacola
+              </Button>
+            </a>
+          </div>
         </div>
-      </div>
-              </a>
+      </a>
     </div>
   );
 }

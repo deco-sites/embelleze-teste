@@ -10,7 +10,7 @@ import IconBrandLine from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/brand-
 import IconBrandYoutube from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/brand-youtube.tsx";
 import IconBrandInstagram from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/brand-instagram.tsx";
 import IconSearch from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/search.tsx";
-import Icon from "$store/components/ui/Icon.tsx"
+import Icon from "$store/components/ui/Icon.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import Button from "$store/components/ui/Button.tsx";
 
@@ -143,8 +143,8 @@ function EmbellezeHeader({
                       class="flex items-center gap-1"
                     >
                       <Icon
-                      id="youtube"
-                      size={16}
+                        id="youtube"
+                        size={16}
                         class="w-4 h-4"
                         style={{ color: "rgb(255,56,156)" }}
                       />
