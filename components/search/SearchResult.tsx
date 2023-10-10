@@ -54,9 +54,9 @@ function Result({
           displayFilter={layout?.variant === "drawer"}
         />
 
-        <div class="flex flex-row justify-between">
+        <div class="flex flex-row justify-between py-8">
           {layout?.variant === "aside" && filters.length > 0 && (
-            <aside class="hidden md:block w-min min-w-[250px]">
+            <aside class="hidden md:block w-min min-w-[286px]">
               <Filters filters={filters} />
             </aside>
           )}
@@ -65,7 +65,7 @@ function Result({
           </div>
         </div>
 
-        <div class="flex justify-center my-4">
+        <div class="flex justify-center my-4 mx-auto w-11/12 items-center">
           <div class="join">
             <a
               aria-label="previous page link"
@@ -81,7 +81,7 @@ function Result({
                 class="text-primary"
               />
             </a>
-            <span class="btn btn-ghost join-item">
+            <span class="flex items-center justify-center px-4 gap-2">
               Página{" "}
               <strong class="text-primary">{pageInfo.currentPage + 1}</strong>
               {" "}

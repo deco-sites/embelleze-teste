@@ -55,18 +55,18 @@ function Banner({ banner }: SectionProps<ReturnType<typeof loader>>) {
 
       <div class="w-11/12 flex flex-col items-center justify-center m-auto gap-4">
         <h1>
-          <span class="text-5xl font-medium text-primary">
-            {title}
-          </span>
+          <p class="text-3xl font-bold text-primary uppercase text-center">
+            {title && title}
+          </p>
         </h1>
         <h2>
-          <span
-            class="text-xl font-medium"
+          <div
+            class="text-xl font-medium text-center max-w-[820px]"
             dangerouslySetInnerHTML={{ __html: subtitle ?? "" }}
           />
         </h2>
         <a href="#CategoryText">
-          <button class="border p-2 rounded-lg px-4">
+          <button class="border p-2 rounded-lg px-4 font-semibold">
             VER MAIS +
           </button>
         </a>

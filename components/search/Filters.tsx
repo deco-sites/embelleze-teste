@@ -111,7 +111,7 @@ function Filters({ filters }: Props) {
   }
 
   return (
-    <ul class="flex flex-col gap-6 p-4">
+    <ul class="flex flex-col gap-6 pr-4">
       {flatArray.length > 0 && (
         <div class="flex flex-col gap-4">
           <div class="flex flex-row justify-between gap-6">

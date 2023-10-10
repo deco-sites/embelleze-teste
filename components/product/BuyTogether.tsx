@@ -135,7 +135,7 @@ function BuyTogether({ products }: Props) {
     ) as unknown as Options[],
   });
   return (
-    <div class="bg-gray-100 flex flex-col justify-center items-center gap-4 max-w-[1300px] m-auto w-11/12 p-8 rounded-lg">
+    <div class="bg-gray-100 flex flex-col justify-center items-center gap-4 max-w-[1300px] mx-auto w-11/12 p-8 rounded-lg my-16">
       <h2 class="text-primary uppercase font-bold text-2xl">
         quem comprou, levou junto:
       </h2>

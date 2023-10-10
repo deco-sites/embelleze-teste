@@ -447,11 +447,12 @@ function Details({
       )}
 
       <div class="flex flex-col w-11/12 m-auto relative">
-        <div class="max-w-[772px] m-auto flex flex-col gap-4 items-center">
+        <div class="max-w-[772px] m-auto flex flex-col gap-6 items-center  py-8">
           <h2 class="uppercase text-primary font-bold text-2xl">
             SOBRE O PRODUTO
           </h2>
           <div
+          class="text-center"
             dangerouslySetInnerHTML={{
               __html: product.description ?? "",
             }}
