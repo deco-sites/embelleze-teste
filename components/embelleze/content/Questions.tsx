@@ -38,7 +38,7 @@ function Questions({ title, description, sections, titleColor }: Props) {
   });
 
   return (
-    <div class="flex justify-start items-center m-auto w-11/12 flex-col relative gap-4 py-4">
+    <div class="flex justify-start items-center m-auto w-11/12 flex-col relative gap-4 py-4 max-w-[1300px]">
       {title && (
         <h2
           class="text-primary text-2xl uppercase text-center font-medium"

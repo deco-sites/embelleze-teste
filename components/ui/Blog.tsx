@@ -92,7 +92,7 @@ export interface Props {
 
 function Blog({ section }: Props) {
   return (
-    <div class="bg-gray-100 flex flex-col m-auto w-11/12 p-4 gap-8">
+    <div class="bg-gray-100 flex flex-col m-auto w-11/12 p-4 gap-8 max-w-[1300px]">
       {section.map(({ type }) => {
         switch (true) {
           case (type as Image).type === "Image": {

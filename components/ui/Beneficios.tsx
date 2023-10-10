@@ -19,7 +19,7 @@ function Beneficios({ beneficio, background, textColor }: Props) {
   console.log(background);
   return (
     <div style={{ backgroundColor: background }} class="my-8">
-      <div class="h-[67px] w-11/12 m-auto flex justify-center">
+      <div class="h-[67px] w-11/12 m-auto flex justify-center max-w-[1300px]">
         <div class="carousel justify-start h-full items-center gap-11">
           {beneficio.map(({ alt, image, text }) => (
             <div class="flex justify-start gap-4 items-center carousel-item">
