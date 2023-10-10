@@ -93,7 +93,7 @@ function EmbellezeHeader({
           paths={paths}
         >
           <div class="bg-base-100 fixed w-full z-20 
-              h-auto">
+              h-auto border-b border-[#552B9A1A] border-opacity-10">
             <div class="w-screen bg-primary">
               <div class="w-11/12 max-w-[1300px] gap-6  flex m-auto items-center justify-between">
                 <Alert alerts={alerts} />

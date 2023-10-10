@@ -5,6 +5,11 @@ import { useOffer } from "deco-sites/fashion/sdk/useOffer.ts";
 import { useEffect, useState } from "preact/hooks";
 import { useId } from "$store/sdk/useId.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import Button from "$store/components/ui/Button.tsx";
+import {
+  Options as UseAddToCartProps,
+  useAddToCart,
+} from "$store/sdk/useAddToCart.ts";
 
 export interface Props {
   header?: {
@@ -46,11 +51,22 @@ export function PCard(
     image: images,
     offers,
     brand,
+    sku,
     // category,
     additionalProperty,
   } = product;
-  const { listPrice, price, installments } = useOffer(offers);
+  const { listPrice, price, installments, seller } = useOffer(offers);
   const [front] = images ?? [];
+
+  const props = useAddToCart({
+    skuId: sku,
+    sellerId: seller,
+    discount: price && listPrice ? listPrice - price : 0,
+    price: price ?? 10000,
+    productGroupId: product.isVariantOf?.productGroupID ?? "",
+    name: name ?? "",
+    quantity: 1,
+  });
 
   return (
     <div class="PCARD h-full w-full relative">
@@ -69,16 +85,18 @@ export function PCard(
         } border-[2px] border-[#552B9A1A] border-opacity-10 border-solid rounded-[10px] relative h-full `}
       >
         <div class="px-2 rounded-[10px] h-full flex-col justify-between flex">
-          <figure class="flex object-contain w-[200px] h-[260px] items-center justify-center mx-auto">
-            <Image
-              class="h-[200px] object-contain"
-              src={front.url!}
-              alt={name}
-              loading="lazy"
-              width={200}
-              fit="contain"
-            />
-          </figure>
+          <a href={url}>
+            <figure class="flex object-contain w-[200px] h-[260px] items-center justify-center mx-auto">
+              <Image
+                class="h-[200px] object-contain"
+                src={front.url!}
+                alt={name}
+                loading="lazy"
+                width={200}
+                fit="contain"
+              />
+            </figure>
+          </a>
           <p class="font-[700] pb-3" style={{ color }}>{brand?.name}</p>
           {name && (
             <>
@@ -140,12 +158,14 @@ export function PCard(
               `,
               }}
             />
-            <button
-              class="buyButton w-full py-1 uppercase rounded-[5px] border-2 border-solid hover:text-white hover:bg-[#17A087]"
+            <Button
+              data-deco="add-to-cart"
+              {...props}
+              class="btn-primary buyButton hover:bg-[#17A087] border-2 hover:text-white flex-grow-1 max-h-8 min-h-[35px] uppercase border-solid bg-white w-full rounded-[5px]"
               style={{ borderColor: buttonColor, color: buttonColor }}
             >
-              Adicionar ao carrinho
-            </button>
+              Adicionar à sacola
+            </Button>
           </a>
         </div>
       </div>
