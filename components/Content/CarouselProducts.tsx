@@ -83,11 +83,11 @@ export function PCard(
         </div>
         <div
           class={`py-2 flex hover:shadow-2xl transition flex-col justify-between ${
-            mobileBigCard ? "max-w-60" : "max-w-40"
-          } border-[2px] border-[#552B9A1A] border-opacity-10 border-solid rounded-[10px] relative h-full `}
+            mobileBigCard ? "max-w-[280px]" : "max-w-[165px]"
+          } border-[2px] border-[#552B9A1A] border-opacity-10 border-solid rounded-[10px] relative h-full md:max-w-[280px]`}
         >
           <div class="px-2 rounded-[10px] h-full flex-col justify-between flex">
-            <figure class="flex object-contain w-[200px] h-[260px] items-center justify-center mx-auto">
+            <figure class="flex object-contain max-w-[200px] w-auto h-[260px] items-center justify-center mx-auto">
               <Image
                 class="h-[200px] object-contain"
                 src={front.url!}
@@ -280,7 +280,9 @@ function ProductCarousel(
         >
           {list1?.map((product, index) => (
             <div
-              class="flex gap-8 carousel-item h-[480px]"
+              class={`flex md:gap-8 carousel-item h-[480px] ${
+                mobileBigCard ? "gap-2" : "gap-4"
+              } `}
               id={"carousel-item-product"}
               key={index + "subdiv"}
             >
@@ -288,7 +290,11 @@ function ProductCarousel(
                 <Image src={cardImage} alt={alt} width={317} height={481} />
               )}
               {product?.map((a, i) => (
-                <div class="w-[284px]">
+                <div
+                  class={`${
+                    mobileBigCard ? "w-[284px]" : "w-[165px]"
+                  } md:w-[284px]`}
+                >
                   <PCard
                     product={a}
                     mobileBigCard={mobileBigCard}
