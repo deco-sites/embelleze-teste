@@ -98,10 +98,10 @@ function ShippingSimulation({ items }: Props) {
   }, []);
 
   return (
-    <div class="flex flex-col gap-2 border rounded-xl p-4">
+    <div class="flex flex-col gap-2 border rounded-xl p-1">
       <div
         class="flex items-center justify-start gap-4"
-        onClick={() => isSimulation.value = true}
+        onClick={() => isSimulation.value = isSimulation.value ? false : true}
       >
         <Icon id="TRUCK-FAST" width={35} height={35} stroke={"1"} />
         <span>
