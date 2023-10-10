@@ -1,7 +1,7 @@
 import Button from "$store/components/ui/Button.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
-import { useUI } from "$store/sdk/useUI.ts";
+import { useUI } from "$store/sdk/embelleze/useUI.ts";
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import Coupon, { Props as CouponProps } from "./Coupon.tsx";
@@ -75,10 +75,10 @@ function Cart({
             {/* Cart Items */}
             <ul
               role="list"
-              class="mt-6 px-2 flex-grow overflow-y-auto flex flex-col gap-6 w-full"
+              class="mt-6 px-2 flex-grow overflow-y-auto flex flex-col gap-6 w-full py-2"
             >
               {items.map((item, index) => (
-                <li key={index}>
+                <li key={index} class="flex flex-col gap-4 w-11/12 m-auto">
                   <CartItem
                     item={item}
                     index={index}
@@ -87,14 +87,17 @@ function Cart({
                     onUpdateQuantity={onUpdateQuantity}
                     itemToAnalyticsItem={itemToAnalyticsItem}
                   />
+                  <div class="block h-[2px] w-full bg-black opacity-10" />
                 </li>
               ))}
             </ul>
 
             {/* Cart Footer */}
-            <footer class="w-full">
+            <footer class="w-11/12 flex flex-col m-auto">
               {/* Subtotal */}
-              <div class="border-t border-base-200 py-2 flex flex-col">
+              <div class="block h-[2px] w-full bg-black opacity-10" />
+
+              <div class="py-2 flex flex-col">
                 {discounts > 0 && (
                   <div class="flex justify-between items-center px-4">
                     <span class="text-sm">Descontos</span>
@@ -104,19 +107,21 @@ function Cart({
                   </div>
                 )}
                 <div class="w-full flex justify-between px-4 text-sm">
-                  <span>Subtotal</span>
-                  <span class="px-4">
+                  <span class="uppercase font-bold text-[#00000099] opacity-70">Subtotal:</span>
+                  <span class="px-4 text-primary font-bold text-xl">
                     {formatPrice(subtotal, currency, locale)}
                   </span>
                 </div>
                 <Coupon onAddCoupon={onAddCoupon} coupon={coupon} />
               </div>
 
+              <div class="block h-[2px] w-full bg-black opacity-10" />
+
               {/* Total */}
-              <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-2 mx-4">
+              <div class="pt-4 flex flex-col justify-end items-end gap-2 mx-4">
                 <div class="flex justify-between items-center w-full">
-                  <span>Total</span>
-                  <span class="font-medium text-xl">
+                  <span class="uppercase font-bold text-[#00000099] opacity-70">Total</span>
+                  <span class="font-bold text-xl text-primary">
                     {formatPrice(total, currency, locale)}
                   </span>
                 </div>
@@ -125,11 +130,11 @@ function Cart({
                 </span>
               </div>
 
-              <div class="p-4">
+              <div class="p-4 flex flex-col gap-4">
                 <a class="inline-block w-full" href={checkoutHref}>
                   <Button
                     data-deco="buy-button"
-                    class="btn-primary btn-block"
+                    class="bg-[#17A087] btn-block text-white"
                     disabled={loading || isEmtpy}
                     onClick={() => {
                       sendEvent({
@@ -145,9 +150,19 @@ function Cart({
                       });
                     }}
                   >
-                    Fechar pedido
+                    FINALIZAR COMPRA
                   </Button>
                 </a>
+                <Button
+                    data-deco="buy-button"
+                    class="text-[#17A087] btn-block bg-white border border-[#17A087]"
+                    disabled={loading || isEmtpy}
+                    onClick={() => {
+                      displayCart.value = false
+                    }}
+                  >
+                    CONTINUAR COMPRANDO
+                  </Button>
               </div>
             </footer>
           </>

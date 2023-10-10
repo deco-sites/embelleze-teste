@@ -66,15 +66,15 @@ function CartItem(
     >
       <Image
         {...image}
-        style={{ aspectRatio: "108 / 150" }}
-        width={108}
-        height={150}
+        style={{ aspectRatio: "120 / 120" }}
+        width={120}
+        height={120}
         class="h-full object-contain"
       />
 
       <div class="flex flex-col gap-2">
         <div class="flex justify-between items-center">
-          <span>{name}</span>
+          <span class="font-bold">{name}</span>
           <Button
             disabled={loading || isGift}
             loading={loading}
@@ -90,16 +90,16 @@ function CartItem(
               });
             })}
           >
-            <Icon id="Trash" size={24} />
+            <Icon id="Trash" size={24} class="text-secondary" />
           </Button>
         </div>
         <div class="flex items-center gap-2">
-          <span class="line-through text-base-300 text-sm">
-            {formatPrice(list, currency, locale)}
-          </span>
-          <span class="text-sm text-secondary">
+          <span class="text-lg font-bold text-primary">
             {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
           </span>
+          {/* <span class="line-through text-base-300 text-sm">
+            {formatPrice(list, currency, locale)}
+          </span> */}
         </div>
 
         <QuantitySelector

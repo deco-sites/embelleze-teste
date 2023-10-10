@@ -9,6 +9,7 @@ import IconChevronLeft from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/chev
 import IconX from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/x.tsx";
 import ImageComponent from "deco-sites/std/components/Image.tsx";
 import type { Image } from "deco-sites/std/components/types.ts";
+import { useCart } from "apps/vtex/hooks/useCart.ts";
 
 const Menu = lazy(() => import("$store/components/embelleze/header/Menu.tsx"));
 // const Cart = lazy(() => import("$store/components/minicart/Cart.tsx"));
@@ -110,6 +111,8 @@ function Drawers({ menu, logo, children, paths }: Props) {
     productsChild2,
     displayCart,
   } = useUI();
+  const { cart } = useCart();
+  const { items } = cart.value ?? { items: [] }
 
   return (
     <Drawer
@@ -144,7 +147,7 @@ function Drawers({ menu, logo, children, paths }: Props) {
         onClose={() => displayCart.value = false}
         aside={
           <Aside
-            title="Minha sacola"
+            title={`SEU CARRINHO: ${items.length} ITEMS`}
             chevronClick={() => displayCart.value = false}
             onClose={() => displayCart.value = false}
             displayMenu={displayMenu.value}
