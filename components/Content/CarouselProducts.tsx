@@ -10,6 +10,7 @@ import {
   Options as UseAddToCartProps,
   useAddToCart,
 } from "$store/sdk/useAddToCart.ts";
+import Icon from "$store/components/ui/Icon.tsx"
 
 export interface Props {
   header?: {
@@ -70,6 +71,7 @@ export function PCard(
 
   return (
     <div class="PCARD h-full w-full relative">
+      <a href={url}>
       <div class="flex flex-col justify-center gap-2 flex-wrap flex-grow items-center absolute top-4 left-4 z-10">
         {additionalProperty?.filter(({ description }) =>
           description === "highlight"
@@ -85,7 +87,6 @@ export function PCard(
         } border-[2px] border-[#552B9A1A] border-opacity-10 border-solid rounded-[10px] relative h-full `}
       >
         <div class="px-2 rounded-[10px] h-full flex-col justify-between flex">
-          <a href={url}>
             <figure class="flex object-contain w-[200px] h-[260px] items-center justify-center mx-auto">
               <Image
                 class="h-[200px] object-contain"
@@ -96,7 +97,6 @@ export function PCard(
                 fit="contain"
               />
             </figure>
-          </a>
           <p class="font-[700] pb-3" style={{ color }}>{brand?.name}</p>
           {name && (
             <>
@@ -119,7 +119,7 @@ export function PCard(
                 <p class="bg-secondary text-white rounded-lg font-medium text-xs py-1 px-2">
                   {(((listPrice - price) / listPrice) * 100).toString().split(
                     ".",
-                  )[0]}% OFF
+                    )[0]}% OFF
                 </p>
               )}
             </span>
@@ -141,7 +141,7 @@ export function PCard(
                 <p class="bg-secondary text-white rounded-lg font-medium text-xs py-1 px-2">
                   {(((listPrice - price) / listPrice) * 100).toString().split(
                     ".",
-                  )[0]}% OFF
+                    )[0]}% OFF
                 </p>
               )}
             </span>
@@ -155,20 +155,21 @@ export function PCard(
                 .buyButton:hover {
                   color: white !important;
                 }
-              `,
+                `,
               }}
-            />
+              />
             <Button
               data-deco="add-to-cart"
               {...props}
               class="btn-primary buyButton hover:bg-[#17A087] border-2 hover:text-white flex-grow-1 max-h-8 min-h-[35px] uppercase border-solid bg-white w-full rounded-[5px]"
               style={{ borderColor: buttonColor, color: buttonColor }}
-            >
+              >
               Adicionar à sacola
             </Button>
           </a>
         </div>
       </div>
+              </a>
     </div>
   );
 }
@@ -231,10 +232,10 @@ function ProductCarousel(
       <div class="flex flex-col gap-6 lg:gap-8 text-base-content lg:py-5 relative">
         {hide?.navButtons ? <></> : (
           <button
-            class="hidden lg:flex items-center prev-btn absolute 2xl:-left-14 -left-11 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+            class="hidden lg:flex items-center prev-btn absolute 2xl:-left-14 -left-11 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2 justify-center"
             onClick={prevSlide}
           >
-            {"<"}
+            <Icon id="ChevronLeft" width={10} height={16} />
           </button>
         )}
         <div class="flex items-center justify-center flex-col ">
@@ -331,10 +332,10 @@ function ProductCarousel(
           )}
         {hide?.navButtons ? <></> : (
           <button
-            class="hidden lg:flex items-center next-btn absolute 2xl:-right-14 -right-11 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2"
+            class="hidden lg:flex items-center next-btn absolute 2xl:-right-14 -right-11 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2 justify-center"
             onClick={nextSlide}
           >
-            {">"}
+            <Icon id="ChevronRight" width={10} height={16} />
           </button>
         )}
       </div>

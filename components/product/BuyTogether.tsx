@@ -45,7 +45,7 @@ function ProductCard({ product }: { product: Product }) {
                   {`${name.length <= 45 ? name : name.slice(0, 42)}...`}
                 </p>
                 <p class="hidden md:block text-[12px] text-[#00000099] font-bold h-10">
-                  {`${name.length <= 70 ? name : name.slice(0, 60)}...`}
+                  {`${name.length <= 50 ? name : name.slice(0, 50)}...`}
                 </p>
               </>
             )}

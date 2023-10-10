@@ -43,12 +43,12 @@ function Navbar({ paths, logo }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden xl:flex py-4 items-center m-auto w-[90%]  max-w-[1300px] justify-between gap-8 max-h-[75px]">
+      <div class="hidden xl:flex py-4 items-center m-auto w-11/12  max-w-[1300px] justify-between gap-8 max-h-[75px]">
         {logo && (
           <a
             href="/"
             aria-label="Store logo"
-            class="flex items-center px-4 py-3 h-[42px] w-[238px]"
+            class="flex items-center py-3 h-[42px] w-[238px]"
           >
             <ImageComponent
               class="w-full"
