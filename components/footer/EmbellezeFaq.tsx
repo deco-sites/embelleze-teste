@@ -61,11 +61,11 @@ function EmbellezeFaq({ section, social, payments }: Props) {
           </section>
         )}
         {payments && (
-          <section class="flex flex-col my-4 mr-4">
+          <section class="flex flex-col my-4 mr-4 max-w-[301.5px]">
             <h2 class="text-primary text-xl uppercase font-semibold">
               {payments?.title}
             </h2>
-            <div class="flex flex-wrap flex-row">
+            <div class="flex flex-wrap flex-row gap-4">
               {payments?.items?.map(({ image, description }) => (
                 <img
                   class="rounded-lg flex align-middle justify-center"
