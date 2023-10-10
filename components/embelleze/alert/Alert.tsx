@@ -37,7 +37,7 @@ function Alert({ alerts = [], interval = 5 }: Props) {
           <Slider.NextButton class="bg-transparent absolute -right-4 my-auto mx-0 h-[30px]">
             <Icon
               class="text-base-100"
-              size={20}
+              size={15}
               id="ChevronRight"
               strokeWidth={3}
             />
