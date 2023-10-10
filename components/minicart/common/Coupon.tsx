@@ -12,7 +12,9 @@ function Coupon({ coupon, onAddCoupon }: Props) {
 
   return (
     <div class="flex justify-between items-center px-4">
-      <span class="uppercase font-bold text-[#00000099] opacity-70">Cupom de desconto</span>
+      <span class="uppercase font-bold text-[#00000099] opacity-70">
+        Cupom de desconto
+      </span>
       {display
         ? (
           <form

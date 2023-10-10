@@ -18,36 +18,36 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
   return (
     <div class="flex justify-start gap-2 items-center">
       <p class="text-gray-600 uppercase font-semibold">quantidade:</p>
-    <div class="inline-flex border rounded-lg max-w-[116px] items-center min-h-[43px] p-2">
-      <button
-        class="bg-[#EFEAF6] rounded-full h-6 w-6"
-        onClick={decrement}
-        disabled={disabled}
+      <div class="inline-flex border rounded-lg max-w-[116px] items-center min-h-[43px] p-2">
+        <button
+          class="bg-[#EFEAF6] rounded-full h-6 w-6"
+          onClick={decrement}
+          disabled={disabled}
         >
-        -
-      </button>
-      <input
-        class="text-center [appearance:textfield]"
-        type="number"
-        inputMode="numeric"
-        pattern="[0-9]*"
-        max={QUANTITY_MAX_VALUE}
-        min={1}
-        value={quantity}
-        disabled={disabled}
-        onBlur={(e) => onChange?.(e.currentTarget.valueAsNumber)}
-        maxLength={3}
-        size={3}
+          -
+        </button>
+        <input
+          class="text-center [appearance:textfield]"
+          type="number"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          max={QUANTITY_MAX_VALUE}
+          min={1}
+          value={quantity}
+          disabled={disabled}
+          onBlur={(e) => onChange?.(e.currentTarget.valueAsNumber)}
+          maxLength={3}
+          size={3}
         />
-      <button
-        class="bg-[#EFEAF6] rounded-full h-6 w-6"
-        onClick={increment}
-        disabled={disabled}
+        <button
+          class="bg-[#EFEAF6] rounded-full h-6 w-6"
+          onClick={increment}
+          disabled={disabled}
         >
-        +
-      </button>
+          +
+        </button>
+      </div>
     </div>
-        </div>
   );
 }
 

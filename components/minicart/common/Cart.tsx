@@ -107,7 +107,9 @@ function Cart({
                   </div>
                 )}
                 <div class="w-full flex justify-between px-4 text-sm">
-                  <span class="uppercase font-bold text-[#00000099] opacity-70">Subtotal:</span>
+                  <span class="uppercase font-bold text-[#00000099] opacity-70">
+                    Subtotal:
+                  </span>
                   <span class="px-4 text-primary font-bold text-xl">
                     {formatPrice(subtotal, currency, locale)}
                   </span>
@@ -120,7 +122,9 @@ function Cart({
               {/* Total */}
               <div class="pt-4 flex flex-col justify-end items-end gap-2 mx-4">
                 <div class="flex justify-between items-center w-full">
-                  <span class="uppercase font-bold text-[#00000099] opacity-70">Total</span>
+                  <span class="uppercase font-bold text-[#00000099] opacity-70">
+                    Total
+                  </span>
                   <span class="font-bold text-xl text-primary">
                     {formatPrice(total, currency, locale)}
                   </span>
@@ -154,15 +158,15 @@ function Cart({
                   </Button>
                 </a>
                 <Button
-                    data-deco="buy-button"
-                    class="text-[#17A087] btn-block bg-white border border-[#17A087]"
-                    disabled={loading || isEmtpy}
-                    onClick={() => {
-                      displayCart.value = false
-                    }}
-                  >
-                    CONTINUAR COMPRANDO
-                  </Button>
+                  data-deco="buy-button"
+                  class="text-[#17A087] btn-block bg-white border border-[#17A087]"
+                  disabled={loading || isEmtpy}
+                  onClick={() => {
+                    displayCart.value = false;
+                  }}
+                >
+                  CONTINUAR COMPRANDO
+                </Button>
               </div>
             </footer>
           </>

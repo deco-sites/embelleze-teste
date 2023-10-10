@@ -112,7 +112,7 @@ function Drawers({ menu, logo, children, paths }: Props) {
     displayCart,
   } = useUI();
   const { cart } = useCart();
-  const { items } = cart.value ?? { items: [] }
+  const { items } = cart.value ?? { items: [] };
 
   return (
     <Drawer
