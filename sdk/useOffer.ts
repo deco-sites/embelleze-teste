@@ -45,11 +45,11 @@ const installmentToString = (
 
   const withTaxes = sellingPrice < price;
 
-  return `${billingDuration}x de R$ ${billingIncrement.toString().split(
-    ".",
-  )[0]} ${
-    withTaxes ? "com juros" : "sem juros"
-  }`;
+  return `${billingDuration}x de R$ ${
+    billingIncrement.toString().split(
+      ".",
+    )[0]
+  } ${withTaxes ? "com juros" : "sem juros"}`;
 };
 
 export const useOffer = (aggregateOffer?: AggregateOffer) => {

@@ -452,7 +452,7 @@ function Details({
             SOBRE O PRODUTO
           </h2>
           <div
-          class="text-center"
+            class="text-center"
             dangerouslySetInnerHTML={{
               __html: product.description ?? "",
             }}
