@@ -25,11 +25,10 @@ function WishlistButton({
   const inWishlist = Boolean(listItem.value);
 
   return (
-    <Button
+    <button
       class={variant === "icon"
         ? "btn-circle btn-ghost gap-2"
-        : "btn-primary btn-outline rounded-full p-3 bg-secondary bg-opacity-10 border-none"}
-      loading={fetching.value}
+        : "btn-primary btn-outline rounded-full h-[35px] w-[35px] bg-secondary bg-opacity-10 border-none flex justify-center items-center"}
       aria-label="Add to wishlist"
       onClick={async (e) => {
         e.stopPropagation();
@@ -57,12 +56,12 @@ function WishlistButton({
     >
       <Icon
         id="Heart"
-        size={24}
+        size={16}
         strokeWidth={2}
         fill={inWishlist ? "black" : "none"}
         class="text-secondary"
       />
-    </Button>
+    </button>
   );
 }
 

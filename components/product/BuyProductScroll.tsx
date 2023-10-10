@@ -30,10 +30,10 @@ function BuyProductScroll({ product }: { product: Product }) {
 
   return (
     <div
-      class="hidden fixed items-center justify-center z-50 bg-gray-100 flex-col gap-2 p-4 w-10/12 bottom-10 left-1/2 transform -translate-x-1/2 rounded-2xl max-w-[800px]"
+      class="hidden fixed items-center justify-center bg-gray-100 flex-col gap-2 p-4 w-10/12 bottom-10 left-1/2 transform -translate-x-1/2 rounded-2xl max-w-[800px] z-10"
       ref={buyScroll}
     >
-      <div class="flex justify-between gap-2">
+      <div class="flex justify-between gap-2 w-full">
         <div class="flex justify-start gap-4 items-center w-full">
           <Image
             src={image.url ?? ""}

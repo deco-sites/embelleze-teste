@@ -44,7 +44,7 @@ function NavItem({ item, lastIndex }: { item: INavItem; lastIndex: boolean }) {
                 loading="lazy"
               />
             )}
-            <ul class="flex items-start justify-center gap-6">
+            <ul class="flex items-start justify-center gap-6 flex-wrap">
               {children.map((node) => (
                 <li class="p-6">
                   <a class="hover:underline font-bold" href={node.href}>

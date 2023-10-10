@@ -29,16 +29,16 @@ function ClipBord() {
 
   return (
     <div>
-      <Button
-        class="btn-primary btn-outline rounded-full p-3 bg-secondary bg-opacity-10 border-none"
+      <button
+        class="rounded-full max-w-[35px] max-h-[35px] w-[35px] h-[35px] flex justify-center items-center bg-secondary bg-opacity-10 border-none"
         onClick={copyUrlToClipboard}
       >
         <Icon
           id="Shared"
-          size={25}
+          size={16}
           class="text-secondary"
         />
-      </Button>
+      </button>
       {isCopied.value && (
         <div className="relative ml-2">
           <div className="bg-gray-800 text-white text-sm rounded py-2 px-4 absolute bottom-10 left-1/2 transform -translate-x-1/2 transition-opacity duration-300 opacity-100">
