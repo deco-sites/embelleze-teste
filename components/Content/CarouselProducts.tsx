@@ -97,7 +97,9 @@ export function PCard(
                 fit="contain"
               />
             </figure>
-            <p class="font-[700] pb-3" style={{ color }}>{brand?.name}</p>
+            <p class="font-[700] pb-3 uppercase" style={{ color }}>
+              {brand?.name}
+            </p>
             {name && (
               <>
                 <p class="block md:hidden text-[12px] text-[#00000080]">

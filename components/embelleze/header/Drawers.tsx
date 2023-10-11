@@ -141,37 +141,37 @@ function Drawers({ menu, logo, children, paths }: Props) {
         </Aside>
       }
     >
-      <Drawer // right drawer
-        class="drawer-end"
-        open={displayCart.value}
-        onClose={() => displayCart.value = false}
+      <Drawer
+        open={displayMenuProducts.value}
+        onClose={() => displayMenuProducts.value = false}
         aside={
           <Aside
-            title={`SEU CARRINHO: ${items.length} ITEMS`}
-            chevronClick={() => displayCart.value = false}
-            onClose={() => displayCart.value = false}
             displayMenu={displayMenu.value}
-            open={displayMenu.value}
+            title={productsChild.value.label}
+            onClose={() => displayMenuProducts.value = false}
+            chevronClick={() => {
+              displayMenuProducts.value = false;
+              displayMenu.value = true;
+            }}
+            open={displayMenuProducts.value}
           >
-            <Cart />
+            <MenuProducts />
           </Aside>
         }
       >
-        <Drawer
-          open={displayMenuProducts.value}
-          onClose={() => displayMenuProducts.value = false}
+        <Drawer // right drawer
+          class="drawer-end"
+          open={displayCart.value}
+          onClose={() => displayCart.value = false}
           aside={
             <Aside
-              displayMenu={displayMenu.value}
-              title={productsChild.value.label}
-              onClose={() => displayMenuProducts.value = false}
-              chevronClick={() => {
-                displayMenuProducts.value = false;
-                displayMenu.value = true;
-              }}
-              open={displayMenuProducts.value}
+              title={`SEU CARRINHO: ${items.length} ITEMS`}
+              chevronClick={() => displayCart.value = false}
+              onClose={() => displayCart.value = false}
+              displayMenu={displayCart.value}
+              open={displayCart.value}
             >
-              <MenuProducts />
+              <Cart />
             </Aside>
           }
         >
