@@ -17,7 +17,7 @@ function NavItem({ item, lastIndex }: { item: INavItem; lastIndex: boolean }) {
         class={`${
           lastIndex
             ? "bg-secondary text-white rounded-[5px] py-1 px-2"
-            : "px-2 py-3"
+            : "px-2 py-3 text-base-300"
         }`}
       >
         <span

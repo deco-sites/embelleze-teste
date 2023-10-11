@@ -29,7 +29,7 @@ function MenuItem({ item }: { item: INavItem }) {
 function Menu({ items }: Props) {
   return (
     <div class="flex flex-col h-full">
-      <ul class="px-4 flex-grow flex flex-col divide-y divide-base-200">
+      <ul class="px-4 flex-grow flex flex-col divide-y divide-base-content">
         {items.map((item) => (
           <li>
             <MenuItem item={item} />

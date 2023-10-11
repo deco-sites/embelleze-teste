@@ -14,7 +14,7 @@ function Navbar({ paths, logo }: {
       {/* Mobile Version */}
       <div
         style={{ height: navbarHeight }}
-        class="xl:hidden border-b border-base-200 w-full text-primary"
+        class="xl:hidden border-b border w-full text-primary"
       >
         <div class="w-11/12 m-auto flex flex-row justify-between items-center gap-4">
           <MenuButton />
@@ -80,9 +80,9 @@ function Navbar({ paths, logo }: {
             aria-label="Log in"
           >
             <div class="bg-primary-content p-1 rounded-full">
-              <IconUser class="w-6 h-6 text-primary" />
+              <IconUser class="w-6 h-6 text-base-300" />
             </div>
-            <p class="text-[1rem] text-[#541693]">
+            <p class="text-[1rem] text-base-300">
               Entre ou <br /> Cadastre-se
             </p>
           </a>
@@ -91,7 +91,7 @@ function Navbar({ paths, logo }: {
             href={paths.favouriteHref}
             aria-label="Wishlist"
           >
-            <IconHeart class="w-6 h-6 text-primary" />
+            <IconHeart class="w-6 h-6 text-base-300" />
           </a>
           <CartButton />
         </div>

@@ -44,7 +44,7 @@ export default function CartButton() {
         loading={loading.value}
         onClick={onClick}
       >
-        <IconShoppingBag class="w-6 h-6 text-primary" />
+        <IconShoppingBag class="w-6 h-6 text-base-300" />
       </Button>
     </div>
   );

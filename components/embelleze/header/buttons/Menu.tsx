@@ -13,7 +13,7 @@ export default function MenuButton() {
         displayMenu.value = true;
       }}
     >
-      <IconMenu2 class="w-5 h-5" />
+      <IconMenu2 class="w-5 h-5 text-base-300" />
     </Button>
   );
 }

@@ -19,7 +19,7 @@ function MenuProducts() {
             {node.children !== undefined && node.children.length > 0
               ? (
                 <Button
-                  class={`py-3 w-full font-medium uppercase m-auto bg-white hover:bg-inherit border-b-[1px] justify-between text-left text-primary`}
+                  class={`py-3 w-full font-medium uppercase m-auto bg-white hover:bg-inherit border-b-[1px] justify-between text-left text-primary border-black border-opacity-10`}
                   onClick={() => {
                     displayMenuProducts.value = false;
                     displayMenuProductsChild.value = true;

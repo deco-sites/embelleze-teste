@@ -105,8 +105,7 @@ function EmbellezeHeader({
                       class="flex items-center gap-1"
                     >
                       <IconPhone
-                        class="w-4 h-4"
-                        style={{ color: "rgb(255,56,156)" }}
+                        class="w-4 h-4 text-base-200"
                       />
                       FALE CONOSCO
                     </a>
@@ -118,8 +117,7 @@ function EmbellezeHeader({
                         class="flex items-center gap-1"
                       >
                         <IconBrandLine
-                          class="w-4 h-4"
-                          style={{ color: "rgb(255,56,156)" }}
+                          class="w-4 h-4 text-base-200"
                         />
                         BLOG {social.Blog?.blogName}
                       </a>
@@ -131,8 +129,7 @@ function EmbellezeHeader({
                       class="flex items-center gap-1"
                     >
                       <IconBrandInstagram
-                        class="w-4 h-4"
-                        style={{ color: "rgb(255,56,156)" }}
+                        class="w-4 h-4 text-base-200"
                       />
                       INSTAGRAM
                     </a>
@@ -145,8 +142,7 @@ function EmbellezeHeader({
                       <Icon
                         id="youtube"
                         size={16}
-                        class="w-4 h-4"
-                        style={{ color: "rgb(255,56,156)" }}
+                        class="w-4 h-4 text-base-200"
                       />
                       YOUTUBE
                     </a>

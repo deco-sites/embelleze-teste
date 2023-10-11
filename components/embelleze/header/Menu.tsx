@@ -27,7 +27,7 @@ function Menu({ items, paths }: Props) {
                     items.length - 1 === index
                       ? "text-secondary"
                       : "text-primary"
-                  } hover:bg-inherit`}
+                  } hover:bg-inherit border-black border-opacity-10`}
                   onClick={() => {
                     displayMenuProducts.value = true;
                     displayMenu.value = false;
