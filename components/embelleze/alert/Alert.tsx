@@ -28,7 +28,7 @@ function Alert({ alerts = [], interval = 5 }: Props) {
             />
           </Slider.PrevButton>
           {alerts.map((alert, index) => (
-            <Slider.Item index={index} class="carousel-item">
+            <Slider.Item index={index} class="carousel-item w-full">
               <span class="text-secondary-content flex justify-center items-center h-[30px] w-full relative text-[0.7em]">
                 {alert}
               </span>
