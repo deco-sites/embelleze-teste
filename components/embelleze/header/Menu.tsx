@@ -68,7 +68,9 @@ function Menu({ items, paths }: Props) {
             <span class="rounded-full w-9 h-9 flex items-center justify-center bg-primary-content">
               <IconUser class="w-6 h-6" />
             </span>
-            <span class="text-[14px] leading-[17.5px]">Entre ou Cadastre-se</span>
+            <span class="text-[14px] leading-[17.5px]">
+              Entre ou Cadastre-se
+            </span>
           </a>
         </li>
         <li>
@@ -83,9 +85,9 @@ function Menu({ items, paths }: Props) {
           </a>
         </li>
         <li class="flex items-center gap-4 px-4 py-2 border-b-[1px]">
-        {/* <span class="rounded-full p-2 bg-primary-content w-4 h-4"> */}
+          {/* <span class="rounded-full p-2 bg-primary-content w-4 h-4"> */}
           <CartButton />
-        {/* </span> */}
+          {/* </span> */}
           <span class="text-[14px] leading-[17.5px]">Sua Sacola</span>
         </li>
       </ul>

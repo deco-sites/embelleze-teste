@@ -44,7 +44,7 @@ const Aside = (
     displayMenu,
     open,
     isMiniCart,
-    subtitle
+    subtitle,
   }: {
     logo?: { src: Image; alt: string };
     onClose?: () => void;
@@ -63,7 +63,11 @@ const Aside = (
         !displayMenu || isMiniCart ? "bg-primary" : "bg-base-100"
       } relative h-[76px]`}
     >
-      <div class={`flex h-full ${ isMiniCart ? "justify-start" : "justify-between"} items-center w-11/12 m-auto`}>
+      <div
+        class={`flex h-full ${
+          isMiniCart ? "justify-start" : "justify-between"
+        } items-center w-11/12 m-auto`}
+      >
         {!displayMenu && (
           <>
             <Button
@@ -105,17 +109,25 @@ const Aside = (
         )}
         {isMiniCart && onClose && (
           <>
-          <button
-            class="btn-ghost rounded-full flex justify-between items-center bg-white bg-opacity-10 h-[40px] w-[40px]"
-            onClick={onClose}
+            <button
+              class="btn-ghost rounded-full flex justify-between items-center bg-white bg-opacity-10 h-[40px] w-[40px]"
+              onClick={onClose}
             >
-            <Icon id="XMark" class="text-white flex-auto" size={24} strokeWidth={2} />
-          </button>
-          <Icon id="sacola" class="mx-4" width={14} height={16} />
-              <h1 class="py-3">
-              <span class="md:text-2xl leading-5 text-[16px] text-white font-bold">{title}<strong class="font-medium">{subtitle}</strong></span>
+              <Icon
+                id="XMark"
+                class="text-white flex-auto"
+                size={24}
+                strokeWidth={2}
+              />
+            </button>
+            <Icon id="sacola" class="mx-4" width={14} height={16} />
+            <h1 class="py-3">
+              <span class="md:text-2xl leading-5 text-[16px] text-white font-bold">
+                {title}
+                <strong class="font-medium">{subtitle}</strong>
+              </span>
             </h1>
-            </>
+          </>
         )}
       </div>
     </div>
@@ -195,7 +207,9 @@ function Drawers({ menu, logo, children, paths }: Props) {
           aside={
             <Aside
               title="SEU CARRINHO: "
-              subtitle={`${items.length} ${items.length > 1 ? "ITENS" : "ITEM"}`}
+              subtitle={`${items.length} ${
+                items.length > 1 ? "ITENS" : "ITEM"
+              }`}
               chevronClick={() => displayCart.value = false}
               onClose={() => displayCart.value = false}
               displayMenu={displayCart.value}
