@@ -59,21 +59,41 @@ function CartItem(
 
   return (
     <div
-      class="grid grid-rows-1 gap-2"
+      class="flex flex-col md:grid md:grid-rows-1 md:gap-2 bg-gray-100 md:bg-transparent p-[10px] rounded-lg"
       style={{
         gridTemplateColumns: "auto 1fr",
       }}
     >
+      <div class="flex justify-between items-start">
       <Image
         {...image}
         style={{ aspectRatio: "120 / 120" }}
         width={120}
         height={120}
-        class="h-full object-contain"
+        class="h-full object-contain rounded-lg"
       />
+      <Button
+            disabled={loading || isGift}
+            loading={loading}
+            class="btn-ghost btn-square block md:hidden"
+            onClick={withLoading(async () => {
+              const analyticsItem = itemToAnalyticsItem(index);
+
+              await onUpdateQuantity(0, index);
+
+              analyticsItem && sendEvent({
+                name: "remove_from_cart",
+                params: { items: [analyticsItem] },
+              });
+            })}
+          >
+            <Icon id="Trash" size={24} class="text-secondary" />
+          </Button>
+            </div> 
+      <span class="font-bold block md:hidden">{name}</span>
 
       <div class="flex flex-col gap-2">
-        <div class="flex justify-between items-center">
+        <div class="justify-between items-center hidden md:flex">
           <span class="font-bold">{name}</span>
           <Button
             disabled={loading || isGift}
