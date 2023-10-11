@@ -70,7 +70,7 @@ export interface Video {
    * @default #FFFFFF
    */
   color: string;
-   /**
+  /**
    * @format color
    * @default #FFFFFF
    */
@@ -93,16 +93,19 @@ export type ContentType = Image | Text | BigImage | Video;
 
 export interface Props {
   section: { type: ContentType }[];
-   /**
+  /**
    * @format color
    * @default #FFFF
    */
-  backgroundColor?: string
+  backgroundColor?: string;
 }
 
 function Blog({ section, backgroundColor }: Props) {
   return (
-    <div class="bg-gray-100 flex flex-col m-auto w-11/12 p-4 gap-8 max-w-[1300px] my-16" style={{backgroundColor}} >
+    <div
+      class="bg-gray-100 flex flex-col m-auto w-11/12 p-4 gap-8 max-w-[1300px] my-16"
+      style={{ backgroundColor }}
+    >
       {section.map(({ type }) => {
         switch (true) {
           case (type as Image).type === "Image": {
