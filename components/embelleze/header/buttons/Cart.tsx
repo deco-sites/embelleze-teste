@@ -5,7 +5,7 @@ import { useCart } from "deco-sites/std/packs/vtex/hooks/useCart.ts";
 import IconShoppingBag from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/shopping-bag.tsx";
 
 export default function CartButton() {
-  const { displayCart } = useUI();
+  const { displayCart, displayMenu } = useUI();
   const { loading, cart, mapItemsToAnalyticsItems } = useCart();
   const totalItems = cart.value?.items.length || null;
   const currencyCode = cart.value?.storePreferencesData.currencyCode;
@@ -16,6 +16,7 @@ export default function CartButton() {
 
   const onClick = () => {
     displayCart.value = true;
+    displayMenu.value = false;
     sendEvent({
       name: "view_cart",
       params: {

@@ -39,6 +39,7 @@ export type AvailableIcons =
   | "Opiniao"
   | "Return"
   | "Ruler"
+  | "sacola"
   | "Shared"
   | "sliders"
   | "sitemap"

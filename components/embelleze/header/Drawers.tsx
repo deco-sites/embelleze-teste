@@ -10,6 +10,7 @@ import IconX from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/x.tsx";
 import ImageComponent from "deco-sites/std/components/Image.tsx";
 import type { Image } from "deco-sites/std/components/types.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
+import Icon from "$store/components/ui/Icon.tsx";
 
 const Menu = lazy(() => import("$store/components/embelleze/header/Menu.tsx"));
 // const Cart = lazy(() => import("$store/components/minicart/Cart.tsx"));
@@ -34,7 +35,17 @@ export interface Props {
 }
 
 const Aside = (
-  { logo, onClose, children, chevronClick, title, displayMenu, open }: {
+  {
+    logo,
+    onClose,
+    children,
+    chevronClick,
+    title,
+    displayMenu,
+    open,
+    isMiniCart,
+    subtitle
+  }: {
     logo?: { src: Image; alt: string };
     onClose?: () => void;
     chevronClick?: () => void;
@@ -42,13 +53,17 @@ const Aside = (
     title?: string;
     displayMenu: boolean;
     open: boolean;
+    isMiniCart?: boolean;
+    subtitle?: string;
   },
 ) => (
   <div class="bg-base-100 grid grid-rows-[auto_1fr] min-h-[100vh] divide-y">
     <div
-      class={`${!displayMenu ? "bg-primary" : "bg-base-100"} relative`}
+      class={`${
+        !displayMenu || isMiniCart ? "bg-primary" : "bg-base-100"
+      } relative h-[76px]`}
     >
-      <div class="flex h-full justify-between items-center w-11/12 m-auto">
+      <div class={`flex h-full ${ isMiniCart ? "justify-start" : "justify-between"} items-center w-11/12 m-auto`}>
         {!displayMenu && (
           <>
             <Button
@@ -76,7 +91,7 @@ const Aside = (
             />
           </a>
         )}
-        {onClose && (
+        {!isMiniCart && onClose && (
           <Button
             class={`${!displayMenu && "text-white"} ${
               open ? "block" : "hidden"
@@ -87,6 +102,20 @@ const Aside = (
           >
             <IconX class="w-5 h-5" />
           </Button>
+        )}
+        {isMiniCart && onClose && (
+          <>
+          <button
+            class="btn-ghost rounded-full flex justify-between items-center bg-white bg-opacity-10 h-[40px] w-[40px]"
+            onClick={onClose}
+            >
+            <Icon id="XMark" class="text-white flex-auto" size={24} strokeWidth={2} />
+          </button>
+          <Icon id="sacola" class="mx-4" width={14} height={16} />
+              <h1 class="py-3">
+              <span class="md:text-2xl leading-5 text-[16px] text-white font-bold">{title}<strong class="font-medium">{subtitle}</strong></span>
+            </h1>
+            </>
         )}
       </div>
     </div>
@@ -165,11 +194,13 @@ function Drawers({ menu, logo, children, paths }: Props) {
           onClose={() => displayCart.value = false}
           aside={
             <Aside
-              title={`SEU CARRINHO: ${items.length} ITEMS`}
+              title="SEU CARRINHO: "
+              subtitle={`${items.length} ${items.length > 1 ? "ITENS" : "ITEM"}`}
               chevronClick={() => displayCart.value = false}
               onClose={() => displayCart.value = false}
               displayMenu={displayCart.value}
               open={displayCart.value}
+              isMiniCart={true}
             >
               <Cart />
             </Aside>

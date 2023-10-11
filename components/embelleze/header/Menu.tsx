@@ -5,6 +5,7 @@ import IconShoppingBag from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/shop
 import IconUser from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/user.tsx";
 import IconChevronRight from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/chevron-right.tsx";
 import { useUI } from "$store/sdk/embelleze/useUI.ts";
+import { CartButton } from "$store/islands/Embelleze/Buttons.tsx";
 
 export interface Props {
   items: INavItem[];
@@ -22,7 +23,7 @@ function Menu({ items, paths }: Props) {
             {item.children !== undefined && item.children?.length > 0
               ? (
                 <Button
-                  class={`flex border-b-[1px] items-center justify-between py-3 uppercase m-auto w-full bg-white ${
+                  class={`flex border-b-[1px] items-center justify-between py-3 uppercase m-auto w-full bg-white font-bold text-[14px] leading-[17.5px] ${
                     items.length - 1 === index
                       ? "text-secondary"
                       : "text-primary"
@@ -45,14 +46,13 @@ function Menu({ items, paths }: Props) {
               : (
                 <a
                   href={item.href}
-                  class={`flex border-b-[1px] items-center justify-between font-semibold px-4 py-4 uppercase m-auto w-full bg-white ${
+                  class={`flex border-b-[1px] items-center justify-between px-4 py-4 uppercase m-auto w-full bg-white font-bold text-[14px] leading-[17.5px] ${
                     index === items.length - 1
                       ? "text-secondary"
                       : "text-primary"
                   }`}
                 >
                   {item.label}
-                  <IconChevronRight class="w-5 h-5" />
                 </a>
               )}
           </li>
@@ -65,10 +65,10 @@ function Menu({ items, paths }: Props) {
             class="flex items-center gap-4 px-4 py-2 border-b-[1px]"
             href={paths.loginHref}
           >
-            <span class="rounded-full p-2 bg-primary-content">
-              <IconUser class="w-4 h-4" />
+            <span class="rounded-full w-9 h-9 flex items-center justify-center bg-primary-content">
+              <IconUser class="w-6 h-6" />
             </span>
-            <span class="text-sm">Entre ou Cadastre-se</span>
+            <span class="text-[14px] leading-[17.5px]">Entre ou Cadastre-se</span>
           </a>
         </li>
         <li>
@@ -76,11 +76,17 @@ function Menu({ items, paths }: Props) {
             class="flex items-center gap-4 px-4 py-2 border-b-[1px]"
             href={paths.favouriteHref}
           >
-            <span class="rounded-full p-2 bg-primary-content">
-              <IconHeart class="w-4 h-4" />
+            <span class="rounded-full w-9 h-9 flex items-center justify-center bg-primary-content">
+              <IconHeart class="w-6 h-6" />
             </span>
-            <span class="text-sm">Favoritos</span>
+            <span class="text-[14px] leading-[17.5px]">Favoritos</span>
           </a>
+        </li>
+        <li class="flex items-center gap-4 px-4 py-2 border-b-[1px]">
+        {/* <span class="rounded-full p-2 bg-primary-content w-4 h-4"> */}
+          <CartButton />
+        {/* </span> */}
+          <span class="text-[14px] leading-[17.5px]">Sua Sacola</span>
         </li>
       </ul>
     </div>
