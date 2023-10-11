@@ -54,12 +54,12 @@ function MenuProducts() {
               displayMenuProducts.value = false;
             }}
           >
-            <a
+            {productsChild.value.href && <a
               class="uppercase font-bold w-full text-primary"
               href={productsChild.value.href}
             >
               {`Ver tudo em ${productsChild.value.label}`}
-            </a>
+            </a>}
           </Button>
         </li>
       </ul>
