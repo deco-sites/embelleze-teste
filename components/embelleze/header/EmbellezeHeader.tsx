@@ -104,9 +104,7 @@ function EmbellezeHeader({
                       href={social.Whatsapp.href}
                       class="flex items-center gap-1"
                     >
-                      <IconPhone
-                        class="w-4 h-4 text-base-200"
-                      />
+                      <IconPhone class="w-4 h-4 text-base-200" />
                       FALE CONOSCO
                     </a>
                   </li>
@@ -116,9 +114,7 @@ function EmbellezeHeader({
                         href={social.Blog?.href}
                         class="flex items-center gap-1"
                       >
-                        <IconBrandLine
-                          class="w-4 h-4 text-base-200"
-                        />
+                        <IconBrandLine class="w-4 h-4 text-base-200" />
                         BLOG {social.Blog?.blogName}
                       </a>
                     </li>
@@ -128,9 +124,7 @@ function EmbellezeHeader({
                       href={social.Instagram.href}
                       class="flex items-center gap-1"
                     >
-                      <IconBrandInstagram
-                        class="w-4 h-4 text-base-200"
-                      />
+                      <IconBrandInstagram class="w-4 h-4 text-base-200" />
                       INSTAGRAM
                     </a>
                   </li>
