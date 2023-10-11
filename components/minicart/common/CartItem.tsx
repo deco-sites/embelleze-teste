@@ -65,31 +65,31 @@ function CartItem(
       }}
     >
       <div class="flex justify-between items-start">
-      <Image
-        {...image}
-        style={{ aspectRatio: "120 / 120" }}
-        width={120}
-        height={120}
-        class="h-full object-contain rounded-lg"
-      />
-      <Button
-            disabled={loading || isGift}
-            loading={loading}
-            class="btn-ghost btn-square block md:hidden"
-            onClick={withLoading(async () => {
-              const analyticsItem = itemToAnalyticsItem(index);
+        <Image
+          {...image}
+          style={{ aspectRatio: "120 / 120" }}
+          width={120}
+          height={120}
+          class="h-full object-contain rounded-lg"
+        />
+        <Button
+          disabled={loading || isGift}
+          loading={loading}
+          class="btn-ghost btn-square block md:hidden"
+          onClick={withLoading(async () => {
+            const analyticsItem = itemToAnalyticsItem(index);
 
-              await onUpdateQuantity(0, index);
+            await onUpdateQuantity(0, index);
 
-              analyticsItem && sendEvent({
-                name: "remove_from_cart",
-                params: { items: [analyticsItem] },
-              });
-            })}
-          >
-            <Icon id="Trash" size={24} class="text-secondary" />
-          </Button>
-            </div> 
+            analyticsItem && sendEvent({
+              name: "remove_from_cart",
+              params: { items: [analyticsItem] },
+            });
+          })}
+        >
+          <Icon id="Trash" size={24} class="text-secondary" />
+        </Button>
+      </div>
       <span class="font-bold block md:hidden">{name}</span>
 
       <div class="flex flex-col gap-2">
