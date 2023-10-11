@@ -70,6 +70,11 @@ export interface Video {
    * @default #FFFFFF
    */
   color: string;
+   /**
+   * @format color
+   * @default #FFFFFF
+   */
+  ButtonColor: string;
   videos: {
     videoId: string;
     isCollum: boolean;
@@ -88,11 +93,16 @@ export type ContentType = Image | Text | BigImage | Video;
 
 export interface Props {
   section: { type: ContentType }[];
+   /**
+   * @format color
+   * @default #FFFF
+   */
+  backgroundColor?: string
 }
 
-function Blog({ section }: Props) {
+function Blog({ section, backgroundColor }: Props) {
   return (
-    <div class="bg-gray-100 flex flex-col m-auto w-11/12 p-4 gap-8 max-w-[1300px]">
+    <div class="bg-gray-100 flex flex-col m-auto w-11/12 p-4 gap-8 max-w-[1300px] my-16" style={{backgroundColor}} >
       {section.map(({ type }) => {
         switch (true) {
           case (type as Image).type === "Image": {
@@ -176,7 +186,7 @@ function Blog({ section }: Props) {
           }
 
           case (type as Video).type === "Video": {
-            const { videos, color } = type as Video;
+            const { videos, color, ButtonColor } = type as Video;
             return (
               <div class={`flex justify-between gap-4 flex-wrap`}>
                 {videos.map((
@@ -220,7 +230,7 @@ function Blog({ section }: Props) {
                         {buttonText && (
                           <a
                             class="text-white p-3 rounded-xl"
-                            style={{ backgroundColor: color }}
+                            style={{ backgroundColor: ButtonColor }}
                             href={href}
                           >
                             {buttonText}
