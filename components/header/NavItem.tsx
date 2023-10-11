@@ -3,7 +3,7 @@ import { headerHeight } from "./constants.ts";
 
 export interface INavItem {
   label: string;
-  href: string;
+  href?: string;
   children?: INavItem[];
   image?: { src?: string; alt?: string };
 }

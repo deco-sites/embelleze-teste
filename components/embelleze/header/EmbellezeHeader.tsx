@@ -16,13 +16,13 @@ import Button from "$store/components/ui/Button.tsx";
 
 export interface NavItem {
   label: string;
-  href: string;
+  href?: string;
   children?: Array<{
     label: string;
-    href: string;
+    href?: string;
     children?: Array<{
       label: string;
-      href: string;
+      href?: string;
     }>;
   }>;
   image?: {
@@ -171,7 +171,7 @@ function EmbellezeHeader({
             <div className="w-[100%] xl:hidden relative">
               <form action="/s" method="GET" id="formId" class="min-h-[40px]">
                 <input
-                  className="w-full p-2 text-xs text-primary"
+                  className="w-full p-2 text-base text-primary"
                   type="text"
                   name="q" // Adicione o atributo 'name' com o valor 'q'
                   placeholder="O que você procura?"

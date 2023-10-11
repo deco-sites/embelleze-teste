@@ -60,7 +60,7 @@ function Section(
 ) {
   return (
     <div
-      class="border rounded-t-full rounded-b-2xl h-56 w-48 p-2 hover:shadow-xl hover:-translate-y-4 transition duration-300 relative"
+      class="border rounded-t-full rounded-b-2xl h-[182px] w-36 md:h-56 md:w-48 p-2 hover:shadow-xl hover:-translate-y-4 transition duration-300 relative"
       style={{ borderColor }}
     >
       <a href={href} class="flex flex-col justify-between items-center">
@@ -72,7 +72,7 @@ function Section(
           height={162}
         />
         <h2
-          class="text-base uppercase text-center font-bold"
+          class="md:text-base text-xs uppercase text-center font-bold"
           style={{ color: textColor }}
         >
           {title}

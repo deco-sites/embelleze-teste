@@ -2,7 +2,7 @@ import Image from "deco-sites/std/components/Image.tsx";
 
 export interface INavItem {
   label: string;
-  href: string;
+  href?: string;
   children?: INavItem[];
   image?: { src?: string; alt?: string };
 }
@@ -21,7 +21,7 @@ function NavItem({ item, lastIndex }: { item: INavItem; lastIndex: boolean }) {
         }`}
       >
         <span
-          class="group-hover:underline font-semibold"
+          class={`${href ? "group-hover:underline" : ""} font-semibold`}
           style={{ lineHeight: "17.5px", fontSize: "14px" }}
         >
           {label}
@@ -31,8 +31,8 @@ function NavItem({ item, lastIndex }: { item: INavItem; lastIndex: boolean }) {
       {children && children.length > 0 &&
         (
           <div
-            class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center gap-6 border-t-[1px] border-solid border-gray-200 w-screen xl:mt-[149px] mt-[125px]"
-            style={{ top: "0", left: "0px" }}
+            class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-start gap-6 border-t-[1px] border-solid border-gray-200 xl:mt-[149px] mt-[125px] group-hover:border-2 w-11/12 m-auto rounded-lg"
+            style={{ top: "0", left: "0px", right: "0" }}
           >
             {image?.src && (
               <Image
@@ -47,8 +47,11 @@ function NavItem({ item, lastIndex }: { item: INavItem; lastIndex: boolean }) {
             <ul class="flex items-start justify-center gap-6 flex-wrap">
               {children.map((node) => (
                 <li class="p-6">
-                  <a class="hover:underline font-bold" href={node.href}>
-                    <span>{node.label}</span>
+                  <a
+                    class={`${node.href ? "hover:underline" : ""} font-bold`}
+                    href={node.href}
+                  >
+                    <span class="text-secondary">{node.label}</span>
                   </a>
 
                   <ul class="flex flex-col gap-1 mt-4">

@@ -46,7 +46,7 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
 
   return (
     <a
-      href={`/s?q=${href}`}
+      href={href}
       class="relative h-fit max-h-[375px] overflow-y-hidden w-full"
     >
       <Picture preload={lcp}>

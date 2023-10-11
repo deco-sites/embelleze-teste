@@ -166,7 +166,7 @@ export function PCard(
                 class="btn-primary buyButton hover:bg-[#17A087] border-2 hover:text-white flex-grow-1 max-h-8 min-h-[35px] uppercase border-solid bg-white w-full rounded-[5px]"
                 style={{ borderColor: buttonColor, color: buttonColor }}
               >
-                Adicionar à sacola
+                {mobileBigCard ? "Adicionar à sacola" : "comprar"}
               </Button>
             </a>
           </div>
@@ -244,7 +244,7 @@ function ProductCarousel(
           <h3
             class={`${
               header?.title ? "block" : "hidden"
-            } text-center text-[1.5em] font-semibold md:text-[35px] uppercase`}
+            } text-center text-[1.5em] font-bold md:text-[35px] uppercase`}
             style={{ color }}
           >
             {header?.title}
@@ -267,7 +267,7 @@ function ProductCarousel(
                 class={`${
                   currentIndex1 === index
                     ? "bg-secondary text-white"
-                    : "bg-secondary-content text-primary"
+                    : "bg-secondary-content text-secondary"
                 } uppercase rounded-lg py-[10px] px-4 text-sm font-[700] carousel-item`}
                 onClick={() => setCurrentIndex(index)}
               >
@@ -277,12 +277,12 @@ function ProductCarousel(
           </div>
         )}
         <div
-          class={`carousel carousel-start gap-4 lg:gap-6 w-full h-[551px]`}
+          class={`carousel carousel-start gap-4 lg:gap-6 w-full max-h-[551px]`}
           id={"carousel-product" + id}
         >
           {list1?.map((product, index) => (
             <div
-              class={`flex md:gap-8 carousel-item h-[480px] ${
+              class={`flex md:gap-8 carousel-item h-auto max-h-[480px] ${
                 mobileBigCard ? "gap-2" : "gap-4"
               } `}
               id={"carousel-item-product"}
