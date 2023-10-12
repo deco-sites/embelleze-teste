@@ -10,13 +10,14 @@ export interface Props {
   title: string;
   description: string;
   /** @description if the height of this container pass 400px in some devices, one button to see more will apper*/
-  sections: { 
-    question: string; 
-      /**
-   * @format textarea
-   * @format html
-   * @description text to be rendered */
-    awnser: string }[];
+  sections: {
+    question: string;
+    /**
+     * @format textarea
+     * @format html
+     * @description text to be rendered */
+    awnser: string;
+  }[];
 }
 
 function Questions({ title, description, sections, titleColor }: Props) {
@@ -68,9 +69,11 @@ function Questions({ title, description, sections, titleColor }: Props) {
               <h2 style={{ color: titleColor }} class="font-bold">
                 {question}
               </h2>
-              <div  dangerouslySetInnerHTML={{
-              __html: awnser,
-            }} />
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: awnser,
+                }}
+              />
             </div>
           </div>
         ))}
