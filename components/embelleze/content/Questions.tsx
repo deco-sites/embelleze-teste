@@ -10,7 +10,13 @@ export interface Props {
   title: string;
   description: string;
   /** @description if the height of this container pass 400px in some devices, one button to see more will apper*/
-  sections: { question: string; awnser: string }[];
+  sections: { 
+    question: string; 
+      /**
+   * @format textarea
+   * @format html
+   * @description text to be rendered */
+    awnser: string }[];
 }
 
 function Questions({ title, description, sections, titleColor }: Props) {
@@ -54,15 +60,17 @@ function Questions({ title, description, sections, titleColor }: Props) {
         onClick={() => console.log(card.current?.offsetHeight)}
       >
         {sections?.map(({ awnser, question }, index) => (
-          <div class="flex justify-center items-center p-4 gap-4 flex-grow md:max-w-[45%] lg:w-[45%] lg:max-w-[50%] border rounded-lg min-h-[84px]">
-            <span class="border rounded-full h-14 w-14 flex items-center justify-center">
+          <div class="flex justify-start items-start p-4 gap-4 flex-grow md:max-w-[45%] lg:w-[45%] lg:max-w-[50%] border rounded-lg min-h-[84px]">
+            <span class="border rounded-full h-14 w-14 flex items-center justify-center min-w-[3.5rem] min-h-[3.5rem]">
               {index + 1}
             </span>
             <div>
               <h2 style={{ color: titleColor }} class="font-bold">
                 {question}
               </h2>
-              <p>{awnser}</p>
+              <div  dangerouslySetInnerHTML={{
+              __html: awnser,
+            }} />
             </div>
           </div>
         ))}
