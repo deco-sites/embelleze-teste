@@ -17,7 +17,7 @@ export interface Banner {
    * @format html
    * @description text to be rendered on top of the image */
   subtitle?: string;
-  image: {
+  image?: {
     /** @description Image for big screens */
     desktop: LiveImage;
     /** @description Image for small screens */
@@ -37,7 +37,7 @@ function Banner({ banner }: SectionProps<ReturnType<typeof loader>>) {
 
   return (
     <div class="flex flex-col justify-between gap-6">
-      <Picture preload class="col-start-1 col-span-1 row-start-1 row-span-1">
+      {image && <Picture preload class="col-start-1 col-span-1 row-start-1 row-span-1">
         <Source
           src={image.mobile}
           width={360}
@@ -51,7 +51,7 @@ function Banner({ banner }: SectionProps<ReturnType<typeof loader>>) {
           media="(min-width: 767px)"
         />
         <img class="w-full" src={image.desktop} alt={image.alt ?? title} />
-      </Picture>
+      </Picture>}
 
       <div class="w-11/12 flex flex-col items-center justify-center m-auto gap-4">
         <h1>
