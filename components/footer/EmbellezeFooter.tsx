@@ -1,5 +1,5 @@
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
-import { useEffect } from "preact/hooks";
+import Image from "apps/website/components/Image.tsx";
 
 export interface Props {
   logo?: {
@@ -9,15 +9,22 @@ export interface Props {
   text?: string[];
   imagens?: Array<{
     image: LiveImage;
-    description?: string;
+    alt?: string;
+    link?: string;
   }>;
 }
 
 export default function EmbellezeFooter({ text, imagens, logo }: Props) {
   return (
-    <div class="bg-primary flex items-center flex-col">
+    <div class="bg-primary flex items-center flex-col py-8">
       {logo?.image && (
-        <img src={logo?.image} alt={logo?.description} width="250px" />
+        <Image
+          fit="contain"
+          src={logo?.image}
+          alt={logo?.description}
+          width={250}
+          height={65}
+        />
       )}
       {text?.map((text) => (
         <p class="text-base-100 mt-4 text-center">
@@ -27,7 +34,16 @@ export default function EmbellezeFooter({ text, imagens, logo }: Props) {
       <ul class="flex justify-evenly flex-wrap">
         {imagens?.map((item) => (
           <li class="mr-5 mt-3">
-            <img src={item.image} alt={item.description} max-height="120px" />
+            <a href={item.link}>
+              <Image
+                fit="contain"
+                src={item.image}
+                alt={item.alt}
+                width={108}
+                height={71}
+                class="object-contain max-w-[90px] max-h-20"
+              />
+            </a>
           </li>
         ))}
       </ul>
