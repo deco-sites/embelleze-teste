@@ -37,7 +37,7 @@ function CategoryText({ text }: SectionProps<ReturnType<typeof loader>>) {
         id="CategoryText"
       >
         <h2>
-          <p class="text-3xl font-medium text-primary uppercase text-center">
+          <p class="text-3xl font-bold text-primary uppercase text-center">
             {title && title}
           </p>
         </h2>
