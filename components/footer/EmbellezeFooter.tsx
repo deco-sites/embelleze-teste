@@ -31,15 +31,15 @@ export default function EmbellezeFooter({ text, imagens, logo }: Props) {
           {text}
         </p>
       ))}
-      <ul class="flex justify-evenly flex-wrap">
+      <ul class="flex justify-evenly flex-wrap gap-4 my-4">
         {imagens?.map((item) => (
-          <li class="mr-5 mt-3">
+          <li>
             <a href={item.link}>
               <Image
                 fit="contain"
                 src={item.image}
                 alt={item.alt}
-                width={108}
+                width={90}
                 height={71}
                 class="object-contain max-w-[90px] max-h-20"
               />
