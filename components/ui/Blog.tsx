@@ -209,7 +209,7 @@ function Blog({ section, backgroundColor }: Props) {
                         title && text
                           ? `w-full ${isCollum ? "" : "md:w-[48%]"} h-[355px]`
                           : `w-full`
-                      } ${isCollum ? "h-[462px]" : ""}`}
+                      } ${isCollum ? "h-[462px]" : "h-[355px]"}`}
                       style={{ maxWidth: "830px" }}
                     >
                       <VideoComponent videoId={videoId} />
