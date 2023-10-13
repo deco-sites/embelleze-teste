@@ -3,6 +3,7 @@ import Image from "deco-sites/std/components/Image.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
+import Icon from "$store/components/ui/Icon.tsx";
 
 export interface Item {
   title: string;
@@ -109,8 +110,14 @@ function Carousel(
       {description && <p class="text-sm text-center">{description}</p>}
       {sections.length > 1
         ? (
-          <div id={id}>
+          <div id={id} class="relative">
             <div class="flex justify-center items-center flex-wrap gap-4">
+              <Slider.PrevButton
+                class="hidden lg:flex items-center prev-btn absolute 2xl:-left-14 -left-11 bottom-1/2 top-1/2 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2 justify-center"
+                disabled
+              >
+                <Icon id="ChevronLeft" width={10} height={16} />
+              </Slider.PrevButton>
               {sections.map(({ category }, index) => (
                 <Slider.Dot index={index}>
                   <div
@@ -146,6 +153,13 @@ function Carousel(
                 </Slider.Item>
               ))}
             </Slider>
+
+            <Slider.NextButton
+              class="hidden lg:flex items-center next-btn absolute 2xl:-right-14 -right-11 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2 justify-center"
+              disabled={(sections?.length ?? 0) < 2}
+            >
+              <Icon id="ChevronRight" width={10} height={16} />
+            </Slider.NextButton>
             <SliderJS rootId={id} />
           </div>
         )
