@@ -53,12 +53,6 @@ function SearchControls(
       }
     >
       <div class="flex flex-col justify-between mb-4 p-4 md:mb-0 md:p-0 md:gap-4 md:flex-row md:h-[53px] md:border-b md:border-base-200">
-        {
-          /* <div class="flex flex-row items-center sm:p-0 mb-2">
-          <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
-        </div> */
-        }
-
         <p
           id="return-fill"
           class="font-medium md:hidden"

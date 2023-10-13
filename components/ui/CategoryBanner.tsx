@@ -3,6 +3,8 @@ import type { SectionProps } from "$live/types.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 import type { Props as CarouselProps } from "$store/components/Content/Carousel.tsx";
 import Carousel from "$store/components/Content/Carousel.tsx";
+import type { ProductListingPage } from "apps/commerce/types.ts";
+import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 
 /**
  * @titleBy matcher
@@ -28,12 +30,13 @@ export interface Banner {
   carousel?: CarouselProps;
 }
 
-function Banner({ banner }: SectionProps<ReturnType<typeof loader>>) {
+function Banner({ banner, page }: SectionProps<ReturnType<typeof loader>>) {
   if (!banner) {
     return null;
   }
 
   const { title, subtitle, image } = banner;
+  const breadcrumb = page?.breadcrumb;
 
   return (
     <div class="flex flex-col justify-between gap-6">
@@ -56,6 +59,9 @@ function Banner({ banner }: SectionProps<ReturnType<typeof loader>>) {
       )}
 
       <div class="w-11/12 flex flex-col items-center justify-center m-auto gap-4 max-w-[820px]">
+        { breadcrumb && <div class="flex flex-row items-center sm:p-0 mb-2">
+          <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
+        </div>}
         <h1>
           <p class="text-2xl font-bold text-primary uppercase text-center">
             {title && title}
@@ -80,14 +86,15 @@ function Banner({ banner }: SectionProps<ReturnType<typeof loader>>) {
 
 export interface Props {
   banners?: Banner[];
+  page: ProductListingPage | null;
 }
 
-export const loader = ({ banners = [] }: Props, req: Request) => {
+export const loader = ({ banners = [], page }: Props, req: Request) => {
   const banner = banners.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 
-  return { banner };
+  return { banner, page };
 };
 
 export default Banner;
