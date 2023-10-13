@@ -4,6 +4,7 @@ import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import Icon from "$store/components/ui/Icon.tsx";
+import { useState } from "preact/hooks";
 
 export interface Item {
   title: string;
@@ -96,6 +97,7 @@ function Carousel(
   }: Props,
 ) {
   const id = useId();
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     <section class="flex justify-between m-auto md:w-85 w-11/12 flex-col">
@@ -112,16 +114,27 @@ function Carousel(
         ? (
           <div id={id} class="relative">
             <div class="flex justify-center items-center flex-wrap gap-4">
-              <Slider.PrevButton
+              <button
                 class="hidden lg:flex items-center prev-btn absolute 2xl:-left-14 -left-11 bottom-1/2 top-1/2 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2 justify-center"
-                disabled
+                onClick={() => {
+                  const length = (sections.length) ?? 1;
+                  setCurrentIndex((prevIndex) =>
+                    (prevIndex - 1 + length) % length
+                  );
+                }}
               >
                 <Icon id="ChevronLeft" width={10} height={16} />
-              </Slider.PrevButton>
+              </button>
               {sections.map(({ category }, index) => (
-                <Slider.Dot index={index}>
+                <button
+                  onClick={() => setCurrentIndex(index)}
+                >
                   <div
-                    class={`p-2 border bg-primary text-white rounded-lg hover:bg-secondary-focus hover:text-secondary-content`}
+                    class={`p-2 border ${
+                      index === currentIndex
+                        ? "bg-secondary-focus"
+                        : "bg-primary"
+                    } text-white rounded-lg hover:bg-secondary-focus hover:text-secondary-content`}
                     style={{
                       backgroundColor: categoryBg,
                       color: categoryText,
@@ -129,13 +142,15 @@ function Carousel(
                   >
                     {category}
                   </div>
-                </Slider.Dot>
+                </button>
               ))}
             </div>
-            <Slider class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 min-h-[240px] h-64 flex items-end">
-              {sections.map(({ section }, index) => (
-                <Slider.Item
-                  index={index}
+            <div class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 min-h-[240px] h-64 flex items-end">
+              {sections.slice(currentIndex, currentIndex + 1)?.map((
+                { section },
+                index,
+              ) => (
+                <div
                   class="flex m-auto gap-4"
                 >
                   <>
@@ -150,16 +165,21 @@ function Carousel(
                       />
                     ))}
                   </>
-                </Slider.Item>
+                </div>
               ))}
-            </Slider>
+            </div>
 
-            <Slider.NextButton
+            <button
               class="hidden lg:flex items-center next-btn absolute 2xl:-right-14 -right-11 bottom-0 top-0 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2 justify-center"
-              disabled={(sections?.length ?? 0) < 2}
+              onClick={() => {
+                const length = (sections.length) ?? 1;
+                setCurrentIndex((prevIndex) => {
+                  return (prevIndex + 1) % length;
+                });
+              }}
             >
               <Icon id="ChevronRight" width={10} height={16} />
-            </Slider.NextButton>
+            </button>
             <SliderJS rootId={id} />
           </div>
         )

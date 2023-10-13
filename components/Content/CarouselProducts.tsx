@@ -229,6 +229,8 @@ function ProductCarousel(
     moveCarouselToIndex(currentIndex1);
   }, [currentIndex1]);
 
+  console.log(list1.length);
+
   return (
     <div class="py-8 w-11/12 m-auto max-w-[1300px]">
       <div class="flex flex-col gap-6 lg:gap-8 text-base-content lg:py-5 relative">
@@ -280,34 +282,41 @@ function ProductCarousel(
           class={`carousel carousel-start gap-4 lg:gap-6 w-full max-h-[551px]`}
           id={"carousel-product" + id}
         >
-          {list1?.map((product, index) => (
-            <div
-              class={`flex md:gap-8 carousel-item h-auto max-h-[480px] ${
-                mobileBigCard ? "gap-2" : "gap-4"
-              } `}
-              id={"carousel-item-product"}
-              key={index + "subdiv"}
-            >
-              {!!cardImage && (
-                <Image src={cardImage} alt={alt} width={317} height={481} />
-              )}
-              {product?.map((a, i) => (
-                <div
-                  class={`${
-                    mobileBigCard ? "w-[284px]" : "w-[165px]"
-                  } md:w-[284px]`}
-                >
-                  <PCard
-                    product={a}
-                    mobileBigCard={mobileBigCard}
-                    key={i}
-                    color={color}
-                    buttonColor={buttonColor}
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
+          {list1.slice(
+            list1.length > 1 ? currentIndex1 : 0,
+            list1.length > 1 ? currentIndex1 + 1 : 1,
+          )
+            ?.map((
+              product,
+              index,
+            ) => (
+              <div
+                class={`flex md:gap-8 carousel-item h-auto max-h-[480px] ${
+                  mobileBigCard ? "gap-2" : "gap-4"
+                } `}
+                id={"carousel-item-product"}
+                key={index + "subdiv"}
+              >
+                {!!cardImage && (
+                  <Image src={cardImage} alt={alt} width={317} height={481} />
+                )}
+                {product?.map((a, i) => (
+                  <div
+                    class={`${
+                      mobileBigCard ? "w-[284px]" : "w-[165px]"
+                    } md:w-[284px]`}
+                  >
+                    <PCard
+                      product={a}
+                      mobileBigCard={mobileBigCard}
+                      key={i}
+                      color={color}
+                      buttonColor={buttonColor}
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
         </div>
         {hide?.skuSelector
           ? <></>
