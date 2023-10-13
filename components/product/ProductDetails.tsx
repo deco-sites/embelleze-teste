@@ -365,7 +365,7 @@ function Details({
         />
         <div
           id={id}
-          class="flex flex-col xl:grid xl:grid-cols-[auto] xl:grid-rows-[auto] xl:justify-between w-full h-fit gap-8"
+          class="flex flex-col xl:grid xl:grid-cols-[auto] xl:grid-rows-[auto] xl:justify-between w-full h-fit gap-y-8 xl:gap-x-8 xl:gap-y-0"
         >
           {/* Image Slider */}
           <div class="order-2 relative row-span-2 sm:col-start-2 sm:row-start-1 sm:row-end-3 h-fit xl:max-w-[680px] xl:w-[600px] w-full">
