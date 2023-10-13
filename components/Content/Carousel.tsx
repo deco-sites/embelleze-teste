@@ -100,7 +100,7 @@ function Carousel(
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <section class="flex justify-between m-auto md:w-85 w-11/12 flex-col">
+    <section class="flex justify-between m-auto md:w-85 w-11/12 flex-col max-w-[1300px] gap-8">
       {title && (
         <h2
           class="text-3xl uppercase text-center font-bold"
@@ -112,7 +112,7 @@ function Carousel(
       {description && <p class="text-sm text-center">{description}</p>}
       {sections.length > 1
         ? (
-          <div id={id} class="relative">
+          <div id={id} class="relative flex flex-col gap-8">
             <div class="flex justify-center items-center flex-wrap gap-4">
               <button
                 class="hidden lg:flex items-center prev-btn absolute 2xl:-left-14 -left-11 bottom-1/2 top-1/2 m-auto transform -translate-y-1/2 text-primary bg-primary-content rounded-full text-4xl h-10 w-10 p-2 justify-center"
@@ -145,26 +145,28 @@ function Carousel(
                 </button>
               ))}
             </div>
-            <div class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 min-h-[240px] h-64 flex items-end">
-              {sections.slice(currentIndex, currentIndex + 1)?.map((
-                { section },
-                index,
-              ) => (
-                <div class="flex m-auto gap-4">
-                  <>
-                    {section.map(({ title, image, alt, href }) => (
-                      <Section
-                        title={title}
-                        image={image}
-                        alt={alt}
-                        href={href}
-                        borderColor={borderColor}
-                        textColor={textColor}
-                      />
-                    ))}
-                  </>
-                </div>
-              ))}
+            <div class="lg:w-[1150px] flex lg:m-auto">
+              <div class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5 min-h-[200px] md:min-h-[240px] h-64 flex items-end">
+                {sections.slice(currentIndex, currentIndex + 1)?.map((
+                  { section },
+                  index,
+                ) => (
+                  <div class="flex m-auto gap-[42px]">
+                    <>
+                      {section.map(({ title, image, alt, href }) => (
+                        <Section
+                          title={title}
+                          image={image}
+                          alt={alt}
+                          href={href}
+                          borderColor={borderColor}
+                          textColor={textColor}
+                        />
+                      ))}
+                    </>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <button
