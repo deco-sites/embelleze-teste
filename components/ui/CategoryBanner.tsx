@@ -22,7 +22,7 @@ export interface Banner {
     desktop: LiveImage;
     /** @description Image for small screens */
     mobile: LiveImage;
-    /** @description image alt text */
+    /** @description image alt text. If you din't put this info, the image'll not render */
     alt?: string;
   };
   carousel?: CarouselProps;
@@ -37,7 +37,7 @@ function Banner({ banner }: SectionProps<ReturnType<typeof loader>>) {
 
   return (
     <div class="flex flex-col justify-between gap-6">
-      {image && (
+      {image && image?.alt && (
         <Picture preload class="col-start-1 col-span-1 row-start-1 row-span-1">
           <Source
             src={image.mobile}
