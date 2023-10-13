@@ -103,7 +103,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           </h1>
           <div
             dangerouslySetInnerHTML={{
-              __html: description?.slice(0, 180) ?? "",
+              __html: description ?? "",
             }}
           />
         </div>
