@@ -76,9 +76,9 @@ const Aside = (
             >
               <IconChevronLeft class="w-5 h-5" />
             </Button>
-            <h1 class="px-4 py-3">
+            <h2 class="px-4 py-3">
               <span class="font-medium text-2xl text-white">{title}</span>
-            </h1>
+            </h2>
           </>
         )}
         {displayMenu && logo && (
@@ -121,12 +121,12 @@ const Aside = (
               />
             </button>
             <Icon id="sacola" class="mx-4" width={14} height={16} />
-            <h1 class="py-3">
+            <h2 class="py-3">
               <span class="md:text-2xl leading-5 text-[16px] text-white font-bold">
                 {title}
                 <strong class="font-medium">{subtitle}</strong>
               </span>
-            </h1>
+            </h2>
           </>
         )}
       </div>
