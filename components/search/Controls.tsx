@@ -95,7 +95,11 @@ function SearchControls(
             </span>{" "}
             resultados
           </p>
-          {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
+          {sortOptions.length > 0 && <Sort sortOptions={sortOptions.sort((a, b) => {
+    if (a.label === "relevance:desc") return -1; // "relevance:desc" vem primeiro
+    if (b.label === "relevance:desc") return 1; // "relevance:desc" vem primeiro
+    return a.label.localeCompare(b.label); // Ordenar os outros itens
+  })} />}
         </div>
       </div>
     </Drawer>
