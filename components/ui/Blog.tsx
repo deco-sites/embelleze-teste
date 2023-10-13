@@ -207,9 +207,10 @@ function Blog({ section, backgroundColor }: Props) {
                     <div
                       class={`${
                         title && text
-                          ? `w-full ${isCollum ? "" : "md:w-[48%]"}`
-                          : "w-full"
-                      } h-[355px]`}
+                          ? `w-full ${isCollum ? "" : "md:w-[48%]"} h-[355px]`
+                          : `w-full`
+                      } ${isCollum ? "h-[462px]" : ""}`}
+                      style={{maxWidth: "830px"}}
                     >
                       <VideoComponent videoId={videoId} />
                     </div>
