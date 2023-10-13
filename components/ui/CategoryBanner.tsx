@@ -59,9 +59,11 @@ function Banner({ banner, page }: SectionProps<ReturnType<typeof loader>>) {
       )}
 
       <div class="w-11/12 flex flex-col items-center justify-center m-auto gap-4 max-w-[820px]">
-        { breadcrumb && <div class="flex flex-row items-center sm:p-0 mb-2">
-          <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
-        </div>}
+        {breadcrumb && (
+          <div class="flex flex-row items-center sm:p-0 mb-2">
+            <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
+          </div>
+        )}
         <h1>
           <p class="text-2xl font-bold text-primary uppercase text-center">
             {title && title}
