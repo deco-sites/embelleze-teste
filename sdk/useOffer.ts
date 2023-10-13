@@ -48,7 +48,7 @@ const installmentToString = (
   return `${billingDuration}x de R$ ${
     billingIncrement.toString().split(
       ".",
-    )[0]
+    ).join(",")
   } ${withTaxes ? "com juros" : "sem juros"}`;
 };
 
