@@ -150,9 +150,7 @@ function Carousel(
                 { section },
                 index,
               ) => (
-                <div
-                  class="flex m-auto gap-4"
-                >
+                <div class="flex m-auto gap-4">
                   <>
                     {section.map(({ title, image, alt, href }) => (
                       <Section
