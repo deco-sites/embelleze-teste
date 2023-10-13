@@ -25,7 +25,7 @@ function Beneficios({ beneficio, background, textColor, isShortText }: Props) {
   return (
     <div style={{ backgroundColor: background }} class="my-8">
       <div
-        class="min-h-[67px] w-11/12 m-auto flex justify-center max-w-[1300px]"
+        class="min-h-[67px] w-11/12 m-auto flex justify-center items-center max-w-[1300px]"
         id={id}
       >
         <Slider class="carousel carousel-start row-start-2 row-end-5 flex justify-start h-full items-center gap-6 w-full">
