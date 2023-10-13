@@ -20,7 +20,7 @@ export interface Props {
   isShortText?: boolean;
 }
 
-function Beneficios({ beneficio, background, textColor, isShortText}: Props) {
+function Beneficios({ beneficio, background, textColor, isShortText }: Props) {
   const id = useId();
   return (
     <div style={{ backgroundColor: background }} class="my-8">
@@ -35,7 +35,12 @@ function Beneficios({ beneficio, background, textColor, isShortText}: Props) {
               class="flex justify-start gap-4 items-center carousel-item m-auto"
             >
               <Image src={image} alt={alt} width={35} height={35} />
-              <p class={`uppercase font-semibold ${isShortText ? "max-w-[226px]" : ""}`} style={{ color: textColor }}>
+              <p
+                class={`uppercase font-semibold ${
+                  isShortText ? "max-w-[226px]" : ""
+                }`}
+                style={{ color: textColor }}
+              >
                 {text}
               </p>
             </Slider.Item>
