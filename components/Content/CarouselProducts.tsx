@@ -56,7 +56,9 @@ export function PCard(
     // category,
     additionalProperty,
   } = product;
-  const { listPrice, price, installments, seller } = useOffer(offers);
+  const { listPrice, price, installments, seller, availability } = useOffer(
+    offers,
+  );
   const [front] = images ?? [];
 
   const props = useAddToCart({
@@ -160,14 +162,22 @@ export function PCard(
                 `,
                 }}
               />
-              <Button
-                data-deco="add-to-cart"
-                {...props}
-                class="btn-primary buyButton hover:bg-[#17A087] border-2 hover:text-white flex-grow-1 max-h-8 min-h-[35px] uppercase border-solid bg-white w-full rounded-[5px]"
-                style={{ borderColor: buttonColor, color: buttonColor }}
-              >
-                {mobileBigCard ? "Adicionar à sacola" : "comprar"}
-              </Button>
+              {availability === "https://schema.org/InStock"
+                ? (
+                  <Button
+                    data-deco="add-to-cart"
+                    {...props}
+                    class="btn-primary buyButton hover:bg-[#17A087] border-2 hover:text-white flex-grow-1 max-h-8 min-h-[35px] uppercase border-solid bg-white w-full rounded-[5px]"
+                    style={{ borderColor: buttonColor, color: buttonColor }}
+                  >
+                    {mobileBigCard ? "Adicionar à sacola" : "comprar"}
+                  </Button>
+                )
+                : (
+                  <button class="w-full text-center">
+                    Produto indisponivel
+                  </button>
+                )}
             </a>
           </div>
         </div>
