@@ -24,6 +24,13 @@ export interface Image {
    * @format html
    * @description text to be rendered */
   text: string;
+  /**
+   * @format color
+   * @default #FFFFFF
+   */
+  ButtonColor?: string;
+  buttonText?: string;
+  href?: string;
 }
 
 export interface BigImage {
@@ -109,14 +116,24 @@ function Blog({ section, backgroundColor }: Props) {
       {section.map(({ type }) => {
         switch (true) {
           case (type as Image).type === "Image": {
-            const { text, alignment, alt, img, titleColor, title, isBigImage } =
-              type as Image;
+            const {
+              text,
+              alignment,
+              alt,
+              img,
+              titleColor,
+              title,
+              isBigImage,
+              ButtonColor,
+              buttonText,
+              href,
+            } = type as Image;
             return (
               <div class="flex justify-center lg:justify-between gap-4 flex-wrap lg:flex-nowrap">
                 <div class="flex flex-col items-start justify-center gap-4 w-fit">
                   <h2
                     style={{ color: titleColor }}
-                    class="uppercase text-2xl font-medium"
+                    class="uppercase text-2xl font-bold"
                   >
                     {title}
                   </h2>
@@ -125,6 +142,15 @@ function Blog({ section, backgroundColor }: Props) {
                       __html: text,
                     }}
                   />
+                  {buttonText && (
+                    <a
+                      class="text-white p-3 rounded-xl"
+                      style={{ backgroundColor: ButtonColor }}
+                      href={href}
+                    >
+                      {buttonText}
+                    </a>
+                  )}
                 </div>
                 <Image
                   src={img}
@@ -145,7 +171,7 @@ function Blog({ section, backgroundColor }: Props) {
               <div class="flex flex-col items-start justify-center gap-4 w-fit">
                 <h2
                   style={{ color: titleColor }}
-                  class="uppercase text-2xl font-medium"
+                  class="uppercase text-2xl font-bold"
                 >
                   {title}
                 </h2>
@@ -222,7 +248,7 @@ function Blog({ section, backgroundColor }: Props) {
                       >
                         <h2
                           style={{ color }}
-                          class="uppercase text-2xl font-medium"
+                          class="uppercase text-2xl font-bold"
                         >
                           {title}
                         </h2>

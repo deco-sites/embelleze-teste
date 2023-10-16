@@ -80,7 +80,9 @@ function Banners({ images, preload, interval, logo, alt, href }: Props) {
   return (
     <div
       id={id}
-      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] h-fit  mb-[50px] relative"
+      class={`grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] h-fit  ${
+        (images?.length ?? 0) > 1 ? "mb-[50px]" : ""
+      } relative`}
     >
       {logo && (
         <div
