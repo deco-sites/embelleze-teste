@@ -211,7 +211,7 @@ function Filters({ filters }: Props) {
                   />
                 </span>
               </div>
-              <div class="collapse-content transition-all duration-700 overflow-auto p-0 scrollbar-none">
+              <div class="collapse-content transition-all duration-700 p-0 scrollbar-none">
                 <FilterValues {...filter} />
               </div>
             </div>
