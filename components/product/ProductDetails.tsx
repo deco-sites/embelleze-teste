@@ -195,7 +195,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
       <BuyProductScroll product={product} />
 
       <div
-        class="fixed bottom-0 z-50 bg-white flex flex-col gap-2 p-4 w-full left-0 md:hidden"
+        class="fixed bottom-0 z-10 bg-white flex flex-col gap-2 p-4 w-full left-0 md:hidden"
         style={{ borderTop: "3px solid rgba(0, 0, 0, 0.12)" }}
       >
         <div class="flex justify-between gap-2">
