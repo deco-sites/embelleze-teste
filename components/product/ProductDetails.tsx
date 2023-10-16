@@ -4,7 +4,6 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import AddToCartButton from "$store/islands/AddToCartButton.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
-import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import Component from "$store/islands/WishlistButton.tsx";
@@ -17,7 +16,6 @@ import Image from "deco-sites/std/components/Image.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import ClipBord from "$store/components/ui/ClipBord.tsx";
 import ProductAbout from "$store/components/product/ProductAbout.tsx";
-import { star, starVazia } from "$store/components/Content/svg.tsx";
 import Opinioes from "deco-sites/fashion/components/product/Opinioes.tsx";
 import Beneficios, {
   Props as IBeneficios,
@@ -26,6 +24,7 @@ import type { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import BuyTogether from "./BuyTogether.tsx";
 "$store/components/product/ProductAbout.tsx";
 import BuyProductScroll from "$store/components/product/BuyProductScroll.tsx";
+import Rating from "$store/islands/Rating.tsx";
 
 export interface Props {
   page: ProductDetailsPage | null;
@@ -72,9 +71,6 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
   const { price, listPrice, seller, installments, availability } = useOffer(
     offers,
   );
-  const ratingCount = aggregateRating?.ratingCount ?? 0;
-  const rating = aggregateRating?.ratingValue ?? 0;
-  const starArray = [1, 2, 3, 4, 5];
 
   return (
     <>
@@ -86,17 +82,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
             <span class="text-sm text-gray-500 font-bold">
               {brand?.name}
             </span>
-            <div class=" w-fit h-10 rounded-lg flex items-center gap-2">
-              {starArray.map((value) => (
-                <span
-                  key={value}
-                  class="inline-block w-fit h-fit"
-                >
-                  {value <= rating ? star : starVazia}
-                </span>
-              ))}
-              <span>{`(${ratingCount})`}</span>
-            </div>
+            <Rating />
           </div>
           <h1>
             <span class="font-bold text-xl text-primary">{name}</span>

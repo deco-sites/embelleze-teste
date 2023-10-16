@@ -15,6 +15,8 @@ const productsChild2 = signal({ label: "", children: [], href: "" });
 const displaySearchPopup = signal(false);
 const displaySearchDrawer = signal(false);
 const productsBuyTogether = signal<Product[]>([]);
+const productReview = signal(0);
+const productReviewQuantity = signal(0);
 
 const state = {
   displayCart,
@@ -26,6 +28,8 @@ const state = {
   displayMenuProductsChild,
   productsChild2,
   productsBuyTogether,
+  productReview,
+  productReviewQuantity,
 };
 
 export const useUI = () => state;

@@ -1,6 +1,7 @@
 import { useEffect } from "preact/hooks";
 import { useSignal } from "@preact/signals";
 import Testimonials from "deco-sites/fashion/sections/Content/EmbellezeTestimonials.tsx";
+import { useUI } from "$store/sdk/embelleze/useUI.ts";
 
 declare global {
   interface Window {
@@ -58,6 +59,7 @@ interface ApiResponse {
 
 function Opinioes({ productId, productName, urlImage }: Props) {
   const opnioes = useSignal<ApiResponse>({ items: [], links: [] });
+  const { productReview, productReviewQuantity } = useUI();
 
   const apiFetch = async () => {
     const appUrl = "https://trustvox.com.br";
@@ -73,7 +75,11 @@ function Opinioes({ productId, productName, urlImage }: Props) {
       },
     });
     const data = await response.json();
-    console.log(data);
+    productReview.value = Math.round(
+      data.items.reduce((acc: number, curr: Opinion) => acc += curr.rate, 0) /
+        data.items.length,
+    );
+    productReviewQuantity.value = data.items.length;
     opnioes.value = data;
   };
 
