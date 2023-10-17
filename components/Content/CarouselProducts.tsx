@@ -56,9 +56,10 @@ export function PCard(
     // category,
     additionalProperty,
   } = product;
-  const { listPrice, price, installments, seller, availability } = useOffer(
-    offers,
-  );
+  const { listPrice = 0, price = 0, installments, seller, availability } =
+    useOffer(
+      offers,
+    );
   const [front] = images ?? [];
 
   const props = useAddToCart({
@@ -70,6 +71,10 @@ export function PCard(
     name: name ?? "",
     quantity: 1,
   });
+
+  const percent = Math.floor(
+    ((listPrice - price) / listPrice) * 100,
+  );
 
   return (
     <div class="PCARD h-full w-full relative">
@@ -113,20 +118,23 @@ export function PCard(
               </>
             )}
             <div class="block md:hidden">
-              <span class="flex items-center gap-2 mt-2">
-                {listPrice && (
-                  <p class="line-through text-[#00000066] text-sm">
-                    {formatPrice(listPrice, offers!.priceCurrency!)}
-                  </p>
-                )}
-                {price && listPrice && (
-                  <p class="bg-secondary text-white rounded-lg font-medium text-xs py-1 px-2">
-                    {(((listPrice - price) / listPrice) * 100).toString().split(
-                      ".",
-                    )[0]}% OFF
-                  </p>
-                )}
-              </span>
+              {percent > 0 && (
+                <span class="flex items-center gap-2 mt-2">
+                  {listPrice && (
+                    <p class="line-through text-[#00000066] text-sm">
+                      {formatPrice(listPrice, offers!.priceCurrency!)}
+                    </p>
+                  )}
+                  {price && listPrice && (
+                    <p class="bg-secondary text-white rounded-lg font-medium text-xs py-1 px-2">
+                      {(((listPrice - price) / listPrice) * 100).toString()
+                        .split(
+                          ".",
+                        )[0]}% OFF
+                    </p>
+                  )}
+                </span>
+              )}
               <p class="font-[700] text-lg rounded-[10px]" style={{ color }}>
                 {formatPrice(price, offers!.priceCurrency!)}
               </p>
@@ -136,12 +144,12 @@ export function PCard(
                 {formatPrice(price, offers!.priceCurrency!)}
               </p>
               <span class="flex items-center gap-3 mt-2">
-                {listPrice && (
+                {percent > 0 && listPrice && (
                   <p class="line-through text-[#00000066] text-sm">
                     {formatPrice(listPrice, offers!.priceCurrency!)}
                   </p>
                 )}
-                {price && listPrice && (
+                {percent > 0 && price && listPrice && (
                   <p class="bg-secondary text-white rounded-lg font-medium text-xs py-1 px-2">
                     {(((listPrice - price) / listPrice) * 100).toString().split(
                       ".",
