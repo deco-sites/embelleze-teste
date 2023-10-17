@@ -33,6 +33,7 @@ function ProductCard({ product }: { product: Product }) {
       <div class="flex flex-col gap-4">
         <div class="flex justify-between bg-white max-w-[374.67px] flex-grow items-center gap-4 rounded-2xl p-3">
           <Image
+            alt={name}
             src={image.url ?? ""}
             width={105}
             class="h-[105px] object-contain"
