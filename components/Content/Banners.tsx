@@ -47,25 +47,25 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
   return (
     <a
       href={href}
-      class="relative h-fit max-h-[375px] overflow-y-hidden w-full"
+      class="relative h-full max-h-[375px] overflow-y-hidden w-full"
     >
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={mobile}
-          width={375}
-          height={375}
+          width={1000}
+          height={1000}
         />
         <Source
           media="(min-width: 768px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={desktop}
-          width={1440}
-          height={340}
+          width={1920}
+          height={450}
         />
         <img
-          class="object-cover w-full"
+          class="object-contain w-full h-full"
           loading={lcp ? "eager" : "lazy"}
           src={desktop}
           alt={alt}
