@@ -46,6 +46,7 @@ function Drawer(props: Props) {
         checked={open}
         type="checkbox"
         class="drawer-toggle"
+        aria-label="Abrir-ou-fechar-o-menu-de-navegação"
         onChange={(e) => e.currentTarget.checked === false && onClose?.()}
       />
 
