@@ -12,21 +12,40 @@ function NavItem({ item, lastIndex }: { item: INavItem; lastIndex: boolean }) {
 
   return (
     <li class="group flex items-center">
-      <a
-        href={href}
-        class={`${
-          lastIndex
-            ? "bg-secondary text-white rounded-[5px] py-1 px-2"
-            : "px-2 py-3 text-base-300"
-        }`}
-      >
-        <span
-          class={`${href ? "group-hover:underline" : ""} font-semibold`}
-          style={{ lineHeight: "17.5px", fontSize: "14px" }}
-        >
-          {label}
-        </span>
-      </a>
+      {href
+        ? (
+          <a
+            href={href}
+            class={`${
+              lastIndex
+                ? "bg-secondary text-white rounded-[5px] py-1 px-2"
+                : "px-2 py-3 text-base-300"
+            }`}
+          >
+            <span
+              class={`${href ? "group-hover:underline" : ""} font-semibold`}
+              style={{ lineHeight: "17.5px", fontSize: "14px" }}
+            >
+              {label}
+            </span>
+          </a>
+        )
+        : (
+          <div
+            class={`${
+              lastIndex
+                ? "bg-secondary text-white rounded-[5px] py-1 px-2"
+                : "px-2 py-3 text-base-300"
+            }`}
+          >
+            <span
+              class={`${href ? "group-hover:underline" : ""} font-semibold`}
+              style={{ lineHeight: "17.5px", fontSize: "14px" }}
+            >
+              {label}
+            </span>
+          </div>
+        )}
 
       {children && children.length > 0 &&
         (

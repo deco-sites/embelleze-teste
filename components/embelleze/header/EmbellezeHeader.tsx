@@ -149,14 +149,14 @@ function EmbellezeHeader({
             </div>
             {navItems.length > 0 &&
               (
-                <div class="hidden xl:flex justify-center m-auto w-11/12 max-w-[1300px] text-[#541693] uppercase items-center text-sm gap-5 min-h-[35px]">
+                <ul class="hidden xl:flex justify-center m-auto w-11/12 max-w-[1300px] text-[#541693] uppercase items-center text-sm gap-5 min-h-[35px]">
                   {navItems.map((item, index) => (
                     <NavItem
                       item={item}
                       lastIndex={index === navItems.length - 1}
                     />
                   ))}
-                </div>
+                </ul>
               )}
             <div className="w-[100%] xl:hidden relative">
               <form action="/s" method="GET" id="formId" class="min-h-[40px]">
