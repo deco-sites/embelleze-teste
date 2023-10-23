@@ -77,7 +77,7 @@ function Navbar({ paths, logo }: {
           <a
             class="flex items-center gap-2"
             href={paths.loginHref}
-            aria-label="Log-in"
+            aria-label="Entre ou Cadastre-se"
           >
             <div class="bg-primary-content p-1 rounded-full">
               <IconUser class="w-6 h-6 text-base-300" />
