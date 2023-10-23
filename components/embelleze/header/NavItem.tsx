@@ -66,12 +66,20 @@ function NavItem({ item, lastIndex }: { item: INavItem; lastIndex: boolean }) {
             <ul class="flex items-start justify-center gap-6 flex-wrap">
               {children.map((node) => (
                 <li class="p-6">
-                  <a
-                    class={`${node.href ? "hover:underline" : ""} font-bold`}
-                    href={node.href}
-                  >
-                    <span class="text-secondary">{node.label}</span>
-                  </a>
+                  {node.href
+                    ? (
+                      <a
+                        class="hover:underline font-bold"
+                        href={node.href}
+                      >
+                        <span class="text-secondary">{node.label}</span>
+                      </a>
+                    )
+                    : (
+                      <span class="font-bold">
+                        <span class="text-secondary">{node.label}</span>
+                      </span>
+                    )}
 
                   <ul class="flex flex-col gap-1 mt-4">
                     {node.children?.map((leaf) => (
